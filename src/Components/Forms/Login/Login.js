@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { NavLink } from 'react-router-dom';
 import './Login.css'
 
 class Login extends Component {
@@ -8,14 +9,14 @@ class Login extends Component {
                 <h1>Login</h1>
                 <form>
                     <p>Email</p>
-                    <input type="email" name="" placeholder="Enter Email" />
+                    <input type="email" name="" placeholder="Enter email" />
                     <p>Password</p>
-                    <input type="password" name="" placeholder="Enter Password" />
+                    <input type="password" name="" placeholder="Enter password" />
                     <input type="submit" name="" value="Login" />
-                    <a href="#">Forgot password?</a> <br/>
+                    <NavLink to="#">Forgot password?</NavLink> <br/>
                     <label>
                         Don't have an account? 
-                        <a href="#"> Create one</a>
+                        <NavLink to="/signup"> Create one</NavLink>
                     </label>
                 </form>
             </div>

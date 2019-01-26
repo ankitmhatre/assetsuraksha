@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './NavBar.css';
 import 'materialize-css'
 
@@ -9,10 +10,10 @@ const NavBar = () => {
                 <a href="#!" className="brand-logo logo">Logo</a>
                 <div>
                     <ul className="right hide-on-med-and-down">
-                    <li><a href="" >Home</a></li>
-                    <li><a href="" >About</a></li>
-                    <li><a href="login.html" >Login</a></li>
-                    <li><a href="signup.html" className="btn orange darken-2" >Signup</a></li>
+                    <li><NavLink to="#" >Home</NavLink></li>
+                    <li><NavLink to="#" >About</NavLink></li>
+                    <li><NavLink to="/login" >Login</NavLink></li>
+                    <li><NavLink to="/signup" className="btn orange darken-2" >Signup</NavLink></li>
                     {/* Dropdown Trigger */}
                     <li></li>
                     </ul>
