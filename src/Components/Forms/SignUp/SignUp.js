@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { NavLink } from 'react-router-dom';
 import './SignUp.css'
 
 class SignUp extends Component {
@@ -13,7 +14,7 @@ class SignUp extends Component {
                     <input type="email" name="" placeholder="Enter email" />
                     <p>Password</p>
                     <input type="password" name="" placeholder="Enter password" />
-                    <input type="submit" name="" value="Sign Up" />
+                    <NavLink to="/personal_details"><input type="submit" name="" value="Sign Up" /></NavLink>
                 </form>
             </div>
         )

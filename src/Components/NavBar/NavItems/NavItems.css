@@ -1,0 +1,30 @@
+.NavItems {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+li {
+    margin-left: 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+li a {
+    color: white;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    display: block;
+    text-decoration: none;
+    /* font-weight: bold; */
+}
+
+.signup {
+    background-color: #fd4b4b;
+    border-radius: 3px;
+    box-shadow: 1px 2px 1px rgb(63, 59, 59);
+}

@@ -8,7 +8,11 @@
     position: absolute;
     transform: translate(-50%,-50%);
     box-sizing: border-box;
-    padding: 50px 30px;
+    padding: 35px 30px;
+}
+
+h1 {
+    font-size: 60px;
 }
 
 .loginbox p{
@@ -24,7 +28,7 @@
 
 .loginbox input[type="email"], input[type="password"] {
     border: none;
-    border-bottom: none;
+    border-bottom: 1px solid;
     background: transparent;
     outline: none;
     height: 40px;
@@ -37,7 +41,6 @@
     color: #fff;
     border: none;
     height: 40px;
-
     font-size: 18px;
     border-radius: 20px;
 }
@@ -47,7 +50,6 @@
     background: #fff;
     color: #3498db;
     cursor: pointer;
-
 }
 
 .loginbox a {
@@ -60,4 +62,8 @@
 .loginbox a:hover
 {
     color: #ffc107;
+}
+
+.loginbox label {
+    font-size: 12px;
 }
