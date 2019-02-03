@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import './PDetails.css'
+import TextBox from "../../UI/TextBox/TextBox";
+import './PDetails.css';
+import Label from "../../UI/Label/Label";
 
 const styles = theme => ({
     button: {
@@ -27,34 +29,34 @@ class PDetails extends Component {
             <div className="PDContainer">
                 <h1 className="PDHeading">Personal Details</h1>
                 <div className="PDmarginTop">
-                    <label className="PDlabel">Name :</label> <br/>
-                    <input 
-                        type="text" placeholder="First Name" className="PDinput" />
-                    <input 
-                        type="text" placeholder="Last Name" className="PDinput" />
+                    <Label value="Name :" /><br/>
+                    <TextBox
+                        type="text" placeholder="First Name" />
+                    <TextBox 
+                        type="text" placeholder="Last Name"  />
                 </div>
                 <div className="PDmarginTop">
-                    <label className="PDlabel">Address :</label><br/>
-                    <input 
-                        type="text" placeholder="Line 1" className="PDinput" />
-                    <input 
-                        type="text" placeholder="Line 2" className="PDinput" /><br/>
-                    <input 
-                        type="text" placeholder="Line 3" className="PDinput" />
-                    <input 
-                        type="text" placeholder="City" className="PDinput" />
+                    <Label value="Address :" /><br/>
+                    <TextBox 
+                        type="text" placeholder="Line 1" />
+                    <TextBox 
+                        type="text" placeholder="Line 2" /><br/>
+                    <TextBox
+                        type="text" placeholder="Line 3" />
+                    <TextBox 
+                        type="text" placeholder="City" />
                 </div>
                 <div className="PDmarginTop">
-                    <label className="PDlabel">Region/Country :</label><br/>
-                    <input 
-                        type="text" placeholder="State" className="PDinput" />
-                    <input 
-                        type="text" placeholder="Country" className="PDinput" />
+                    <Label value="Region/Country :" /><br/>
+                    <TextBox 
+                        type="text" placeholder="State" />
+                    <TextBox 
+                        type="text" placeholder="Country" />
                 </div>
                 <div className="PDmarginTop">
-                    <label className="PDlabel">Contact Number :</label><br/>
-                    <input 
-                        type="text" placeholder="Phone Number" className="PDinput" />
+                    <Label value="Contact Number :" /><br/>
+                    <TextBox 
+                        type="text" placeholder="Phone Number" />
                     <Button 
                         variant="contained" 
                         color="primary" 
@@ -62,17 +64,19 @@ class PDetails extends Component {
                         onClick={this.SendOTPHandler}>
                         Send OTP
                     </Button>
-                    <p className="OTPtag">An OTP will be sent to your mobile number.</p>
+                    
                 </div>
                 {this.state.otpbox && (
-                    <div className="PDmarginTop">
-                        <label className="PDlabel">OTP :</label> <br/>
-                        <input 
-                            type="text" placeholder="Enter OTP" className="PDinput" />
-                        <Button variant="contained" color="primary" className={classes.button}>
-                            Verify
-                        </Button>
-                        
+                    <div>
+                        <p className="OTPtag">An OTP will be sent to your mobile number.</p>
+                        <div className="PDmarginTop">
+                            <Label value="OTP :" /> <br/>
+                            <TextBox 
+                                type="text" placeholder="Enter OTP"  />
+                            <Button variant="contained" color="primary" className={classes.button}>
+                                Verify
+                            </Button>
+                        </div>
                     </div>
                 )}
                 <div className="continueTop">
@@ -89,4 +93,3 @@ PDetails.propTypes = {
   };
 
 export default withStyles(styles)(PDetails);
-// export default PDetails;

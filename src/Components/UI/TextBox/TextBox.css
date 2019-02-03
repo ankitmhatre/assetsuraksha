@@ -1,0 +1,17 @@
+.SearchBox {
+    border: 1px solid white;
+    outline: none;
+    height: 30px;
+    width: 250px;
+    color: #000;
+    font-size: 16px;
+    margin: 5px 10px;
+    padding-left: 10px;
+    border-radius: 3px;
+}
+
+/* @media (max-width: 450px) {
+    .SearchBox {
+        width: 100%;
+    }
+} */
