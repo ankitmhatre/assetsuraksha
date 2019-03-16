@@ -2,29 +2,54 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    display: flex;
+    display: block;
     align-items: center;
     list-style: none;
 }
+
 li {
-    margin-left: 10px;
+    margin: 15px 0px;
     box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    color: white;
+    display: block;
 }
 
 li a {
-    color: white;
-    padding: 5px 10px;
+    color: black;
     box-sizing: border-box;
     display: block;
+    width: 100%;
     text-decoration: none;
-    /* font-weight: bold; */
 }
 
-.signup {
-    background-color: #fd4b4b;
-    border-radius: 3px;
-    box-shadow: 1px 2px 1px rgb(63, 59, 59);
+
+@media (min-width: 500px) {
+    .NavItems {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        list-style: none;
+    }
+    
+    li {
+        margin-left: 10px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+    }
+    
+    li a {
+        color: white;
+        padding: 5px 10px;
+        box-sizing: border-box;
+        display: block;
+        text-decoration: none;
+    }
+    
+    .signup {
+        background-color: #fd4b4b;
+        border-radius: 3px;
+        box-shadow: 1px 2px 1px rgb(63, 59, 59);
+    }
 }

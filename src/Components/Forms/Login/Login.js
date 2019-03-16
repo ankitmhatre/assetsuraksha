@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
-import './Login.css'
-import TextField from '@material-ui/core/TextField';
+import { connect } from 'react-redux';
+import './Login.css';
+import * as actionTypes from '../../../store/actions';
 
 class Login extends Component {
     render() {
@@ -10,10 +11,16 @@ class Login extends Component {
                 <h1>Login</h1>
                 <form>
                     <p>Email</p>
-                    <input type="email" name="" placeholder="Enter email" />
+                    <input 
+                        type="email" name="" placeholder="Enter email"
+                        onChange={this.props.emailHandler} />
                     <p>Password</p>
-                    <input type="password" name="" placeholder="Enter password" />
-                    <input type="submit" name="" value="Login" />
+                    <input 
+                        type="password" name="" placeholder="Enter password"
+                        onChange={this.props.passwordHandler}  />
+                    <input 
+                        type="submit" name="" value="Login"
+                        onClick={this.props.loginHandler}  />
                     <NavLink to="#">Forgot password?</NavLink> <br/>
                     <label>
                         Don't have an account? 
@@ -25,4 +32,10 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => ({
+    emailHandler: (event) => dispatch({type: actionTypes.LOGIN_EMAIL, val: event.target.value}),
+    passwordHandler: (event) => dispatch({type: actionTypes.LOGIN_PASSWORD, val: event.target.value}),
+    loginHandler: () => dispatch({type: actionTypes.LOGIN}),
+});
+
+export default connect(null, mapDispatchToProps)(Login);

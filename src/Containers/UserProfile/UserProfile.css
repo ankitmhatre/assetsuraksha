@@ -1,0 +1,14 @@
+.ProfileName {
+    display: flex;
+    flex-grow: 1;
+    min-height: 56px;
+    align-items: flex-start;
+    padding-left: 18px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Name {
+    font-size: 40px;
+    font-weight: bold;
+}

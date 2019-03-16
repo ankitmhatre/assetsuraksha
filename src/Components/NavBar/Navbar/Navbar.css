@@ -6,7 +6,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    padding: 0 10%;
+    padding: 0 5%;
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
@@ -14,11 +14,40 @@
     z-index: 100;
 }
 
-.Toolbar Nav {
-    height: 100%;
+.Toolbar nav {
+    display: none;
+}
+
+.MenuIcon {
+    max-width: 40px;
+    height: 40px;
+    position: relative;
+    left: 0;
 }
 
 .logo {
     color: white;
     font-size: 25px;
+    position: relative;
+    right: 60%;
 }
+
+@media (min-width: 800px) {
+    .MenuIcon {
+        display: none;
+    }
+    
+    .Toolbar {
+        padding: 0 10%;
+    }
+
+    .Toolbar nav {
+        display: block;
+        height: 100%;
+    }
+
+    .logo {
+        left: 0;
+    }
+}
+

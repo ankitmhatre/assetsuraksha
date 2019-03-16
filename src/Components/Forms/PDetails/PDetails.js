@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 
 import TextBox from "../../UI/TextBox/TextBox";
 import './PDetails.css';
 import Label from "../../UI/Label/Label";
-// import * as actionTypes from '../../../store/actions'
+import * as actionTypes from '../../../store/actions'
+import UserProfile from "../../../Containers/UserProfile/UserProfile";
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
     button: {
@@ -19,7 +21,6 @@ const styles = theme => ({
 
 class PDetails extends Component {
     state = {
-        otpbox: false,
         firstName: '',
         lastName: '',
         line1: '',
@@ -28,8 +29,7 @@ class PDetails extends Component {
         city: '',
         state: '',
         country: '',
-        phoneNumber: '',
-        otp: ''
+        otpbox: false
     }
 
     FirstNameHandler = (event) => {
@@ -63,16 +63,8 @@ class PDetails extends Component {
     countryHandler = (event) => {
         this.setState({country: event.target.value})
     }
-    
-    PhoneNumberHandler = (event) => {
-        this.setState({phoneNumber: event.target.value})
-    }
 
-    OTPHandler = (event) => {
-        this.setState({otp: event.target.value})
-    }
-
-    VerifyHandler = (event) => {
+    VerifyHandler = () => {
         this.setState({otpbox: true})
     }
 
@@ -118,7 +110,7 @@ class PDetails extends Component {
                     <Label value="Contact Number :" /><br/>
                     <TextBox 
                         type="text" placeholder="Phone Number"
-                        onChange={this.PhoneNumberHandler} />
+                        onChange={this.props.phoneNumberHandler} />
                     <Button 
                         variant="contained" 
                         color="primary" 
@@ -143,9 +135,14 @@ class PDetails extends Component {
                     </div>
                 )}
                 <div className="continueTop">
-                <Button variant="contained" color="primary" className={classes.button}>
-                    Continue
-                </Button>
+                    <Button 
+                        component={Link}
+                        to = "/user_profile"
+                        variant="contained" 
+                        color="primary" 
+                        className={classes.button}>
+                            Continue
+                    </Button>
                 </div>  
             </div>
         )
@@ -159,20 +156,9 @@ PDetails.propTypes = {
 //     otpbox: state.otpbox
 // });
 
-// const mapDispatchToProps = dispatch => ({
-//     verifyHandler: () => dispatch({type: actionTypes.VERIFY}),
-//     firstNameHandler: (event) => dispatch({type: actionTypes.FIRSTNAME, val: event.target.value}),
-//     lastNameHandler: (event) => dispatch({type: actionTypes.LASTNAME, val: event.target.value}),
-//     line1Handler: (event) => dispatch({type: actionTypes.LINE1, val: event.target.value}),
-//     line2Handler: (event) => dispatch({type: actionTypes.LINE2, val: event.target.value}),
-//     line3Handler: (event) => dispatch({type: actionTypes.LINE3, val: event.target.value}),
-//     cityHandler: (event) => dispatch({type: actionTypes.CITY, val: event.target.value}),
-//     stateHandler: (event) => dispatch({type: actionTypes.STATE, val: event.target.value}),
-//     countryHandler: (event) => dispatch({type: actionTypes.COUNTRY, val: event.target.value}),
-//     phoneNumberHandler: (event) => dispatch({type: actionTypes.PHONE_NUMBER, val: event.target.value}),
-//     inputOTPHandler: (event) => dispatch({type: actionTypes.OTP, val: event.target.value}),
-// });
+const mapDispatchToProps = dispatch => ({
+    inputOTPHandler: (event) => dispatch({type: actionTypes.OTP, val: event.target.value}),
+    phoneNumberHandler: (event) => dispatch({type: actionTypes.PHONE_NUMBER, val: event.target.value}),
+});
 
-// export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(PDetails));
-
-export default withStyles(styles)(PDetails);
+export default connect(null, mapDispatchToProps)(withStyles(styles)(PDetails));

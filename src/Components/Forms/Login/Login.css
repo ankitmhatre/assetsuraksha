@@ -1,6 +1,6 @@
 .loginbox{
-    width: 28%;
-    height: 80%;
+    width: 350px;
+    height: 550px;
     background: #fff;
     color: #000;
     top: 50%;
@@ -9,6 +9,7 @@
     transform: translate(-50%,-50%);
     box-sizing: border-box;
     padding: 35px 30px;
+    margin-top: 15px;
 }
 
 h1 {
