@@ -55,7 +55,7 @@ render() {
 				<IconButton
 				color="inherit"
 				aria-label="Open drawer"
-				onClick={this.handleDrawerToggle}
+				onClick={this.props.handleDrawerToggle}
 				className={classes.menuButton}
 				>
 				<MenuIcon />

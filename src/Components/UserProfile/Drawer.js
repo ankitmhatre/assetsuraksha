@@ -1,26 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-// import MailIcon from '@material-ui/icons/Mail';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
-import PDetails from '../../Components/Forms/PDetails/PDetails';
-import MainContent from './MainContent';
 
 const drawerWidth = 240;
 
@@ -32,18 +21,6 @@ drawer: {
 	[theme.breakpoints.up('sm')]: {
 		width: drawerWidth,
 		flexShrink: 0,
-	},
-},
-appBar: {
-	marginLeft: drawerWidth,
-	[theme.breakpoints.up('sm')]: {
-		width: `calc(100% - ${drawerWidth}px)`,
-	},
-},
-menuButton: {
-	marginRight: 20,
-	[theme.breakpoints.up('sm')]: {
-		display: 'none',
 	},
 },
 toolbar: theme.mixins.toolbar,
@@ -59,47 +36,10 @@ content: {
 },
 });
 
-class NavDrawer extends React.Component {
-state = {
-	mobileOpen: false,
-	open: false,
-	openRealEstate: false,
-	valuables: false,
-	bank: false,
-	lifeInsuarance: false,
-	nonLifeInsuarance: false,
-};
-
-handleClick = () => {
-	this.setState(state => ({ open: !state.open }));
-};
-
-handleBank = () => {
-	this.setState(state => ({ bank: !state.bank }));
-};
-
-handleValuables = () => {
-	this.setState(state => ({ valuables: !state.valuables }));
-};
-
-handleLifeInsuarance = () => {
-	this.setState(state => ({ lifeInsuarance: !state.lifeInsuarance }));
-};
-
-handleNonLifeInsuarance = () => {
-	this.setState(state => ({ nonLifeInsuarance: !state.nonLifeInsuarance }));
-};
-
-handleRealEstate = () => {
-	this.setState(state => ({ openRealEstate: !state.openRealEstate }));
-};
-
-handleDrawerToggle = () => {
-	this.setState(state => ({ mobileOpen: !state.mobileOpen }));
-};
+class UserProfileDrawer extends React.Component {
 
 render() {
-	const { classes, theme, handleBank, bank } = this.props;
+	const { classes, theme } = this.props;
 
 	const drawer = (
 		<div>
@@ -111,11 +51,11 @@ render() {
 				<ListItemText primary="Home" />
 			</ListItem>
 			
-			<ListItem button onClick={handleBank}>
+			<ListItem button onClick={this.props.handleBank}>
 				<ListItemText primary="Bank" />
-					{bank ? <ExpandLess /> : <ExpandMore />}
+					{this.props.bank ? <ExpandLess /> : <ExpandMore />}
 			</ListItem>
-			<Collapse in={bank} timeout="auto" unmountOnExit>
+			<Collapse in={this.props.bank} timeout="auto" unmountOnExit>
 				<List component="div" disablePadding>
 					<ListItem button className={classes.nested}>
 						<ListItemText primary="Bank Fixed Deposits(FDs)" />
@@ -263,47 +203,47 @@ render() {
 				</ListItem>
 			</List>
 		</Collapse>
+
 		</List> 
 		</div>
 	);
 
 	return (
-        <div>
-		<nav className={classes.drawer}>
-			{/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-			<Hidden smUp implementation="css">
-				<Drawer
-				container={this.props.container}
-				variant="temporary"
-				anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-				open={this.state.mobileOpen}
-				onClose={this.handleDrawerToggle}
-				classes={{
-					paper: classes.drawerPaper,
-				}}
-				>
-				{drawer}
-				</Drawer>
-			</Hidden>
-			<Hidden xsDown implementation="css">
-				<Drawer
-				classes={{
-					paper: classes.drawerPaper,
-				}}
-				variant="permanent"
-				open
-				>
-				{drawer}
-				</Drawer>
-			</Hidden>
-		</nav>
-        <MainContent />
-        </div>
+		<div className={classes.root}>
+			<nav className={classes.drawer}>
+				{/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+				<Hidden smUp implementation="css">
+					<Drawer
+					container={this.props.container}
+					variant="temporary"
+					anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+					open={this.props.mobileOpen}
+					onClose={this.props.handleDrawerToggle}
+					classes={{
+						paper: classes.drawerPaper,
+					}}
+					>
+					{drawer}
+					</Drawer>
+				</Hidden>
+				<Hidden xsDown implementation="css">
+					<Drawer
+					classes={{
+						paper: classes.drawerPaper,
+					}}
+					variant="permanent"
+					open
+					>
+					{drawer}
+					</Drawer>
+				</Hidden>
+			</nav>
+		</div>
 	);
 }
 }
 
-NavDrawer.propTypes = {
+UserProfileDrawer.propTypes = {
 classes: PropTypes.object.isRequired,
 // Injected by the documentation to work in an iframe.
 // You won't need it on your project.
@@ -311,4 +251,4 @@ container: PropTypes.object,
 theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(NavDrawer);
+export default withStyles(styles, { withTheme: true })(UserProfileDrawer);
