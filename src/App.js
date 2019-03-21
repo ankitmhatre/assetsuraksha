@@ -7,6 +7,7 @@ import PDetails from './Components/Forms/PDetails/PDetails';
 import BannerTag from './Components/BannerTag/BannerTag';
 import UserProfile from './Containers/UserProfile/UserProfile';
 import Toolbar from './Components/NavBar/Toolbar';
+import NSCcalculator from './Components/NSC/NSCcalculator';
 
 class App extends Component {
   render() {

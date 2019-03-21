@@ -6,7 +6,8 @@ const TextBox = props => (
             type={props.type} 
             placeholder={props.placeholder}
             onChange={props.onChange}
-            className="SearchBox" />
+            value={props.value}
+            className="TextBox" />
 )
 
 export default TextBox;
