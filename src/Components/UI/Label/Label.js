@@ -2,7 +2,9 @@ import React from 'react';
 import './Label.css'
 
 const Label = (props) => (
-    <label className="Label">{props.value}</label>
+    <div className="LabelBox">
+        <label className="Label">{props.value}</label>
+    </div>
 )
 
 export default Label;

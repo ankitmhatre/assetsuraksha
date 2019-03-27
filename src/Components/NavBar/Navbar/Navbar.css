@@ -1,7 +1,9 @@
 .Toolbar {
-    height: 56px;
+    height: 60px;
     width: 100%;
-    background-color: linear-gradient(115deg, #3498db, #2c3e50) no-repeat fixed;
+    /* background-color: linear-gradient(#3498db, #2c3e50); */
+    background-color: #303f9f;
+    opacity: 0.8;
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3498db', endColorstr='#2c3e50',GradientType=1 );
     position: fixed;
     top: 0;

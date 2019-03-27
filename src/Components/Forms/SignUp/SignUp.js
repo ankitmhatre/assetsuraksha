@@ -27,7 +27,7 @@ class SignUp extends Component {
 
     render() {
         return (
-            <div className="SignUpbox">
+            <div className="SignUpbox shadow-3">
                 <h1>Sign Up</h1>
                 <form>
                     <p>Username</p>

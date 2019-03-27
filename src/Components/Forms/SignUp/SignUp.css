@@ -34,7 +34,8 @@
 }
 
 .SignUpbox input[type="submit"] {
-    background: #3498db;
+    background:  #303f9f;
+    opacity: 0.8;
     color: #fff;
     border: none;
     height: 40px;
@@ -44,9 +45,9 @@
 }
 
 .SignUpbox input[type="submit"]:hover {   
-    border: 2px solid #3498db;
+    border: 2px solid #303f9f;
     background: #fff;
-    color: #3498db;
+    color: #303f9f;
     cursor: pointer;
 
 }

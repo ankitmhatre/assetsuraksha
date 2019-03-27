@@ -7,7 +7,7 @@ import * as actionTypes from '../../../store/actions';
 class Login extends Component {
     render() {
         return (
-            <div className="loginbox">
+            <div className="loginbox shadow-4">
                 <h1>Login</h1>
                 <form>
                     <p>Email</p>

@@ -10,6 +10,7 @@ import Label from "../../UI/Label/Label";
 import * as actionTypes from '../../../store/actions'
 import UserProfile from "../../../Containers/UserProfile/UserProfile";
 import { Link } from "react-router-dom";
+import { Divider } from "@material-ui/core";
 
 const styles = theme => ({
     button: {
@@ -33,27 +34,35 @@ class PDetails extends Component {
     }
 
     FirstNameHandler = (event) => {
+        
         this.setState({firstName: event.target.value})
+        // console.log(event.target.value);
+        
     }
 
     LastNameHandler = (event) => {
         this.setState({lastName: event.target.value})
+        // console.log(event.target.value);
     }
 
     Line1Handler = (event) => {
         this.setState({line1: event.target.value})
+        // console.log(event.target.value);
     }
 
     Line2Handler = (event) => {
         this.setState({line2: event.target.value})
+        // console.log(event.target.value);
     }
 
     Line3Handler = (event) => {
         this.setState({line3: event.target.value})
+        // console.log(event.target.value);
     }
 
     CityHandler = (event) => {
         this.setState({city: event.target.value})
+        // console.log(event.target.value);
     }
 
     StateHandler = (event) => {
@@ -71,8 +80,9 @@ class PDetails extends Component {
     render() {
         const { classes } = this.props;
         return(
-            <div className="PDContainer">
+            <div>
                 <h1 className="PDHeading">Personal Details</h1>
+                <Divider />
                 <div className="PDmarginTop">
                     <Label value="Name :" /><br/>
                     <TextBox

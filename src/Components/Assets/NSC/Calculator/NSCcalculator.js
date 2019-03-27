@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import TextBox from '../UI/TextBox/TextBox';
-import Label from '../UI/Label/Label';
+import TextBox from '../../../UI/TextBox/TextBox';
+import Label from '../../../UI/Label/Label';
 import './NSCcalculator.css'
 
 class NSCcalculator extends Component {
@@ -123,10 +123,10 @@ class NSCcalculator extends Component {
     
     render() {
         return (
-            <div>
+            <div style={{padding: '20px 60px'}}>
                 <div>
                     <Label 
-                        value="Investment Amount (INR):"/>
+                        value="Investment Amount(INR):"/>
                 </div>
                 <TextBox 
                 placeholder="Enter Amount" value={this.state.investmentAmount} onChange={this.InvestmentAmountHandler}/>
@@ -153,21 +153,21 @@ class NSCcalculator extends Component {
                 </div>
 
                 <div>
-                    <Label value="Rate Of Interest (%):"/>
+                    <Label value="Rate Of Interest(%):"/>
                 </div>
                     <TextBox value={this.state.ROI} />
                 <div>    
-                    <Label value="Duration (years):"/>
+                    <Label value="Duration(years):"/>
                 </div>
                     <TextBox value={this.state.duration}/>
 
-                <div>
+                <div style={{padding: '5px 0px'}}>
                     <input onClick={this.NSCCalculate} type="submit" name="" value="Calculate" className="Calculate" />
                     <input onClick={this.Reset} type="submit" name="" value="Reset" className="Calculate" />
                 </div>
                 
                 <div>
-                    <Label value="Maturity Amount (INR):"/>
+                    <Label value="Maturity Amount(INR):"/>
                 </div>
                     <TextBox
                     value={this.state.maturityAmount} />

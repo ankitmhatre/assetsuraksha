@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import NSCmain from '../Assets/NSC/NSCmain/NSCmain';
+import KVP from "../Assets/KVP/KVP";
+import MF from "../Assets/MF/MF";
+import PhysicalShare from "../Assets/PhysicalShare/PhysicalShare";
+import RealEstate from "../Assets/RealEstate/RealEstate";
+import DP_Stock from "../Assets/DP_Stock/DP_Stock";
+import PDetails from '../Forms/PDetails/PDetails';
+import NSCform from '../Assets/NSC/NSCform/NSCform';
 
 const drawerWidth = 240;
 
@@ -23,13 +30,19 @@ render() {
 
 	return (
 		<div className={classes.root}>
-
 			<main className={classes.content}>
 				<div className={classes.toolbar} />
-				{/* <Typography paragraph>
-				</Typography>
-				<Typography paragraph>
-				</Typography> */}
+
+				{this.props.displayNSCForm && <NSCform />}
+
+				{this.props.pDetails && <PDetails style={{marginLeft: '30px'}}/>}
+				{this.props.NSC && <NSCmain DisplayNSCForm={this.props.DisplayNSCForm} />}
+				{this.props.KVP && <KVP />}
+				{this.props.MF && <MF />}
+				{this.props.physicalShare && <PhysicalShare />}
+				{this.props.realEstate && <RealEstate />}
+				{this.props.dp_stock && <DP_Stock />}
+				
 			</main>
 		</div>
 	);

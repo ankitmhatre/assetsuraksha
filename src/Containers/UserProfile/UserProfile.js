@@ -1,24 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import { NavLink } from 'react-router-dom';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import Collapse from '@material-ui/core/Collapse';
 import './UserProfile.css';
-import PDetails from '../../Components/Forms/PDetails/PDetails';
 import NavBar from '../../Components/UserProfile/NavBar';
 import UserProfileDrawer from '../../Components/UserProfile/Drawer'
 import MainContent from '../../Components/UserProfile/MainContent';
@@ -63,41 +47,122 @@ content: {
 class UserProfile extends React.Component {
 state = {
 	mobileOpen: false,
-	open: false,
-	openRealEstate: false,
-	valuables: false,
-	bank: false,
-	lifeInsuarance: false,
-	nonLifeInsuarance: false,
+	pDetails: false,
+	assets: false,
+	KVP: false,
+	NSC: false,
+	physicalShare: false,
+	MF: false,
+	realEstate: false,
+	dp_stock: false,
+	displayNSCForm: false
 };
 
-handleClick = () => {
-	this.setState(state => ({ open: !state.open }));
-};
-
-handleBank = () => {
-	this.setState(state => ({ bank: !state.bank }));
-};
-
-handleValuables = () => {
-	this.setState(state => ({ valuables: !state.valuables }));
-};
-
-handleLifeInsuarance = () => {
-	this.setState(state => ({ lifeInsuarance: !state.lifeInsuarance }));
-};
-
-handleNonLifeInsuarance = () => {
-	this.setState(state => ({ nonLifeInsuarance: !state.nonLifeInsuarance }));
-};
-
-handleRealEstate = () => {
-	this.setState(state => ({ openRealEstate: !state.openRealEstate }));
+handleAssets = () => {
+	this.setState(state => ({ assets: !state.assets }));
 };
 
 handleDrawerToggle = () => {
 	this.setState(state => ({ mobileOpen: !state.mobileOpen }));
 };
+
+displayPDetails = () => {
+	this.setState({
+		KVP: false,
+		pDetails: true,
+		NSC: false,
+		physicalShare: false,
+		MF: false,
+		realEstate: false,
+		dp_stock: false,
+		displayNSCForm: false,
+	})
+}
+
+displayKVP = () => {
+	this.setState({
+		pDetails: false,
+		KVP: true,
+		NSC: false,
+		physicalShare: false,
+		MF: false,
+		realEstate: false,
+		dp_stock: false,
+		displayNSCForm: false,
+	})
+}
+
+displayNSC = () => {
+	this.setState({
+		pDetails: false,
+		KVP: false,
+		NSC: true,
+		physicalShare: false,
+		MF: false,
+		realEstate: false,
+		dp_stock: false,
+		displayNSCForm: false,
+	})
+}
+
+displayMP = () => {
+	this.setState({
+		pDetails: false,
+		KVP: false,
+		NSC: false,
+		physicalShare: false,
+		MF: true,
+		realEstate: false,
+		dp_stock: false,
+		displayNSCForm: false,
+	})
+}
+
+displayRealEstate = () => {
+	this.setState({
+		pDetails: false,
+		KVP: false,
+		NSC: false,
+		physicalShare: false,
+		MF: false,
+		realEstate: true,
+		dp_stock: false,
+		displayNSCForm: false,
+	})
+}
+
+displayPhysicalShare = () => {
+	this.setState({
+		pDetails: false,
+		KVP: false,
+		NSC: false,
+		physicalShare: true,
+		MF: false,
+		realEstate: false,
+		dp_stock: false,
+		displayNSCForm: false,
+	})
+}
+
+displayDP_Stock = () => {
+	this.setState({
+		pDetails: false,
+		KVP: false,
+		NSC: false,
+		physicalShare: false,
+		MF: false,
+		realEstate: false,
+		dp_stock: true,
+		displayNSCForm: false,
+	})
+}
+
+DisplayNSCForm = () => {
+	this.setState({
+		NSC: false,
+		displayNSCForm: true,
+	})
+}	
 
 render() {
 	const { classes, theme } = this.props;
@@ -111,21 +176,27 @@ render() {
 		<UserProfileDrawer
 			mobileOpen={this.state.mobileOpen}
 			handleDrawerToggle={this.handleDrawerToggle}
-			handleBank={this.handleBank}
-			bank={this.state.bank}
-			handleValuables={this.handleValuables}
-			valuables={this.state.valuables}
-			handleLifeInsuarance={this.handleLifeInsuarance}
-			lifeInsuarance={this.state.lifeInsuarance}
-			handleNonLifeInsuarance={this.handleNonLifeInsuarance}
-			nonLifeInsuarance={this.state.nonLifeInsuarance}
-			handleClick={this.handleClick}
-			open={this.state.open}
-			handleRealEstate={this.handleRealEstate}
-			openRealEstate={this.state.openRealEstate}
-			 />
+			handleAssets={this.handleAssets}
+			assets={this.state.assets}
+			displayKVP={this.displayKVP}
+			displayNSC={this.displayNSC}
+			displayMP={this.displayMP}
+			displayRealEstate={this.displayRealEstate}
+			displayPhysicalShare={this.displayPhysicalShare}
+			displayDP_Stock={this.displayDP_Stock}
+			displayPDetails={this.displayPDetails}
+			/>
 
-		<MainContent />
+		<MainContent
+			KVP={this.state.KVP}
+			NSC={this.state.NSC}
+			physicalShare={this.state.physicalShare}
+			MF={this.state.MF}
+			realEstate={this.state.realEstate}
+			dp_stock={this.state.dp_stock}
+			pDetails={this.state.pDetails}
+			DisplayNSCForm={this.DisplayNSCForm}
+			displayNSCForm={this.state.displayNSCForm} />
 		</div>
 	);
 }
