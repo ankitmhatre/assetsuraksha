@@ -1,18 +1,15 @@
 .FeaturesBG {
-    background-image: linear-gradient(115deg, #3498dba9, #2c3e50a9), url('../../../assets/banner3.png');    height: 90vh;
-    margin-top: 10vh;
+    background-image: linear-gradient(115deg, #3498dba9, #2c3e50a9), url('../../../assets/banner3.png');    
+    height: 100vh;
     background-size: cover;
     clip-path: polygon(0 15vh, 100% 0, 100% 75vh, 0 100%);
     text-align: center;
-    z-index: -1;
-    position: relative;
+    margin-top: 10vh;
 }
 
 .Space {
-    margin-top: 100px;
-    position: absolute;
-    left: 44%;
-    text-align: center;
+    padding-top: 15vh;
+    box-sizing: border-box;
 }
 
 .Featuretext{
@@ -23,10 +20,11 @@
 
 .Features {
     display: flex;
-    justify-content: space-around; 
-    margin: 160px 7% 0 7%;
-    position: absolute;
-    /* margin-left: 7%; */
+    padding: 0 8%;
+    justify-content: space-around;
+    text-align: center;
+    width: 100%;
+    
 }
 
 .Features div {
@@ -35,6 +33,28 @@
     background-color: white;
     opacity: 0.7;
     border-radius: 5px;
-    margin: 20px;
-    
+    margin: 20px;   
+}
+
+.Features div p {
+    margin: 17px;
+}
+
+@media (max-width: 450px) {
+    .FeaturesBG {
+        height: auto;
+        clip-path: polygon(0 15vh, 100% 0, 100% 90%, 0 100%);
+    }
+
+    .Features {
+        flex-direction: column;
+        padding-bottom: 20vh;
+        width: 100%;
+        margin: 30px;   
+    }
+
+    .FeaturesBG {
+        width: 100%;
+    }
+
 }

@@ -7,7 +7,6 @@ import PDetails from './Components/Forms/PDetails/PDContainer';
 import UserProfile from './Containers/UserProfile/UserProfile';
 import Toolbar from './Components/NavBar/Toolbar';
 import Home from './Containers/Home/Home';
-import NSCform from './Components/Assets/NSC/NSCform/NSCform';
 
 class App extends Component {
   render() {
@@ -20,7 +19,6 @@ class App extends Component {
           <Route path="/signup" component={SignUp}/>
           <Route path="/personal_details" component={PDetails} />
           <Route path="/user_profile" component={UserProfile} />
-          {/* <NSCform /> */}
         </div>
       </BrowserRouter>
     );

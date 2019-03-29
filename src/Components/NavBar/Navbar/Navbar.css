@@ -1,10 +1,8 @@
 .Toolbar {
     height: 60px;
     width: 100%;
-    /* background-color: linear-gradient(#3498db, #2c3e50); */
     background-color: #303f9f;
     opacity: 0.8;
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3498db', endColorstr='#2c3e50',GradientType=1 );
     position: fixed;
     top: 0;
     left: 0;
@@ -14,6 +12,7 @@
     box-sizing: border-box;
     align-items: center; 
     z-index: 100;
+    width: 100%;
 }
 
 .Toolbar nav {

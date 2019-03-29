@@ -7,3 +7,10 @@
 .Intro h2 {
     font-size: 40px;
 }
+
+@media (max-width: 450px) {
+    .Intro {
+        width: 100%;
+        padding: 0 30px;
+    }
+}

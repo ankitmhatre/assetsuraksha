@@ -17,7 +17,7 @@ class TextBox extends Component {
                 type={this.props.type} 
                 placeholder={this.props.placeholder}
                 onChange={this.onChangeHandler}
-                value={this.state.change}
+                value={this.props.value}
                 className="TextBox" />
     )
     }
