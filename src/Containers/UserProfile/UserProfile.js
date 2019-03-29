@@ -51,12 +51,16 @@ class UserProfile extends React.Component {
 		assets: false,
 		KVP: false,
 		NSC: false,
-		physicalShare: false,
+		PhysicalShare: false,
 		MF: false,
-		realEstate: false,
-		dp_stock: false,
+		RealEstate: false,
+		dP_Stock: false,
+		displayMFFrom: false,
+		displayPhysicalShare: false,
+		displayRealEstate: false,
 		displayNSCForm: false,
-		displayKVPform: false
+		displayKVPForm: false,
+		displayDPStockForm: false
 	};
 
 	handleAssets = () => {
@@ -72,12 +76,16 @@ class UserProfile extends React.Component {
 			KVP: false,
 			pDetails: true,
 			NSC: false,
-			physicalShare: false,
+			PhysicalShare: false,
 			MF: false,
-			realEstate: false,
-			dp_stock: false,
+			RealEstate: false,
+			DP_Stock: false,
 			displayKVPForm: false,
+			displayMFFrom: false,
+			displayPhysicalShare: false,
+			displayRealEstate: false,
 			displayNSCForm: false,
+			displayDPStockForm: false
 		})
 	}
 
@@ -88,10 +96,14 @@ class UserProfile extends React.Component {
 			NSC: false,
 			physicalShare: false,
 			MF: false,
-			realEstate: false,
-			dp_stock: false,
+			RealEstate: false,
+			DP_Stock: false,
 			displayKVPForm: false,
+			displayMFFrom: false,
+			displayPhysicalShare: false,
+			displayRealEstate: false,
 			displayNSCForm: false,
+			displayDPStockForm: false
 		})
 	}
 
@@ -100,12 +112,16 @@ class UserProfile extends React.Component {
 			pDetails: false,
 			KVP: false,
 			NSC: true,
-			physicalShare: false,
+			PhysicalShare: false,
 			MF: false,
-			realEstate: false,
-			dp_stock: false,
+			RealEstate: false,
+			DP_Stock: false,
 			displayNSCForm: false,
+			displayMFFrom: false,
+			displayPhysicalShare: false,
+			displayRealEstate: false,
 			displayKVPForm: false,
+			DisplayDPStockForm: false
 		})
 	}
 
@@ -114,12 +130,16 @@ class UserProfile extends React.Component {
 			pDetails: false,
 			KVP: false,
 			NSC: false,
-			physicalShare: false,
+			PhysicalShare: false,
 			MF: true,
-			realEstate: false,
-			dp_stock: false,
+			RealEstate: false,
+			DP_Stock: false,
 			displayNSCForm: false,
+			displayMFFrom: false,
+			displayPhysicalShare: false,
+			displayRealEstate: false,
 			displayKVPForm: false,
+			displayDPStockForm: false
 		})
 	}
 
@@ -128,12 +148,16 @@ class UserProfile extends React.Component {
 			pDetails: false,
 			KVP: false,
 			NSC: false,
-			physicalShare: false,
+			PhysicalShare: false,
 			MF: false,
-			realEstate: true,
-			dp_stock: false,
+			RealEstate: true,
+			DP_Stock: false,
+			displayMFFrom: false,
+			displayPhysicalShare: false,
+			displayRealEstate: false,
 			displayKVPForm: false,
 			displayNSCForm: false,
+			displayDPStockForm: false
 		})
 	}
 
@@ -142,28 +166,67 @@ class UserProfile extends React.Component {
 			pDetails: false,
 			KVP: false,
 			NSC: false,
-			physicalShare: true,
+			PhysicalShare: true,
 			MF: false,
-			realEstate: false,
-			dp_stock: false,
+			RealEstate: false,
+			DP_Stock: false,
+			displayMFFrom: false,
+			displayPhysicalShare: false,
+			displayRealEstate: false,
 			displayNSCForm: false,
 			displayKVPForm: false,
+			displayDPStockForm: false
 		})
 	}
 
-	displayDP_Stock = () => {
+	displayDPStock = () => {
 		this.setState({
 			pDetails: false,
 			KVP: false,
 			NSC: false,
-			physicalShare: false,
+			PhysicalShare: false,
 			MF: false,
-			realEstate: false,
-			dp_stock: true,
+			RealEstate: false,
+			DP_Stock: true,
 			displayNSCForm: false,
+			displayMFFrom: false,
+			displayPhysicalShare: false,
+			displayRealEstate: false,
 			displayKVPForm: false,
+			displayDPStockForm: false
 		})
 	}
+
+	DisplayMFForm = () => {
+		this.setState({
+			MF: false,
+			displayMFForm: true,
+		})
+	}
+
+
+	DisplayPhysicalShareForm = () => {
+		this.setState({
+			PhysicalShare: false,
+			displayPhysicalShareForm: true,
+		})
+	}
+
+
+	DisplayRealEstateForm = () => {
+		this.setState({
+			RealEstate: false,
+			displayRealEstateForm: true,
+		})
+	}
+
+	DisplayDPStockForm = () => {
+		this.setState({
+			DP_Stock: false,
+			displayDPStockForm: true,
+		})
+	}
+
 
 	DisplayNSCForm = () => {
 		this.setState({
@@ -197,23 +260,37 @@ class UserProfile extends React.Component {
 					assets={this.state.assets}
 					displayKVP={this.displayKVP}
 					displayNSC={this.displayNSC}
-					displayMP={this.displayMP}
+					displayMF={this.displayMF}
 					displayRealEstate={this.displayRealEstate}
 					displayPhysicalShare={this.displayPhysicalShare}
-					displayDP_Stock={this.displayDP_Stock}
+					displayDPStock={this.displayDPStock}
 					displayPDetails={this.displayPDetails}
 				/>
 
 				<MainContent
 					KVP={this.state.KVP}
 					NSC={this.state.NSC}
-					physicalShare={this.state.physicalShare}
+					PhysicalShare={this.state.PhysicalShare}
 					MF={this.state.MF}
-					realEstate={this.state.realEstate}
-					dp_stock={this.state.dp_stock}
+					RealEstate={this.state.RealEstate}
+					DP_Stock={this.state.DP_Stock}
 					pDetails={this.state.pDetails}
+
+					DisplayPhysicalShareForm={this.DisplayPhysicalShareForm}
+					DisplayPhysicalShareForm={this.state.DisplayPhysicalShareForm}
+
+					DisplayMFForm={this.DisplayMFForm}
+					DisplayMFForm={this.state.DisplayMFForm}
+
+					DisplayRealEstateForm={this.DisplayRealEstateForm}
+					DisplayRealEstateForm={this.state.DisplayRealEstateForm}
+
+					DisplayDPStockForm={this.DisplayDPStockForm}
+					DisplayDPStockForm={this.state.DisplayDPStockForm}
+
 					DisplayKVPForm={this.DisplayKVPForm}
 					displayKVPForm={this.state.displayKVPForm}
+
 					DisplayNSCForm={this.DisplayNSCForm}
 					displayNSCForm={this.state.displayNSCForm} />
 			</div>
