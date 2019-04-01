@@ -54,7 +54,7 @@ class UserProfile extends React.Component {
 		PhysicalShare: false,
 		MF: false,
 		RealEstate: false,
-		dP_Stock: false,
+		DP_Stock: false,
 		displayMFFrom: false,
 		displayPhysicalShare: false,
 		displayRealEstate: false,
@@ -94,7 +94,7 @@ class UserProfile extends React.Component {
 			pDetails: false,
 			KVP: true,
 			NSC: false,
-			physicalShare: false,
+			PhysicalShare: false,
 			MF: false,
 			RealEstate: false,
 			DP_Stock: false,
@@ -125,7 +125,7 @@ class UserProfile extends React.Component {
 		})
 	}
 
-	displayMP = () => {
+	displayMF = () => {
 		this.setState({
 			pDetails: false,
 			KVP: false,

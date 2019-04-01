@@ -15,7 +15,7 @@ const NomineeDetails = (props) => (
             ItemSelect={props.NominationPlaceHandler}
             select={props.nominationPlace} />
 
-        <h2>1st Nominee details</h2>
+        <h2>Nominee details</h2>
         <Label value="Name:" />
         <TextBox
             type="text" 

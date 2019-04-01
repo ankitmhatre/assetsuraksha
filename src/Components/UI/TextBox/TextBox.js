@@ -14,7 +14,7 @@ class TextBox extends Component {
     render() {
         return  (
             <input 
-                type={this.props.type} 
+                type="text"
                 placeholder={this.props.placeholder}
                 onChange={this.onChangeHandler}
                 value={this.props.value}

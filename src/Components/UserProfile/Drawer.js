@@ -61,13 +61,13 @@ render() {
 			</ListItem>
 			<Collapse in={this.props.assets} timeout="auto" unmountOnExit>
 				<List component="div" disablePadding>
-					<ListItem button onClick={this.props.displayDP_Stock} className={classes.nested}>
+					<ListItem button onClick={this.props.displayDPStock} className={classes.nested}>
 						<ListItemText primary="DP & Stock" />
 					</ListItem>
 					<ListItem button onClick={this.props.displayKVP} className={classes.nested}>
 						<ListItemText primary="Kisan Vikas Patra(KVP)" />
 					</ListItem>
-					<ListItem button onClick={this.props.displayMP} className={classes.nested}>
+					<ListItem button onClick={this.props.displayMF} className={classes.nested}>
 						<ListItemText primary="Mutual Funds" />
 					</ListItem>
 					<ListItem button onClick={this.props.displayNSC} className={classes.nested}>

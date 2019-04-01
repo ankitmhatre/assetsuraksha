@@ -42,7 +42,10 @@ const HolderDetails = (props) => (
             ItemSelect={props.MinorSoleHandler}
             select={props.minorSole} />
 
-        <Label value="Joint/2nd holder name(as per PAN):" />
+        {
+            props.holdingMode === "Joint" ? (
+            <div>
+                <Label value="Joint/2nd holder name(as per PAN):" />
         <TextBox
             type="text" 
             placeholder="First Name" 
@@ -109,6 +112,9 @@ const HolderDetails = (props) => (
             onChange={props.ThirdHolderPANHandler} 
             value={props.thirdHolderPAN}
              />
+            </div>)
+            : null
+        }
     </div>
 )
 

@@ -204,7 +204,7 @@ class NSCform extends Component {
                                 type="text" 
                                 placeholder="Agent Name" 
                                 onChange={this.AgentNameHandler} 
-                                value={this.state.agentName} />
+                                 />
                             <TextBox
                                 type="text" 
                                 placeholder="Agent Code" 
