@@ -1,4 +1,26 @@
-.TestimoinalBG {
-    height: 600px;
+.Testimonial {
+    height: 300px;
     width: 100%;
+    background-color: white;
+}
+
+.TestimonialHead {
+    font-size: 40px; 
+    margin-top:60px;
+    text-align: center;
+}
+
+.Review {
+    margin: 0px 200px;
+}
+
+@media (max-width: 450px) {
+
+    .Testimonial {
+        height: 350px;
+    }
+
+    .Review {
+        margin: 0px 30px;
+    } 
 }

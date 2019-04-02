@@ -6,17 +6,17 @@ class TextBox extends Component {
         change: ""
     }
 
-    onChangeHandler = (event) => {
-        this.setState({change: event.target.value})
-        console.log(event.target.value)
-    }
+    // onChangeHandler = (event) => {
+    //     this.setState({change: event.target.value})
+    //     console.log(event.target.value)
+    // }
 
     render() {
         return  (
             <input 
                 type="text"
                 placeholder={this.props.placeholder}
-                onChange={this.onChangeHandler}
+                onChange={this.props.onChange}
                 value={this.props.value}
                 className="TextBox" />
     )

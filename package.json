@@ -10,10 +10,12 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
+    "react-responsive-carousel": "^3.1.47",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.8",
     "redux": "^4.0.1",
+    "siema": "^1.5.1",
     "tachyons": "^4.11.1"
   },
   "scripts": {

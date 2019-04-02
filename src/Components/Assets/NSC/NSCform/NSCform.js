@@ -49,7 +49,6 @@ class NSCform extends Component {
         relationship: "select one",
         nomineeContact: "",
 
-
         list: {
             self_agent: ["Self", "Agent"],
             issueDroplist: [
@@ -176,7 +175,6 @@ class NSCform extends Component {
     
     NomineeContactHandler = event => this.setState({ nomineeContact: event.target.value });
 
-
     render() {
         return(
             <div>
@@ -201,15 +199,15 @@ class NSCform extends Component {
                         <div>
                             <Label value="Agent Details:"/>
                             <TextBox
-                                type="text" 
                                 placeholder="Agent Name" 
-                                onChange={this.AgentNameHandler} 
+                                onChange={this.AgentNameHandler}
+                                value={this.state.agentName} 
                                  />
-                            <TextBox
-                                type="text" 
+                            <TextBox 
                                 placeholder="Agent Code" 
                                 onChange={this.AgentCodeHandler} 
-                                value={this.state.agentCode} />
+                                value={this.state.agentCode} 
+                                />
                         </div>
                     ): null
                 }
@@ -220,19 +218,19 @@ class NSCform extends Component {
                 
                 <Label value="Total number of NSC certificates you hold:"/>
                 <TextBox
-                    type="text" 
                     placeholder="Total NSC certificates" 
                     onChange={this.NoOfCertificates} 
-                    value={this.state.noOfCertificates} />
+                    value={this.state.noOfCertificates} 
+                    />
                 
                 <p>(Please fill up the certificate details below)</p>
                 
                 <Label value="Sr. Number:" />
                 <TextBox
-                    type="text" 
                     placeholder="Sr. Number" 
                     onChange={this.SrNoHandler} 
-                    value={this.state.sr_no} />
+                    value={this.state.sr_no} 
+                    />
                 <SubLabel subValue="(out of total number of certificates you hold)" />
                 
                 <div className="Holder">
@@ -248,10 +246,10 @@ class NSCform extends Component {
                     <Label 
                         value="Certificate Number:" />
                     <TextBox
-                        type="text" 
                         placeholder="Sr. Number" 
                         onChange={this.CertificateNumberHandler} 
-                        value={this.state.certificateNumber} />
+                        value={this.state.certificateNumber} 
+                        />
                     <SubLabel
                         subValue="(as printed on the certificate)" />
                     </div>
@@ -261,19 +259,19 @@ class NSCform extends Component {
                     <div className="HolderDiv">
                     <Label value="Issuing Post Office:" />
                     <TextBox
-                        type="text" 
                         placeholder="Post Office" 
                         onChange={this.IssuingPostOfficeHandler} 
-                        value={this.state.postOffice} />
+                        value={this.state.postOffice} 
+                        />
                     </div>
 
                     <div>
                     <Label value="Location:" />
                     <TextBox
-                        type="text" 
                         placeholder="Location" 
                         onChange={this.LocationHandler} 
-                        value={this.state.location} />
+                        value={this.state.location} 
+                        />
                     </div>
                 </div>
 
@@ -289,19 +287,19 @@ class NSCform extends Component {
                     <div>
                     <Label value="Maturity Period(Years):" />
                     <TextBox
-                        type="text" 
                         placeholder="Maturity Period" 
                         onChange={this.MaturityPeriodHandler} 
-                        value={this.state.maturityPeriod} />
+                        value={this.state.maturityPeriod} 
+                        />
                     </div>
                 </div>
 
                 <Label value="Maturity Amount:" />
                 <TextBox
-                    type="text" 
                     placeholder="Maturity Amount" 
                     onChange={this.MaturityAmountHandler} 
-                    value={this.state.maturityAmount} />
+                    value={this.state.maturityAmount} 
+                    />
 
                 <HolderDetails
                     holdingMode={this.state.holdingMode}

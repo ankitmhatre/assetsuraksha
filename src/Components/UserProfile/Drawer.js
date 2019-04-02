@@ -10,6 +10,7 @@ import { withStyles } from '@material-ui/core/styles';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -61,22 +62,58 @@ render() {
 			</ListItem>
 			<Collapse in={this.props.assets} timeout="auto" unmountOnExit>
 				<List component="div" disablePadding>
-					<ListItem button onClick={this.props.displayDPStock} className={classes.nested}>
+
+					<ListItem 
+						button 
+						onClick={this.props.displayDPStock} 
+						className={classes.nested}
+						component={Link}
+						to="/user_profile/dp_stock">
 						<ListItemText primary="DP & Stock" />
 					</ListItem>
-					<ListItem button onClick={this.props.displayKVP} className={classes.nested}>
+
+					<ListItem 
+						button 
+						onClick={this.props.displayKVP} 
+						className={classes.nested}
+						component={Link}
+						to="/user_profile/KVP">
 						<ListItemText primary="Kisan Vikas Patra(KVP)" />
 					</ListItem>
-					<ListItem button onClick={this.props.displayMF} className={classes.nested}>
+
+					<ListItem 
+						button 
+						onClick={this.props.displayMF} 
+						className={classes.nested}
+						component={Link}
+						to="/user_profile/MF">
 						<ListItemText primary="Mutual Funds" />
 					</ListItem>
-					<ListItem button onClick={this.props.displayNSC} className={classes.nested}>
+
+					<ListItem 
+						button 
+						onClick={this.props.displayNSC} 
+						className={classes.nested}
+						component={Link}
+						to="/user_profile/NSC">
 						<ListItemText primary="National Savings Certificate(NSC)" />
 					</ListItem>
-					<ListItem button onClick={this.props.displayPhysicalShare} className={classes.nested}>
+
+					<ListItem 
+						button 
+						onClick={this.props.displayPhysicalShare} 
+						className={classes.nested}
+						component={Link}
+						to="/user_profile/physical_share">
 						<ListItemText primary="Physical Share" />
 					</ListItem>
-					<ListItem button onClick={this.props.displayRealEstate} className={classes.nested}>
+
+					<ListItem 
+						button 
+						onClick={this.props.displayRealEstate} 
+						className={classes.nested}
+						component={Link}
+						to="/user_profile/real_estate">
 						<ListItemText primary="Real Estate" />
 					</ListItem>
 				</List>
