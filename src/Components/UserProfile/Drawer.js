@@ -48,11 +48,19 @@ render() {
 		<div className="ProfileName">Hi, <span className="Name">Siddesh</span></div>
 		<Divider />
 		<List>
-			<ListItem active="true" button>
+			<ListItem 
+				active="true" 
+				button
+				component={Link}
+				to="/user_profile">
 				<ListItemText primary="Home" />
 			</ListItem>
 
-			<ListItem onClick={this.props.displayPDetails} button>
+			<ListItem 
+				onClick={this.props.displayPDetails}
+				component={Link}
+				to="/user_profile/personal_details" 
+				button>
 				<ListItemText primary="Personal Details" />
 			</ListItem>
 			

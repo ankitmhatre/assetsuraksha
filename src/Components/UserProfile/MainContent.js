@@ -15,6 +15,7 @@ import NSCForm from '../Assets/NSC/NSCform/NSCform';
 import PhysicalShareForm from '../Assets/PhysicalShare/PhysicalShareform/PhysicalShareform';
 import RealEstateForm from '../Assets/RealEstate/RealEstateform/RealEstateform';
 import DPStockForm from '../Assets/DP_Stock/DPStockform/DPStockform';
+import Home from './Home/Home';
 
 const drawerWidth = 240;
 
@@ -39,7 +40,11 @@ class MainContent extends React.Component {
 				<main className={classes.content}>
 					<div className={classes.toolbar} />
 
-					{this.props.pDetails && <PDetails style={{ marginLeft: '30px' }} />}
+					<Route path="/user_profile" exact component={Home} />
+
+					<Route path="/user_profile/personal_details" 
+						render={() => <PDetails style={{ marginLeft: '30px' }} />} 
+					/>
 
 					<Route path="/user_profile/NSC" 
 						render={() => <NSCmain DisplayNSCForm={this.props.DisplayNSCForm} />} 

@@ -47,20 +47,7 @@ const styles = theme => ({
 class UserProfile extends React.Component {
 	state = {
 		mobileOpen: false,
-		pDetails: false,
 		assets: false,
-		KVP: false,
-		NSC: false,
-		PhysicalShare: false,
-		MF: false,
-		RealEstate: false,
-		DP_Stock: false,
-		displayMFFrom: false,
-		displayPhysicalShare: false,
-		displayRealEstate: false,
-		displayNSCForm: false,
-		displayKVPForm: false,
-		displayDPStockForm: false
 	};
 
 	handleAssets = () => {
@@ -70,179 +57,6 @@ class UserProfile extends React.Component {
 	handleDrawerToggle = () => {
 		this.setState(state => ({ mobileOpen: !state.mobileOpen }));
 	};
-
-	displayPDetails = () => {
-		this.setState({
-			KVP: false,
-			pDetails: true,
-			NSC: false,
-			PhysicalShare: false,
-			MF: false,
-			RealEstate: false,
-			DP_Stock: false,
-			displayKVPForm: false,
-			displayMFFrom: false,
-			displayPhysicalShare: false,
-			displayRealEstate: false,
-			displayNSCForm: false,
-			displayDPStockForm: false
-		})
-	}
-
-	displayKVP = () => {
-		this.setState({
-			pDetails: false,
-			KVP: true,
-			NSC: false,
-			PhysicalShare: false,
-			MF: false,
-			RealEstate: false,
-			DP_Stock: false,
-			displayKVPForm: false,
-			displayMFFrom: false,
-			displayPhysicalShare: false,
-			displayRealEstate: false,
-			displayNSCForm: false,
-			displayDPStockForm: false
-		})
-	}
-
-	displayNSC = () => {
-		this.setState({
-			pDetails: false,
-			KVP: false,
-			NSC: true,
-			PhysicalShare: false,
-			MF: false,
-			RealEstate: false,
-			DP_Stock: false,
-			displayNSCForm: false,
-			displayMFFrom: false,
-			displayPhysicalShare: false,
-			displayRealEstate: false,
-			displayKVPForm: false,
-			DisplayDPStockForm: false
-		})
-	}
-
-	displayMF = () => {
-		this.setState({
-			pDetails: false,
-			KVP: false,
-			NSC: false,
-			PhysicalShare: false,
-			MF: true,
-			RealEstate: false,
-			DP_Stock: false,
-			displayNSCForm: false,
-			displayMFFrom: false,
-			displayPhysicalShare: false,
-			displayRealEstate: false,
-			displayKVPForm: false,
-			displayDPStockForm: false
-		})
-	}
-
-	displayRealEstate = () => {
-		this.setState({
-			pDetails: false,
-			KVP: false,
-			NSC: false,
-			PhysicalShare: false,
-			MF: false,
-			RealEstate: true,
-			DP_Stock: false,
-			displayMFFrom: false,
-			displayPhysicalShare: false,
-			displayRealEstate: false,
-			displayKVPForm: false,
-			displayNSCForm: false,
-			displayDPStockForm: false
-		})
-	}
-
-	displayPhysicalShare = () => {
-		this.setState({
-			pDetails: false,
-			KVP: false,
-			NSC: false,
-			PhysicalShare: true,
-			MF: false,
-			RealEstate: false,
-			DP_Stock: false,
-			displayMFFrom: false,
-			displayPhysicalShare: false,
-			displayRealEstate: false,
-			displayNSCForm: false,
-			displayKVPForm: false,
-			displayDPStockForm: false
-		})
-	}
-
-	displayDPStock = () => {
-		this.setState({
-			pDetails: false,
-			KVP: false,
-			NSC: false,
-			PhysicalShare: false,
-			MF: false,
-			RealEstate: false,
-			DP_Stock: true,
-			displayNSCForm: false,
-			displayMFFrom: false,
-			displayPhysicalShare: false,
-			displayRealEstate: false,
-			displayKVPForm: false,
-			displayDPStockForm: false
-		})
-	}
-
-	DisplayMFForm = () => {
-		this.setState({
-			MF: false,
-			displayMFForm: true,
-		})
-	}
-
-
-	DisplayPhysicalShareForm = () => {
-		this.setState({
-			PhysicalShare: false,
-			displayPhysicalShareForm: true,
-		})
-	}
-
-
-	DisplayRealEstateForm = () => {
-		this.setState({
-			RealEstate: false,
-			displayRealEstateForm: true,
-		})
-	}
-
-	DisplayDPStockForm = () => {
-		this.setState({
-			DP_Stock: false,
-			displayDPStockForm: true,
-		})
-	}
-
-
-	DisplayNSCForm = () => {
-		this.setState({
-			NSC: false,
-			displayNSCForm: true,
-		})
-	}
-
-	DisplayKVPForm = () => {
-		this.setState({
-			KVP: false,
-			displayKVPForm: true,
-		})
-	}
-
-
 
 	render() {
 		const { classes, theme } = this.props;
@@ -258,41 +72,10 @@ class UserProfile extends React.Component {
 					handleDrawerToggle={this.handleDrawerToggle}
 					handleAssets={this.handleAssets}
 					assets={this.state.assets}
-					displayKVP={this.displayKVP}
-					displayNSC={this.displayNSC}
-					displayMF={this.displayMF}
-					displayRealEstate={this.displayRealEstate}
-					displayPhysicalShare={this.displayPhysicalShare}
-					displayDPStock={this.displayDPStock}
-					displayPDetails={this.displayPDetails}
 				/>
 
-				<MainContent
-					KVP={this.state.KVP}
-					NSC={this.state.NSC}
-					PhysicalShare={this.state.PhysicalShare}
-					MF={this.state.MF}
-					RealEstate={this.state.RealEstate}
-					DP_Stock={this.state.DP_Stock}
-					pDetails={this.state.pDetails}
-
-					DisplayPhysicalShareForm={this.DisplayPhysicalShareForm}
-					DisplayPhysicalShareForm={this.state.DisplayPhysicalShareForm}
-
-					DisplayMFForm={this.DisplayMFForm}
-					DisplayMFForm={this.state.DisplayMFForm}
-
-					DisplayRealEstateForm={this.DisplayRealEstateForm}
-					DisplayRealEstateForm={this.state.DisplayRealEstateForm}
-
-					DisplayDPStockForm={this.DisplayDPStockForm}
-					DisplayDPStockForm={this.state.DisplayDPStockForm}
-
-					DisplayKVPForm={this.DisplayKVPForm}
-					displayKVPForm={this.state.displayKVPForm}
-
-					DisplayNSCForm={this.DisplayNSCForm}
-					displayNSCForm={this.state.displayNSCForm} />
+				<MainContent />
+				
 			</div>
 		);
 	}
