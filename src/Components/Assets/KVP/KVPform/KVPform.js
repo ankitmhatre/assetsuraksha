@@ -13,7 +13,7 @@ class KVPform extends Component {
         self_agent: "select one",
         agentName: "",
         agentCode: "",
-        NSCissue: "select one",
+        KVPissue: "select one",
         noOfCertificates: "",
         sr_no: "",
         certificateFormat: "select one",
@@ -95,7 +95,7 @@ class KVPform extends Component {
     }
 
     // certificate details input handlers
-    IssueDroplistHandler = item => this.setState({ NSCissue: item });
+    IssueDroplistHandler = item => this.setState({ KVPissue: item });
 
     Self_AgentHandler = item => this.setState({ self_agent: item });
 
@@ -184,7 +184,7 @@ class KVPform extends Component {
 
                 <Divider />
 
-                <Label value="NSC Issue:" />
+                <Label value="KVP Issue:" />
                 <Dropdown
                     droplist={this.state.list.issueDroplist}
                     ItemSelect={this.IssueDroplistHandler}
