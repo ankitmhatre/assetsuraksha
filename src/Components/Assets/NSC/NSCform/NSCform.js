@@ -7,6 +7,7 @@ import { Divider } from '@material-ui/core';
 import NomineeDetails from '../../Common/NomineeDetails/NomineeDetails';
 import HolderDetails from '../../Common/HolderDetails/HolderDetails';
 import SubLabel from '../../../UI/Label/SubLabel/SubLabel';
+import FormButton from '../../../UI/Button/FormButton';
 
 class NSCform extends Component {
     state = {
@@ -108,7 +109,10 @@ class NSCform extends Component {
 
     CertificateFormatHandler = item => this.setState({ certificateFormat: item });
 
-    CertificateNumberHandler = event => this.setState({ certificateNumber: event.target.value });
+    CertificateNumberHandler = event => {
+        this.setState({ certificateNumber: event.target.value }) 
+        // this.props.GetCertificateNumber(this.state.certificateNumber)
+}
 
     IssuingPostOfficeHandler = event => this.setState({ postOffice: event.target.value });
 
@@ -175,9 +179,21 @@ class NSCform extends Component {
     
     NomineeContactHandler = event => this.setState({ nomineeContact: event.target.value });
 
+    
+    SubmitNSC = () => {
+        this.props.GetCertificateDetails(
+            this.state.certificateNumber,
+            this.state.faceValue,
+            this.state.maturityPeriod,
+            this.state.maturityAmount,
+        )
+    }
+
+
     render() {
         return(
             <div>
+                {}
                 <h2 className="Heading">NSC Holding Details</h2>
 
                 <Divider />
@@ -247,8 +263,9 @@ class NSCform extends Component {
                         value="Certificate Number:" />
                     <TextBox
                         placeholder="Sr. Number" 
-                        onChange={this.CertificateNumberHandler} 
-                        value={this.state.certificateNumber} 
+                        onChange={this.CertificateNumberHandler}
+                        value={this.state.certificateNumber}
+
                         />
                     <SubLabel
                         subValue="(as printed on the certificate)" />
@@ -360,6 +377,12 @@ class NSCform extends Component {
                     relationshipList={this.state.list.relationshipList}
                     minor={this.state.list.minor}
                 />
+            
+            <div style={{margin: "40px 10px"}}>
+                <FormButton 
+                value="Submit NSC"
+                onClick={this.SubmitNSC} />
+            </div>
 
             </div>
         )

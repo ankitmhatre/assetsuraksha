@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Divider } from '@material-ui/core';
+import { Divider, ExpansionPanel, ExpansionPanelActions } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
 import NSCcalculator from '../Calculator/NSCcalculator';
 import FormButton from '../../../UI/Button/FormButton';
+import AssetExpansionPanel from '../../../UI/ExpansionPanel/AssetExpansionPanel'
 
 class NSCmain extends Component {
     state = {
@@ -28,7 +29,12 @@ class NSCmain extends Component {
                     value="NSC Calculator"
                     onClick={this.CalculatorHandler} />
                 {this.state.displayCalculator && <NSCcalculator /> }
+                <h2 style={{marginTop: "50px"}}>Your NSCs</h2>
+                <Divider />
+                {/* <p>No NSC to be displayed!</p> */}
+                <AssetExpansionPanel />
             </div>
+            
         )
     }
 }

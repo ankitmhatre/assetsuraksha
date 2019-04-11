@@ -16,9 +16,9 @@ class KVPmain extends Component {
                 <Divider />
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                <NavLink to="/user_profile/KVP_form">
+                {/* <NavLink to="/user_profile/KVP_form"> */}
                     <FormButton onClick={this.props.DisplayKVPForm} value="Add KVP" />
-                </NavLink>
+                {/* </NavLink> */}
             </div>
         )
     }

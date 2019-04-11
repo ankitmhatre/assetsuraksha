@@ -32,6 +32,14 @@ const styles = theme => ({
 
 class MainContent extends React.Component {
 
+	state = {
+
+	}
+
+	// GetCertificateDetails = (number, faceValue, period, maturityAmount) => {
+		
+	// }
+
 	render() {
 		const { classes, theme } = this.props;
 
@@ -49,7 +57,8 @@ class MainContent extends React.Component {
 					<Route path="/user_profile/NSC" 
 						render={() => <NSCmain DisplayNSCForm={this.props.DisplayNSCForm} />} 
 					/>
-					<Route path="/user_profile/NSC_form" component={NSCForm} />
+					<Route path="/user_profile/NSC_form" 
+						render={() => <NSCForm GetCertificateDetails={this.GetCertificateDetails} />} />
 
 					<Route path="/user_profile/KVP" 
 						render={() => <KVPmain DisplayKVPForm={this.props.DisplayKVPForm} />} 
