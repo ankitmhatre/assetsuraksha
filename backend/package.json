@@ -1,0 +1,14 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend to Asset Suraksha",
+  "main": "server.js",
+  "scripts": {
+    "test": "backend"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.5.4"
+  }
+}
