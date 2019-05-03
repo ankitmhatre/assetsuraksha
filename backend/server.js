@@ -3,55 +3,49 @@ const mongoose = require('mongoose');
 const hostname = '127.0.0.1';
 const port = 3000;
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('{"name" : "ankit"}');
-  
-});
+var cors = require('cors')
+var express = require('express');
+var app = express();
+var fs = require("fs");
 
-mongoose.connect('mongodb://localhost:27017/testdb', {useNewUrlParser: true});
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
- console.log("We are connected");
+var url = require('url');
 
 
-
-
-
-
+var bodyParser = require('body-parser')
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
+app.use(express.json());       // to support JSON-encoded bodies
+app.use(express.urlencoded()); // to support URL-encoded bodies
+app.use(cors())
 
 
 
 
 
 
- var kittySchema = new mongoose.Schema({
-    name: String
-  });
-  kittySchema.methods.speak = function () {
-    var greeting = this.name
-      ? "Meow name is " + this.name
-      : "I don't have a name";
-    console.log(greeting);
-  }
+app.post('/checkUserExists', function (req, res) {
+   // First read existing users.
 
+   var ans = {}
+   ans["username"] = req.body.username
+   ans["doesExists"]= true
+   
+   res.end( JSON.stringify(ans));
+})
 
-  var Kitten = mongoose.model('Kitten', kittySchema);
-  var silence = new Kitten({ name: 'meowwwww' });
-  console.log(silence.name); 
+var server = app.listen(3000, function () {
+   var host = server.address().address
+   var port = server.address().port
+   console.log("Example app listening at http://%s:%s", host, port)
 
+   mongoose.connect('mongodb://localhost:27017/testdb', {useNewUrlParser: true});
+   var db = mongoose.connection;
+   db.on('error', console.error.bind(console, 'connection error:'));
+   db.once('open', function() {
+    console.log("We are connected to Monogo database");
+   });
+   
 
-silence.speak(); // "Meow name is fluffy"
-silence.save(function (err, silence) {
-    if (err) return console.error(err);
-    silence.speak();
-  });
-
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
-
+})
