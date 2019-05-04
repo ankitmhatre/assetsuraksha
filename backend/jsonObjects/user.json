@@ -1,0 +1,25 @@
+{  
+   uid:String,
+   name:{  
+      fname:String,
+      mname:String,
+      lname:String
+   },
+   address:{  
+      line1:String,
+      state:String,
+      country:String,
+      landmark:String
+   },
+   contact:{  
+      mobile:[String],
+      email:{  
+         personal:String,
+         business:String
+      }
+   },
+   username:String,
+   password:String,
+   is_otp_verified:Boolean,
+   is_email_verified:Boolean
+}
