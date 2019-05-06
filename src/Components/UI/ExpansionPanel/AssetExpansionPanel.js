@@ -12,6 +12,7 @@ import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
 root: {
+    marginTop: '10px',
     width: '100%',
 },
 heading: {
@@ -27,15 +28,15 @@ return (
     <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={classes.heading}>
-                Certificate Number: 58465{props.CertificateNumber}
+                Certificate Number: {props.CertificateNumber}
             </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-            <typography>
-                <p>Face Value: 10000{props.MaturityAmount}</p>     
-                <p>Maturity Period: April 2022</p>     
-                <p>Maturity Amount: 15000</p>
-            </typography>
+            <Typography>
+                <p>Face Value: {props.FaceValue}</p> 
+                <p>Maturity Period: April 2022{props.MaturityPeriod}</p>     
+                <p>Maturity Amount: {props.MaturityAmount}</p>
+            </Typography>
         </ExpansionPanelDetails>
         <Divider />
         <ExpansionPanelActions>

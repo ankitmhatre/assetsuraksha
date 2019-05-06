@@ -4,7 +4,6 @@ import './RealEstateform.css'
 import Dropdown from '../../../UI/Dropdown/Dropdown';
 import TextBox from '../../../UI/TextBox/TextBox';
 import { Divider } from '@material-ui/core';
-import NomineeDetails from '../../Common/NomineeDetails/NomineeDetails';
 import HolderDetails from '../../Common/HolderDetails/HolderDetails';
 import SubLabel from '../../../UI/Label/SubLabel/SubLabel';
 import FormButton from '../../../UI/Button/FormButton';
@@ -71,9 +70,6 @@ class RealEstateform extends Component {
                 "Saltpan land", 
                 "Mining land",
                 "Other",
-            ],
-            faceValueList: [
-                100, 500, 1000, 5000, 10000
             ],
             modeOfHolding: [
                 "Single", "Joint"

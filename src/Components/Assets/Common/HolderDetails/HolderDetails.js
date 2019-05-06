@@ -13,33 +13,35 @@ const HolderDetails = (props) => (
         <Label value="Mode of holding:" />
         <Dropdown 
             droplist={props.modeOfHolding}
-            ItemSelect={props.ModeOfHoldingHandler}
+            name="holdingMode"
+            ItemSelect={props.DropdownHandler}
             select={props.holdingMode} />
 
         <Label value="Sole/1st applicant name(as per PAN):" />
         <TextBox
-            type="text" 
             placeholder="First Name" 
-            onChange={props.SoleFnameHandler} 
+            name="soleFname"
+            onChange={props.TextInputHandler} 
             value={props.soleFname}
              />
         <TextBox
-            type="text" 
             placeholder="Middle Name" 
-            onChange={props.SoleMnameHandler} 
+            name="soleMname"
+            onChange={props.TextInputHandler} 
             value={props.soleMname}
              />
         <TextBox
-            type="text" 
             placeholder="Last Name" 
-            onChange={props.SoleLnameHandler} 
+            name="soleLname"
+            onChange={props.TextInputHandler} 
             value={props.soleLname}
              />
 
         <Label value="Minor:" />
         <Dropdown 
             droplist={props.minor}
-            ItemSelect={props.MinorSoleHandler}
+            name="minorSole"
+            ItemSelect={props.DropdownHandler}
             select={props.minorSole} />
 
         {
@@ -47,69 +49,71 @@ const HolderDetails = (props) => (
             <div>
                 <Label value="Joint/2nd holder name(as per PAN):" />
         <TextBox
-            type="text" 
             placeholder="First Name" 
-            onChange={props.JointFnameHandler} 
+            name="jointFname"
+            onChange={props.TextInputHandler} 
             value={props.jointFname} 
             />
         <TextBox
-            type="text" 
             placeholder="Middle Name" 
+            name="jointMname"
             onChange={props.JointMnameHandler} 
             value={props.jointMname} 
             />
         <TextBox
-            type="text" 
             placeholder="Last Name" 
-            onChange={props.JointLnameHandler} 
+            name="jointLname"
+            onChange={props.TextInputHandler} 
             value={props.jointLname} 
             />
         
         <Label value="Minor:" />
         <Dropdown 
             droplist={props.minor}
-            ItemSelect={props.MinorJointHandler}
+            name="minorJoint"
+            ItemSelect={props.DropdownHandler}
             select={props.minorJoint} />
 
         <Label value="Joint holder PAN number:" />
         <TextBox
-            type="text" 
             placeholder="PAN Number" 
-            onChange={props.JointPANHandler} 
+            name="jointPAN"
+            onChange={props.TextInputHandler} 
             value={props.jointPAN}
              />
 
         <Label value="3rd holder name(as per PAN):" />
         <TextBox
-            type="text" 
             placeholder="First Name" 
-            onChange={props.ThirdHolderFnameHandler} 
+            name="thirdHolderFname"
+            onChange={props.TextInputHandler} 
             value={props.thirdHolderFname} 
             />
-        <TextBox
-            type="text" 
+        <TextBox 
             placeholder="Middle Name" 
-            onChange={props.ThirdHolderMnameHandler} 
+            name="thirdHolderMname"
+            onChange={props.TextInputHandler} 
             value={props.thirdHolderMname} 
             />
         <TextBox
-            type="text" 
             placeholder="Last Name" 
-            onChange={props.ThirdHolderLnameHandler} 
+            name="thirdHolderLname"
+            onChange={props.TextInputHandler} 
             value={props.thirdHolderLname} 
             />
 
         <Label value="Minor:" />
         <Dropdown 
             droplist={props.minor}
-            ItemSelect={props.MinorThirdHolderHandler}
+            name="minorThirdHolder"
+            ItemSelect={props.DropdownHandler}
             select={props.minorThirdHolder} />
 
         <Label value="3rd holder PAN number:" />
         <TextBox
-            type="text" 
             placeholder="PAN Number" 
-            onChange={props.ThirdHolderPANHandler} 
+            name="thirdHolderPAN"
+            onChange={props.TextInputHandler} 
             value={props.thirdHolderPAN}
              />
             </div>)

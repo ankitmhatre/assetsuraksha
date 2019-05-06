@@ -20,12 +20,12 @@ class Dropdown extends Component {
 
     render() {
         return(
-            <div className="Dropdown">
+            <div className="Dropdown" >
                 <div className="Dropdown__Button" onClick={this.DropdownHandler}> {this.props.select} </div>
                 { this.state.displayMenu && (
                 <ul className="DropdownList">                    
                     {this.props.droplist.map( item => {
-                        return <li key={item} onClick={this.closeDropdown}><div style={{width: '100%'}} onClick={() => this.props.ItemSelect(item)}>{item}</div></li>
+                        return <li key={item} onClick={this.closeDropdown}><div style={{width: '100%'}} onClick={() => this.props.ItemSelect(this.props.name, item)}>{item}</div></li>
                     })}
                 </ul>
                 )

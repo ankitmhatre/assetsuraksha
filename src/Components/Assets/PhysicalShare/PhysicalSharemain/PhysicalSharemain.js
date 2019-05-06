@@ -15,7 +15,7 @@ class PhysicalSharemain extends Component {
                 <Divider />
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                <NavLink to="/user_profile/physical_estate_form">
+                <NavLink to="/user_profile/physical_share_form">
                     <FormButton onClick={this.props.DisplayaPhysicalShareForm} value="Add Physical Share" />   
                 </NavLink>
             </div>

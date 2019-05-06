@@ -12,69 +12,71 @@ const NomineeDetails = (props) => (
         <Label value="Is nomination in place:" />
         <Dropdown 
             droplist={props.minor}
-            ItemSelect={props.NominationPlaceHandler}
+            name="nominationPlace"
+            ItemSelect={props.DropdownHandler}
             select={props.nominationPlace} />
 
         <h2>Nominee details</h2>
         <Label value="Name:" />
         <TextBox
-            type="text" 
             placeholder="First Name" 
-            onChange={props.NomineeFnameHandler} 
+            name="nomineeFname"
+            onChange={props.TextInputHandler} 
             value={props.nomineeFname} 
             />
         <TextBox
-            type="text" 
             placeholder="Middle Name" 
+            name="nomineeMname"
             onChange={props.NomineeMnameHandler} 
             value={props.nomineeMname} 
             />
         <TextBox
-            type="text" 
             placeholder="Last Name" 
-            onChange={props.NomineeLnameHandler} 
+            name="nomineeLname"
+            onChange={props.TextInputHandler} 
             value={props.nomineeLname} 
             />
 
         <Label value="Address:" />
         <TextBox
-            type="text" 
             placeholder="City" 
-            onChange={props.NomineeCityHandler} 
+            name="nomineeCity"
+            onChange={props.TextInputHandler} 
             value={props.nomineeCity}
              />
         <TextBox
-            type="text" 
             placeholder="State" 
+            name="nomineeState"
             onChange={props.NomineeStateHandler} 
             value={props.nomineeState} 
             />
         <TextBox
-            type="text" 
             placeholder="Pincode" 
-            onChange={props.NomineePincodeHandler} 
+            name="nomineePincode"
+            onChange={props.TextInputHandler} 
             value={props.nomineePincode}
              />
 
         <Label value="PAN Number:" />
         <TextBox
-            type="text" 
             placeholder="PAN Number" 
-            onChange={props.NomineePANHandler} 
+            name="nomineePAN"
+            onChange={props.TextInputHandler} 
             value={props.nomineePAN}
              />   
 
         <Label value="Relationship with certificate holder:" />
         <Dropdown 
             droplist={props.relationshipList}
-            ItemSelect={props.RelationshipHandler}
+            name="relationship"
+            ItemSelect={props.DropdownHandler}
             select={props.relationship} /> 
 
         <Label value="Contact Number:" />
         <TextBox
-            type="text" 
             placeholder="Contact Number" 
-            onChange={props.NomineeContactHandler} 
+            name="nomineeContact"
+            onChange={props.TextInputHandler} 
             value={props.nomineeContact}
              /> 
 

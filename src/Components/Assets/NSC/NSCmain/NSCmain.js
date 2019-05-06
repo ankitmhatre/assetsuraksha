@@ -4,17 +4,43 @@ import { NavLink } from 'react-router-dom';
 import NSCcalculator from '../Calculator/NSCcalculator';
 import FormButton from '../../../UI/Button/FormButton';
 import AssetExpansionPanel from '../../../UI/ExpansionPanel/AssetExpansionPanel'
+import axios from 'axios';
 
 class NSCmain extends Component {
     state = {
         displayCalculator: false,
+        assetBars: [],
+        certificateNumber: "",
+        faceValue: "",
+        maturityPeriod: "",
+        maturityAmount: ""
     }
 
     CalculatorHandler = () => {
         this.setState({displayCalculator: !this.state.displayCalculator})
     }
 
+    componentDidMount() {
+        axios.get('https://jsonplaceholder.typicode.com/users')
+            .then(response => {
+                this.setState( {assetBars: response.data} )
+                console.log(response)
+            })
+    }
+
     render() {
+
+        const assetBars = this.state.assetBars.map( assetBar => {
+            return  (
+                <AssetExpansionPanel 
+                    key={assetBar.id}
+                    CertificateNumber={assetBar.address.zipcode}
+                    FaceValue={assetBar.address.geo.lat}
+                    MaturityPeriod=""
+                    MaturityAmount={assetBar.address.geo.lng} />
+            )
+        })
+ 
         return (
             <div>
                 <h2>National Savings Certificate(NSC)</h2>
@@ -31,8 +57,11 @@ class NSCmain extends Component {
                 {this.state.displayCalculator && <NSCcalculator /> }
                 <h2 style={{marginTop: "50px"}}>Your NSCs</h2>
                 <Divider />
-                {/* <p>No NSC to be displayed!</p> */}
-                <AssetExpansionPanel />
+                { 
+                    this.state.assetBars.length > 0 
+                    ? assetBars 
+                    : <p>Your NSCs will be displayed here.</p> 
+                } 
             </div>
             
         )

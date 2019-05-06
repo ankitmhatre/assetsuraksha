@@ -12,7 +12,7 @@ import PDetails from '../Forms/PDetails/PDetails';
 import KVPForm from '../Assets/KVP/KVPform/KVPform';
 import MFForm from '../Assets/MF/MFform/MFform';
 import NSCForm from '../Assets/NSC/NSCform/NSCform';
-import PhysicalShareForm from '../Assets/PhysicalShare/PhysicalShareform/PhysicalShareform';
+import PhysicalShareform from '../Assets/PhysicalShare/PhysicalShareform/PhysicalShareform';
 import RealEstateForm from '../Assets/RealEstate/RealEstateform/RealEstateform';
 import DPStockForm from '../Assets/DP_Stock/DPStockform/DPStockform';
 import Home from './Home/Home';
@@ -73,7 +73,7 @@ class MainContent extends React.Component {
 					<Route path="/user_profile/physical_share" 
 						render={() => <PhysicalSharemain DisplayPhysicalShareForm={this.props.DisplayPhysicalShareForm} />} 
 					/>
-					<Route path="/user_profile/physical_share_form" component={PhysicalShareForm} />
+					<Route path="/user_profile/physical_share_form" component={PhysicalShareform} />
 
 					<Route path="/user_profile/real_estate" 
 						render={() => <RealEstatemain DisplayRealEstateForm={this.props.DisplayRealEstateForm} />} 
