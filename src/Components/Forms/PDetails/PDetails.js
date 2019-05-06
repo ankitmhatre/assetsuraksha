@@ -2,13 +2,9 @@ import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { connect } from "react-redux";
-
 import TextBox from "../../UI/TextBox/TextBox";
 import './PDetails.css';
 import Label from "../../UI/Label/Label";
-import * as actionTypes from '../../../store/actions'
-import UserProfile from "../../../Containers/UserProfile/UserProfile";
 import { Link } from "react-router-dom";
 import { Divider } from "@material-ui/core";
 
@@ -30,51 +26,25 @@ class PDetails extends Component {
         city: '',
         state: '',
         country: '',
+        phoneNumber: '',
+        otp: '',
         otpbox: false
     }
 
-    FirstNameHandler = (event) => {
-        
-        this.setState({firstName: event.target.value})
-        // console.log(event.target.value);
-        
-    }
-
-    LastNameHandler = (event) => {
-        this.setState({lastName: event.target.value})
-        // console.log(event.target.value);
-    }
-
-    Line1Handler = (event) => {
-        this.setState({line1: event.target.value})
-        // console.log(event.target.value);
-    }
-
-    Line2Handler = (event) => {
-        this.setState({line2: event.target.value})
-        // console.log(event.target.value);
-    }
-
-    Line3Handler = (event) => {
-        this.setState({line3: event.target.value})
-        // console.log(event.target.value);
-    }
-
-    CityHandler = (event) => {
-        this.setState({city: event.target.value})
-        // console.log(event.target.value);
-    }
-
-    StateHandler = (event) => {
-        this.setState({state: event.target.value})
-    }
-
-    countryHandler = (event) => {
-        this.setState({country: event.target.value})
+    TextInputHandler = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
     }
 
     VerifyHandler = () => {
         this.setState({otpbox: true})
+    }
+
+    SubmitOTPHandler = () => {
+        
+    }
+
+    ContinueHandler = () => {
+
     }
 
     render() {
@@ -82,51 +52,65 @@ class PDetails extends Component {
         return(
             <div>
                 <h1 className="PDHeading">Personal Details</h1>
+
                 <Divider />
+
                 <div className="PDmarginTop">
                     <Label value="Name :" /><br/>
-                    <TextBox
-                        type="text" placeholder="First Name" 
-                        onChange={this.FirstNameHandler}/>
                     <TextBox 
-                        type="text" placeholder="Last Name" 
-                        onChange={this.LastNameHandler} />
+                        placeholder="First Name" 
+                        name="firstName"
+                        onChange={this.TextInputHandler}/>
+                    <TextBox 
+                        placeholder="Last Name" 
+                        name="lastName"
+                        onChange={this.TextInputHandler} />
                 </div>
+
                 <div className="PDmarginTop">
                     <Label value="Address :" /><br/>
                     <TextBox 
-                        type="text" placeholder="Line 1"
-                        onChange={this.Line1Handler} />
+                        placeholder="Line 1"
+                        name="line1"
+                        onChange={this.TextInputHandler} />
                     <TextBox 
-                        type="text" placeholder="Line 2" 
-                        onChange={this.Line2Handler} /><br/>
+                        placeholder="Line 2" 
+                        name="line2"
+                        onChange={this.TextInputHandler} /><br/>
                     <TextBox
-                        type="text" placeholder="Line 3"
-                        onChange={this.Line3Handler} />
+                        placeholder="Line 3"
+                        name="line3"
+                        onChange={this.TextInputHandler} />
                     <TextBox 
-                        type="text" placeholder="City"
-                        onChange={this.CityHandler} />
+                        placeholder="City"
+                        name="city"
+                        onChange={this.TextInputHandler} />
                 </div>
+
                 <div className="PDmarginTop">
                     <Label value="Region/Country :" /><br/>
                     <TextBox 
-                        type="text" placeholder="State"
-                        onChange={this.StateHandler} />
+                        placeholder="State"
+                        name="state"
+                        onChange={this.TextInputHandler} />
                     <TextBox 
-                        type="text" placeholder="Country"
-                        onChange={this.CountryHandler} />
+                        placeholder="Country"
+                        name="country"
+                        onChange={this.TextInputHandler} />
                 </div>
+
                 <div className="PDmarginTop">
                     <Label value="Contact Number :" /><br/>
                     <TextBox 
-                        type="text" placeholder="Phone Number"
-                        onChange={this.props.phoneNumberHandler} />
+                        placeholder="Phone Number"
+                        name="phoneNumber"
+                        onChange={this.props.TextInputHandler} />
                     <Button 
                         variant="contained" 
                         color="primary" 
                         className={classes.button}
                         onClick={this.VerifyHandler}>
-                        Verify
+                            Verify
                     </Button>
                     
                 </div>
@@ -136,20 +120,27 @@ class PDetails extends Component {
                         <div className="PDmarginTop">
                             <Label value="OTP :" /> <br/>
                             <TextBox 
-                                type="text" placeholder="Enter OTP"
-                                onChange={this.props.inputOTPHandler} />
-                            <Button variant="contained" color="primary" className={classes.button}>
-                                Submit OTP
+                                placeholder="Enter OTP"
+                                name="otp"
+                                onChange={this.props.TextInputHandler} />
+                            <Button 
+                                variant="contained" 
+                                color="primary" 
+                                onClick={this.SubmitOTPHandler}
+                                className={classes.button}>
+                                    Submit OTP
                             </Button>
                         </div>
                     </div>
                 )}
+
                 <div className="continueTop">
                     <Button 
                         component={Link}
                         to = "/user_profile"
                         variant="contained" 
                         color="primary" 
+                        onClick={this.ContinueHandler}
                         className={classes.button}>
                             Continue
                     </Button>
@@ -158,17 +149,9 @@ class PDetails extends Component {
         )
     }
 }
+
 PDetails.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-// const mapStateToProps = state => ({
-//     otpbox: state.otpbox
-// });
-
-const mapDispatchToProps = dispatch => ({
-    inputOTPHandler: (event) => dispatch({type: actionTypes.OTP, val: event.target.value}),
-    phoneNumberHandler: (event) => dispatch({type: actionTypes.PHONE_NUMBER, val: event.target.value}),
-});
-
-export default connect(null, mapDispatchToProps)(withStyles(styles)(PDetails));
+export default withStyles(styles)(PDetails);
