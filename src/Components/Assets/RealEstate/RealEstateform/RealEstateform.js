@@ -10,19 +10,11 @@ import FormButton from '../../../UI/Button/FormButton';
 
 class RealEstateform extends Component {
     state = {
-        self_agent: "select one",
-        agentName: "",
-        agentCode: "",
-        NSCissue: "select one",
-        noOfCertificates: "",
-        sr_no: "",
-        certificateFormat: "select one",
-        certificateNumber: "",
-        postOffice: "",
-        location: "",
-        faceValue: "select one",
-        maturityPeriod: "",
-        maturityAmount: "",
+        realEstateType: "select one",
+        typeOfLand: "select one",
+        purchasedBy: "",
+        ownership: "",
+
         holdingMode: "select one",
         soleFname: "",
         soleMname: "",
@@ -38,20 +30,29 @@ class RealEstateform extends Component {
         thirdHolderLname: "",
         minorThirdHolder: "select one",
         thirdHolderPAN: "",
-        nominationPlace: "select one",
-        nomineeFname: "",
-        nomineeMname: "",
-        nomineeLname: "",
-        nomineeCity: "",
-        nomineeState: "",
-        nomineePincode: "",
-        nomineePAN: "",
-        relationship: "select one",
-        nomineeContact: "",
+
+        village: "",
+        taluka: "",
+        district: "",
+        surveyNo: "",
+        landArea: "",
+        typeOfLand7_12: "Select one",
+        classOfLand: "",
+        registeredCrop: "",
+        isForestLand: "Select one",
+        forestArea: "",
+        accessToLand: "",
+        fencing: "Select one",
+        electricity: "Select one",
+        waterSource: "",
+        structureOnLand: "",
+        nearestVillageDistance: "",
+        landSurveyDone: "Select one",
+        possesionOfLand: "select one",
 
         list: {
             self_agent: ["Self", "Agent"],
-            realEstateType: [
+            real_estate_type: [
                 "Land",
                 "NA plot",
                 "Bungalow",
@@ -62,7 +63,7 @@ class RealEstateform extends Component {
                 "Godown",
                 "warehouse"
             ],
-            typeOfLand: [
+            type_of_land: [
                 "Agriculture Land", 
                 "N.A (Non agriculture land)", 
                 "Garden(Falbagh)",
@@ -91,102 +92,18 @@ class RealEstateform extends Component {
                 "Other"
             ]
         }
-        
     }
 
-    // certificate details input handlers
-    IssueDroplistHandler = item => this.setState({ NSCissue: item});
+    TextInputHandler = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
+    }
 
-    Self_AgentHandler = item => this.setState({ self_agent: item });
+    DropdownHandler = (name, item) => {
+        this.setState({ [name]: item });
+    }   
 
-    AgentNameHandler = event => this.setState({ agentName: event.target.value });
+    SubmitHandler = () => {
 
-    AgentCodeHandler = event => this.setState({ agentCode: event.target.value });
-
-    NoOfCertificates = event => this.setState({ noOfCertificates: event.target.value });
-
-    SrNoHandler = event => this.setState({ sr_no: event.target.value });
-
-    CertificateFormatHandler = item => this.setState({ certificateFormat: item });
-
-    CertificateNumberHandler = event => {
-        this.setState({ certificateNumber: event.target.value }) 
-        // this.props.GetCertificateNumber(this.state.certificateNumber)
-}
-
-    IssuingPostOfficeHandler = event => this.setState({ postOffice: event.target.value });
-
-    LocationHandler = event => this.setState({ location: event.target.value });
-    
-    FaceValueHandler = item => this.setState({ faceValue: item });
-
-    MaturityPeriodHandler = event => this.setState({ maturityPeriod: event.target.value });
-
-    MaturityAmountHandler = event => this.setState({ maturityAmount: event.target.value });
-
-
-    // Holder input Handlers
-    ModeOfHoldingHandler = item => this.setState({ holdingMode: item});
-
-    SoleFnameHandler = event => this.setState({ soleFname: event.target.value });
-
-    SoleMnameHandler = event => this.setState({ soleMname: event.target.value });
-
-    SoleLnameHandler = event => this.setState({ soleLname: event.target.value });
-
-    MinorSoleHandler = item => this.setState({ minorSole: item });
-
-    JointFnameHandler = event => this.setState({ jointFname: event.target.value });
-
-    JointMnameHandler = event => this.setState({ jointMname: event.target.value });
-
-    JointLnameHandler = event => this.setState({ jointLname: event.target.value });
-
-    MinorJointHandler = item => this.setState({ minorJoint: item });
-
-    JointPANHandler = event => this.setState({ jointPAN: event.target.value });
-    
-    ThirdHolderFnameHandler = event => this.setState({ thirdHolderFname: event.target.value });
-
-    ThirdHolderMnameHandler = event => this.setState({ thirdHolderMname: event.target.value });
-
-    ThirdHolderLnameHandler = event => this.setState({ thirdHolderLname: event.target.value });
-
-    MinorThirdHolderHandler = item => this.setState({ minorThirdHolder: item });
-
-    ThirdHolderPANHandler = event => this.setState({ thirdHolderPAN: event.target.value });
-
-
-
-    // Nominee input handlers 
-    NominationPlaceHandler = item => this.setState({ nominationPlace: item });
-
-    NomineeFnameHandler = event => this.setState({ nomineeFname: event.target.value });
-    
-    NomineeMnameHandler = event => this.setState({ nomineeMname: event.target.value });
-
-    NomineeLnameHandler = event => this.setState({ nomineeLname: event.target.value });
-
-    NomineeCityHandler = event => this.setState({ nomineeCity: event.target.value });
-
-    NomineeStateHandler = event => this.setState({ nomineeState: event.target.value });
-
-    NomineePincodeHandler = event => this.setState({ nomineePincode: event.target.value });
-
-    NomineePANHandler = event => this.setState({ nomineePAN: event.target.value });
-
-    RelationshipHandler = item => this.setState({ relationship: item });
-    
-    NomineeContactHandler = event => this.setState({ nomineeContact: event.target.value });
-
-    
-    SubmitNSC = () => {
-        this.props.GetCertificateDetails(
-            this.state.certificateNumber,
-            this.state.faceValue,
-            this.state.maturityPeriod,
-            this.state.maturityAmount,
-        )
     }
 
 
@@ -199,25 +116,28 @@ class RealEstateform extends Component {
 
                 <Label value="Real Estate Type:"/>
                 <Dropdown 
-                    droplist={this.state.list.realEstateType}
-                    ItemSelect={this.IssueDroplistHandler}
-                    select={this.state.NSCissue} />
+                    droplist={this.state.list.real_estate_type}
+                    name="realEstateType"
+                    ItemSelect={this.DropdownHandler}
+                    select={this.state.realEstateType} />
                 
                 <div className="Holder">
                     <div className="HolderDiv">
                         <Label value="Type of Land:"/>
                         <Dropdown 
-                            droplist={this.state.list.typeOfLand}
-                            ItemSelect={this.IssueDroplistHandler}
-                            select={this.state.NSCissue} />
+                            droplist={this.state.list.type_of_land}
+                            name="typeOfLand"
+                            ItemSelect={this.DropdownHandler}
+                            select={this.state.typeOfLand} />
                     </div>
 
                     <div>
                         <Label value="Purchased by:"/>
                         <TextBox
                             placeholder="Purchased by" 
-                            onChange={this.CertificateNumberHandler}
-                            value={this.state.certificateNumber}
+                            name="purchasedBy"
+                            onChange={this.TextInputHandler}
+                            value={this.state.purchasedBy}
                             />
                     </div>
                 </div>
@@ -225,8 +145,9 @@ class RealEstateform extends Component {
                 <Label value="Current ownership is by virtue of:"/>
                 <TextBox
                     placeholder="Ownership" 
-                    onChange={this.CertificateNumberHandler}
-                    value={this.state.certificateNumber}
+                    name="ownership"
+                    onChange={this.TextInputHandler}
+                    value={this.state.ownership}
                     />
 
                 <HolderDetails
@@ -245,23 +166,10 @@ class RealEstateform extends Component {
                     thirdHolderLname={this.state.thirdHolderLname}
                     minorThirdHolder={this.state.minorThirdHolder}
                     thirdHolderPAN={this.state.thirdHolderPAN}
-                    ModeOfHoldingHandler={this.ModeOfHoldingHandler}
-                    SoleFnameHandler={this.SoleFnameHandler}
-                    SoleMnameHandler={this.SoleMnameHandler}
-                    SoleLnameHandler={this.SoleLnameHandler}
-                    MinorSoleHandler={this.MinorSoleHandler}
-                    JointFnameHandler={this.JointFnameHandler}
-                    JointMnameHandler={this.JointMnameHandler}
-                    JointLnameHandler={this.JointLnameHandler}
-                    MinorJointHandler={this.MinorJointHandler}
-                    JointPANHandler={this.JointPANHandler}
-                    ThirdHolderFnameHandler={this.ThirdHolderFnameHandler}
-                    ThirdHolderMnameHandler={this.ThirdHolderMnameHandler}
-                    ThirdHolderLnameHandler={this.ThirdHolderLnameHandler}
-                    MinorThirdHolderHandler={this.MinorThirdHolderHandler}
-                    ThirdHolderPANHandler={this.ThirdHolderPANHandler}
                     modeOfHolding={this.state.list.modeOfHolding}
                     minor={this.state.list.minor}
+                    TextInputHandler={this.TextInputHandler}
+                    DropdownHandler={this.DropdownHandler}
                 />
 
                 <h2 className="Heading">Location Details</h2>
@@ -274,8 +182,9 @@ class RealEstateform extends Component {
                             value="Village:" />
                         <TextBox
                             placeholder="Village" 
-                            onChange={this.CertificateNumberHandler}
-                            value={this.state.certificateNumber}
+                            name="village"
+                            onChange={this.TextInputHandler}
+                            value={this.state.village}
                             />
                         <SubLabel
                             subValue="(as per 7/12 records)" />
@@ -286,8 +195,9 @@ class RealEstateform extends Component {
                             value="Taluka:" />
                         <TextBox
                             placeholder="Taluka" 
-                            onChange={this.CertificateNumberHandler}
-                            value={this.state.certificateNumber}
+                            name="taluka"
+                            onChange={this.TextInputHandler}
+                            value={this.state.taluka}
                             />
                         <SubLabel
                             subValue="(as per 7/12 records)" />
@@ -300,8 +210,9 @@ class RealEstateform extends Component {
                             value="District:" />
                         <TextBox
                             placeholder="District" 
-                            onChange={this.CertificateNumberHandler}
-                            value={this.state.certificateNumber}
+                            name="district"
+                            onChange={this.TextInputHandler}
+                            value={this.state.district}
                             />
                         <SubLabel
                             subValue="(as per 7/12 records)" />
@@ -312,8 +223,9 @@ class RealEstateform extends Component {
                             value="Survey Number:" />
                         <TextBox
                             placeholder="Survey Number" 
-                            onChange={this.CertificateNumberHandler}
-                            value={this.state.certificateNumber}
+                            name="surveyNo"
+                            onChange={this.TextInputHandler}
+                            value={this.state.surveyNo}
                             />
                         <SubLabel
                             subValue="(as per 7/12 records)" />
@@ -331,8 +243,9 @@ class RealEstateform extends Component {
                             value="Land Area:" />
                         <TextBox
                             placeholder="Area" 
-                            onChange={this.CertificateNumberHandler}
-                            value={this.state.certificateNumber}
+                            name="landArea"
+                            onChange={this.TextInputHandler}
+                            value={this.state.landArea}
                             />
                     </div>
 
@@ -340,9 +253,10 @@ class RealEstateform extends Component {
                         <Label 
                             value="Type of Land:" />
                         <Dropdown 
-                            droplist={this.state.list.typeOfLand}
-                            ItemSelect={this.IssueDroplistHandler}
-                            select={this.state.NSCissue} />
+                            droplist={this.state.list.type_of_land}
+                            name="typeOfLand7_12"
+                            ItemSelect={this.DropdownHandler}
+                            select={this.state.typeOfLand7_12} />
                     </div>
                 </div>
 
@@ -352,8 +266,9 @@ class RealEstateform extends Component {
                             value="Class of Land:" />
                         <TextBox
                             placeholder="Class" 
-                            onChange={this.CertificateNumberHandler}
-                            value={this.state.certificateNumber}
+                            name="classOfLand"
+                            onChange={this.TextInputHandler}
+                            value={this.state.classOfLand}
                             />
                     </div>
 
@@ -362,8 +277,9 @@ class RealEstateform extends Component {
                             value="Registered Crop:" />
                         <TextBox
                             placeholder="Crop" 
-                            onChange={this.CertificateNumberHandler}
-                            value={this.state.certificateNumber}
+                            name="registeredCrop"
+                            onChange={this.TextInputHandler}
+                            value={this.state.registeredCrop}
                             />
                     </div>
                 </div>
@@ -374,8 +290,9 @@ class RealEstateform extends Component {
                             value="Is part of land declared as forst land:" />
                         <Dropdown 
                             droplist={this.state.list.minor}
-                            ItemSelect={this.IssueDroplistHandler}
-                            select={this.state.NSCissue} />
+                            name="isForestLand"
+                            ItemSelect={this.DropdownHandler}
+                            select={this.state.isForestLand} />
                     </div>
 
                     <div>
@@ -383,14 +300,13 @@ class RealEstateform extends Component {
                             value="If yes, please specify the forest area:" />
                         <TextBox
                             placeholder="Forest Area" 
-                            onChange={this.CertificateNumberHandler}
-                            value={this.state.certificateNumber}
+                            name="forestArea"
+                            onChange={this.TextInputHandler}
+                            value={this.state.forestArea}
                             />
                     </div>
                 </div>           
 
-
-                
                 <h2 className="Heading">Infrastructure Details</h2>
 
                 <Divider />
@@ -400,9 +316,10 @@ class RealEstateform extends Component {
                         <Label 
                             value="Access to land:" />
                         <TextBox
-                            placeholder="eg. car, walkway" 
-                            onChange={this.CertificateNumberHandler}
-                            value={this.state.certificateNumber}
+                            placeholder="eg. by car, by walkway" 
+                            name="accessToLand"
+                            onChange={this.TextInputHandler}
+                            value={this.state.accessToLand}
                             />
                     </div>
 
@@ -411,8 +328,9 @@ class RealEstateform extends Component {
                             value="Fencing:" />
                         <Dropdown 
                             droplist={this.state.list.minor}
-                            ItemSelect={this.IssueDroplistHandler}
-                            select={this.state.NSCissue} />
+                            name="fencing"
+                            ItemSelect={this.DropdownHandler}
+                            select={this.state.fencing} />
                     </div>
                 </div>
 
@@ -422,8 +340,9 @@ class RealEstateform extends Component {
                             value="Electricity:" />
                         <Dropdown 
                             droplist={this.state.list.minor}
-                            ItemSelect={this.IssueDroplistHandler}
-                            select={this.state.NSCissue} />
+                            name="electricity"
+                            ItemSelect={this.DropdownHandler}
+                            select={this.state.electricity} />
                     </div>
 
                     <div>
@@ -431,8 +350,9 @@ class RealEstateform extends Component {
                             value="Water source:" />
                         <TextBox
                             placeholder="eg. well, river, etc." 
-                            onChange={this.CertificateNumberHandler}
-                            value={this.state.certificateNumber}
+                            name="waterSource"
+                            onChange={this.TextInputHandler}
+                            value={this.state.waterSource}
                             />
                     </div>
                 </div>
@@ -440,9 +360,10 @@ class RealEstateform extends Component {
                 <Label 
                     value="Any structure present on the land:" />
                 <TextBox
-                    placeholder="eg. road, walkway, etc." 
-                    onChange={this.CertificateNumberHandler}
-                    value={this.state.certificateNumber}
+                    placeholder="eg. house, temple etc." 
+                    name="structureOnLand"
+                    onChange={this.TextInputHandler}
+                    value={this.state.structureOnLand}
                     />
 
                 <h2 className="Heading">Other Details</h2>
@@ -455,8 +376,9 @@ class RealEstateform extends Component {
                             value="Distance from nearest village:" />
                         <TextBox
                             placeholder="Distance" 
-                            onChange={this.CertificateNumberHandler}
-                            value={this.state.certificateNumber}
+                            name="nearestVillageDistance"
+                            onChange={this.TextInputHandler}
+                            value={this.state.nearestVillageDistance}
                             />
                     </div>
 
@@ -465,8 +387,9 @@ class RealEstateform extends Component {
                             value="Land survey done:" />
                         <Dropdown 
                             droplist={this.state.list.minor}
-                            ItemSelect={this.IssueDroplistHandler}
-                            select={this.state.NSCissue} />
+                            name="landSurveyDone"
+                            ItemSelect={this.DropdownHandler}
+                            select={this.state.landSurveyDone} />
                     </div>
                 </div>
 
@@ -474,14 +397,15 @@ class RealEstateform extends Component {
                     value="Is land under the possession of the owner(s):" />
                 <Dropdown 
                     droplist={this.state.list.minor}
-                    ItemSelect={this.IssueDroplistHandler}
-                    select={this.state.NSCissue} />             
+                    name="possesionOfLand"
+                    ItemSelect={this.DropdownHandler}
+                    select={this.state.possesionOfLand} />             
             
-            <div style={{margin: "40px 10px"}}>
-                <FormButton 
-                value="Submit Real Estate"
-                onClick={this.SubmitNSC} />
-            </div>
+                <div style={{margin: "40px 10px"}}>
+                    <FormButton 
+                        value="Submit Real Estate"
+                        onClick={this.SubmitNSC} />
+                </div>
 
             </div>
         )

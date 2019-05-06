@@ -348,7 +348,7 @@ class DPStockform extends Component {
                 <div style={{margin: "40px 10px"}}>
                     <FormButton 
                         value="Submit DPStock"
-                        onClick={this.SubmitNSC} />
+                        onClick={this.SubmitHandler} />
                 </div>
 
             </div>

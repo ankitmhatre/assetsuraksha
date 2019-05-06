@@ -24,6 +24,7 @@ class NSCform extends Component {
         faceValue: "select one",
         maturityPeriod: "",
         maturityAmount: "",
+
         holdingMode: "select one",
         soleFname: "",
         soleMname: "",
@@ -39,6 +40,7 @@ class NSCform extends Component {
         thirdHolderLname: "",
         minorThirdHolder: "select one",
         thirdHolderPAN: "",
+        
         nominationPlace: "select one",
         nomineeFname: "",
         nomineeMname: "",
@@ -288,7 +290,7 @@ class NSCform extends Component {
             <div style={{margin: "40px 10px"}}>
                 <FormButton 
                 value="Submit NSC"
-                onClick={this.SubmitNSC} />
+                onClick={this.SubmitHandler} />
             </div>
 
             </div>
