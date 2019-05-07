@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
 import './SignUp.css'
+import axios from 'axios'
 
 class SignUp extends Component {
     state = {
@@ -11,6 +12,23 @@ class SignUp extends Component {
 
     UsernameHandler = (event) => {
         this.setState({username: event.target.value})
+//using axios to check whether the username is taken or not 
+//http://localhost:3000/checkUserExists?username=shiii
+var bodyFormData ={}
+bodyFormData["username"] = event.target.value
+
+axios({
+    method :'POST',
+    headers: {"Access-Control-Allow-Origin": true},
+    url : 'http://localhost:3000/checkUserExists',
+    data: bodyFormData,
+ })
+
+.then(res => console.log(res.data));
+
+
+
+
     }
     
     EmailHandler = (event) => {
