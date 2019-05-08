@@ -12,50 +12,65 @@ exports.user_signup = (req, res, next) => {
           message: "Mail exists"
         });
       } else {
-      
-            const user = new User({
-              _id: new mongoose.Types.ObjectId(),
-              email: req.body.email,
-              password: req.body.password
+
+        const user = new User({
+          _id: new mongoose.Types.ObjectId(),
+          email: req.body.email,
+          password: req.body.password
+        });
+
+
+        user
+          .save()
+          .then(result => {
+            console.log(result);
+            return res.status(201).json({
+              message: "User created"
             });
+          })
+          .catch(err => {
+            console.log(err);
+            return res.status(500).json({
+              error: err
+            });
+          });
 
-            
-         user
-              .save()
-              .then(result => {
-                console.log(result);
-              return  res.status(201).json({
-                  message: "User created"
-                });
-              })
-              .catch(err => {
-                console.log(err);
-            return  res.status(500).json({
-                  error: err
-                });
-              });
-
-          }
+      }
     });
 };
 
 exports.user_login = (req, res, next) => {
-  User.find({ email: req.body.email })
-    .exec()
-    .then(user => {
-      if (user.length < 1) {
-        return res.status(401).json({
-          message: "Auth failed"
-        });
-      }
-     
-        if (req.body.password ===  user[0].password) {
+  if (req.body.email === undefined) {
+    return res.status(401).json({
+      message: "Email needed"
+    });
+  }
+  else if (req.body.password===undefined) {
+    return res.status(401).json({
+      message: "Password needed"
+    });
+  } else {
+
+
+    User.find({ email: req.body.email })
+      .exec()
+      .then(user => {
+
+
+
+        if (user.length < 1) {
+          return res.status(401).json({
+            message: "Auth failed"
+          });
+        }
+
+        if (req.body.password === user[0].password) {
           const token = jwt.sign(
             {
               email: user[0].email,
               userId: user[0]._id
             },
-            "asasdadadadas",
+            "iguessthisiscrypt",
             {
               expiresIn: "1h"
             }
@@ -64,15 +79,20 @@ exports.user_login = (req, res, next) => {
             message: "Auth successful",
             token: token
           });
+        } else {
+          return res.status(401).json({
+            message: "Incorrect password"
+          });
         }
 
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({
-        error: err
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
       });
-    });
+  }
 };
 
 exports.user_delete = (req, res, next) => {
