@@ -1,0 +1,70 @@
+
+Error codes returned by the Backend Services RESTful API.
+Error Code	HTTP Status Code	Error Message	Description	Returned By
+1	500	Unexpected error.	All	Represents an error that doesn't fall into any other category.
+107		General database error.	All	A problem occurred while working with the database. The error message will contain more information about the error.
+107	400	The operation results in a duplicate key for a unique index.	Create	You are trying to create an item with a field that requires a unique value (for example: "Id"). The error shows that an item with such value already exists.
+107	400	Duplicate values already exist for field Number of content type "New".	Update field	You are trying to enforce a uniqueness constraint on the values of a field but the field already contains non-unique values.
+201	400	A user with the same username already exists.	Register user, Update user	The name of the user account you are creating or updating already exists.
+202	400	No password was specified.	Register user	You are trying to register a user without specifying a password.
+203	400	No username was specified.	Register user	You are trying to register a user without specifying a username.
+204	400	The password you specified is not a valid password literal.	Register user, Change password	The specified password is not in the correct format. The password must be a non-empty string.
+205	403	Invalid username or password.	Login	A user with the specified username and password combination does not exist in the system.
+206	400	The specified user was not found.	Change password, Set password, Reset password	The specified user was not found.
+207	400	The specified user data is invalid.	Register user, Update user	Some of the data you specified when creating or updating a user is invalid. The error message will contain specific information about the invalid data.
+208	403	The specified reset code is invalid.	Set password	The reset code that you passed is incorrect or has expired.
+209	400	The specified verification code is invalid.	Verify user	The verification code that you passed is incorrect or has expired.
+210	403	The specified user is already verified.	Verify user	You are attempting to verify a user account that has already been verified.
+211	400	A user with the specified email already exists.	Register user, Link user	You are attempting to use an email address that already exist in the system.
+213	400	The specified user has no email address defined.	Change password, Set password, Reset password, Register user, Resend verification	The requested operation requires an email address to be set for the user.
+214	400	The specified identity provider is not supported.	Register user, Link user, AD FS metadata	You have specified an identity provider value that is not recognized by the system.
+215	400	No token was specified.	Register user, Link user	The provider-generated user access token is not present in the request.
+216	400	No identity provider was specified.	Register user, Link user	You have not specified an identity provider.
+217	400	Cannot retrieve a user for the specified token.	Register user, Link user	The system is unable to match the token you specified with a valid user for the identity provider you are using.
+218	400	The user is already linked with the specified provider.	Link user	The user has already been linked to the specified authentication provider.
+219	400	The user cannot be unlinked because she is not linked with the specified provider.	Unlink user	You are attempting to remove an authentication provider link that does not exist.
+220	400	The user cannot be unlinked.	Unlink user	The user cannot be unlinked because it has a single identity provider.
+221	400	The operation is not supported for the given user.	Reset password, Resend verification email	Reset password and resend verification email are not available for users coming from external identity providers.
+222	403	The account quota is limited for this operation.	All	Your subscription plan does not allow you to run the operation. The message will vary based on the operation you are trying to perform.
+223	403	The account is disabled.	All	The account that hosts the application has been disabled.
+224	403	The feature is not enabled for this account.	All	The experimental feature you are trying to use is not enabled for your account.
+301	403	Invalid access token.	All	The provided access token is not valid.
+302	403	Your access token has expired.	All	The validity of the provided access token has expired.
+600	404	Not found.	All	The requested resource was not found.
+601	400	Invalid request.	All	The request is invalid. Consult the accompanying error message to find out what went wrong.
+602	405	Method not supported.	N/A	You cannot use this HTTP method with this resource.
+603	403	Access denied.	All	You are not allowed to perform the operation.
+604	401	Unauthorized.	All	You did not provide authorization which is required for this operation.
+605	400	Missing or invalid API version.	N/A	The API version is missing from the request URL.
+606	400	Missing App ID.	N/A	The App ID is missing from the request URL.
+607		Invalid App ID.	N/A	The specified App ID is invalid. Make sure you are using the correct App ID.
+608	400	Invalid filter expression.	Read, Delete, Update	The filter expression you specified is invalid. Make sure the filter expression is a valid JSON object and it is in the required format.
+609	400	Invalid sort expression.	Read	The sort expression you specified is invalid. Make sure the sort expression is a valid JSON object and it is in the required format.
+610		Missing or invalid content type. Please specify a valid Content-Type header.	All	The Content-Type header is required for this operation, but is either missing or invalid.
+611		The specified content type was not found.	All data operations*, Metadata operations† for content types	You specified an unexisting content type.
+612	400	Invalid power fields definition.	Read	The Power Fields definition you specified is invalid. Make sure the Power Fields definition is a valid JSON object and it is in the required format.
+613		Unsupported Content-Type.	Set cloud code	The specified content type is not supported by this request.
+614	400	Invalid custom parameter expression.	All data operations*	The custom parameters expression you specified is invalid. Make sure it is a valid JSON object.
+615	400	Invalid request body.	All	The body of the HTTP request is invalid. Make sure its format is consistent with the Content-Type header you specified.
+616	400	Invalid fields expression.	Read	The fields expression you specified is invalid. Make sure the fields expression is a valid JSON and it is in the required format.
+617		Loop detected.	All data operations*	An infinite loop was detected. This usually happens when your cloud code makes a call that results in the execution of the same code.
+618	400	Invalid expand expression.	Read operations	The expand expression you specified is invalid. Make sure the expand expression is in the required format.
+619	400	Invalid single field expression.	Read operations	The single field expression you specified is invalid. Make sure the single field expression is a non-empty string.
+630	400	Invalid metadata definition specified.	Metadata operations†	The metadata request contains or results in an invalid metadata definition. Refer to the accompanying error message to find out what went wrong.
+640	406	The specified response content type is not supported.	All	The response content type you specified in the request is not supported.
+650	408	The request timed out.	All	The request timed out. A request times out if it does not complete within 60 seconds.
+660	400	Data Link Server Error	All	The Data Link Server returned an error. Refer to the accompanying error message to find out what went wrong.
+670	503	Application is down for maintenance	All	The application is down for maintenance. You are advised to stop all requests to it and resume them at a later time.
+701	400	ContentType not specified.	Upload file (base64)	The required ContentType parameter is not specified.
+702	400	Missing or invalid file content.	Upload file, Update file content, Set cloud code	You have not specified file content or the specified file content is invalid.
+801	404	Item not found.	Read by ID, Delete by ID, Update by ID	The specified item was not found.
+901	500	An error occurred during execution of custom server code.	All data operations*, Execute cloud function	There was an error while executing your cloud code. Review your cloud code logic.
+902	500	The execution of the custom server code timed out.	All data operations*, Execute cloud function	The execution of your custom code took too long. Make sure you properly call the "done" callback in all cases.
+910	500	The request was canceled by custom server code.	All data operations*	Your custom cloud code canceled the operation.
+951	500	The custom code definition failed to compile.	All data operations*	The cloud code for the operation failed to compile. Check your cloud code for typos and syntax errors.
+955	500	Custom cloud code is disabled for this type.	All data operations*	The cloud code for this content type have been disabled due to too many timeouts. Contact Support for more information.
+960	400	The request was processed but an error was generated by custom code.	All data operations*	If you don't include your own error code when you are setting an error in your cloud code, then this default code is automatically added.
+1000	400	Error processing email template.	Send email	There was an error processing the email template. The message may contain more information about the error.
+* Data operations are all CRUD requests to custom or built-in content types. Built-in content types include: Users, Files, Devices, and Notifications.
+
+† Metadata operations are CRUD requests that work with metadata. Metadata includes applications, content types, content type fields, roles, and Cloud Code.
