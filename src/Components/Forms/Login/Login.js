@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Login.css';
 import * as actionTypes from '../../../store/actions';
+import axios from 'axios';
 
 class Login extends Component {
     render() {
@@ -34,8 +35,34 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => ({
     emailHandler: (event) => dispatch({type: actionTypes.LOGIN_EMAIL, val: event.target.value}),
-    passwordHandler: (event) => dispatch({type: actionTypes.LOGIN_PASSWORD, val: event.target.value}),
-    loginHandler: () => dispatch({type: actionTypes.LOGIN}),
+    /**
+     *Login Axios Check 
+     *
+     */
+    loginHandler: () => {
+
+
+        axios.post('http://localhost:3001/user/login', {
+
+            "email":"ankitmhatre@gmail.com",
+            "password":"password"
+        }, {
+            headers :{
+                'Content-type': 'application/json'
+            }
+        })
+        .then(response => {
+        
+            console.log("The response is "+JSON.stringify(response.data))
+        })
+
+
+
+
+
+
+        dispatch({type: actionTypes.LOGIN})
+    }
 });
 
 export default connect(null, mapDispatchToProps)(Login);
