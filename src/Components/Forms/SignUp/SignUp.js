@@ -40,7 +40,6 @@ class SignUp extends Component {
             username: this.state.username,
             email: this.state.email,
             password: this.state.password,
-            returnSecureToken: true
         }
 
         axios.post('http://localhost:3001/user/signup', signUpData )
