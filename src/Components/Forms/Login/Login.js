@@ -16,20 +16,14 @@ class Login extends Component {
 
     LoginHandler = () => {
 
-        const loginData= {
+        const loginData = {
             email: this.state.email,
             password: this.state.password
         }
 
-        axios.post('http://localhost:3001/user/login', loginData, 
-            {
-                headers :{
-                    'Content-type': 'application/json'
-                }
-            }
-        )
+        axios.post('http://localhost:3001/user/login', loginData )
         .then(response => {
-            console.log("The response is "+JSON.stringify(response.data))
+            console.log(response)
         })
         .catch(err => {
             console.log(err);

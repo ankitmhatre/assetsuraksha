@@ -8,6 +8,7 @@ import { NavLink } from 'react-router-dom';
 import NomineeDetails from '../../Common/NomineeDetails/NomineeDetails';
 import HolderDetails from '../../Common/HolderDetails/HolderDetails';
 import FormButton from '../../../UI/Button/FormButton';
+import axios from 'axios';
 
 class DPStockform extends Component {
     state = {
@@ -57,7 +58,6 @@ class DPStockform extends Component {
         relationship: "select one",
         Exchange: "select one",
         nomineeContact: "",
-        Tmode: "select one",
 
         list: {
             self_agent: ["1", "2", "3", "4", "5"],
@@ -119,11 +119,61 @@ class DPStockform extends Component {
     }   
 
     SubmitHandler = () => {
+        const DPStockData = {
+            isDematerialized: this.state.isDematerialized,
+            noOfPhysicalShares: this.state.noOfPhysicalShares,
+            totalDematsAcounts: this.state.totalDematsAcounts,
+            noOfCertificates: this.state.noOfCertificates,
+            sr_no: this.state.sr_no,
+            dpName: this.state.dpName,
+            depositoryType: this.state.depositoryType,
+            DMATtype: this.state.DMATtype,
+            dpID: this.state.dpID,
+            clientID: this.state.clientID,
+            dmatAccount: this.state.dmatAccount,
 
-    }
+            holdingMode: this.state.holdingMode,
+            soleFname: this.state.soleFname,
+            soleMname: this.state.soleMname,
+            soleLname: this.state.soleLname,
+            minorSole: this.state.minorSole,
+            jointFname: this.state.jointFname,
+            jointMname: this.state.jointMname,
+            jointLname: this.state.jointLname,
+            minorJoint: this.state.minorJoint,
+            jointPAN: this.state.jointPAN,
+            thirdHolderFname: this.state.thirdHolderFname,
+            thirdHolderMname: this.state.thirdHolderMname,
+            thirdHolderLname: this.state.thirdHolderLname,
+            minorThirdHolder: this.state.minorThirdHolder,
+            thirdHolderPAN: this.state.thirdHolderPAN,
 
-    SubmitAndAddHandler = () => {
+            subBroker: this.state.subBroker,
+            brokerName: this.state.brokerName,
+            exchangeName: this.state.exchangeName,
+            SEBIregistration: this.state.SEBIregistration,
+            TradingMode: this.state.TradingMode,
+            TradingCode: this.state.TradingCode,
+            
+            nominationPlace: this.state.nominationPlace,
+            nomineeFname: this.state.nomineeFname,
+            nomineeMname: this.state.nomineeMname,
+            nomineeLname: this.state.nomineeLname,
+            nomineeCity: this.state.nomineeCity,
+            nomineeState: this.state.nomineeState,
+            nomineePincode: this.state.nomineePincode,
+            nomineePAN: this.state.nomineePAN,
+            relationship: this.state.relationship,
+            nomineeContact: this.state.nomineeContact,
+        }
 
+        axios.post('Api Link', DPStockData)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     render() {

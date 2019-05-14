@@ -37,7 +37,6 @@ class SignUp extends Component {
     SignUpHandler = () => {
 
         const signUpData = {
-            username: this.state.username,
             email: this.state.email,
             password: this.state.password,
         }
