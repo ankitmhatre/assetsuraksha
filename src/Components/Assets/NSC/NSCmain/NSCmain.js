@@ -20,12 +20,15 @@ class NSCmain extends Component {
         axios.get('https://jsonplaceholder.typicode.com/users')
             .then(response => {
                 this.setState( {assetBars: response.data} )
-                console.log(response)
+                console.log(response.data)
             })
     }
 
     DeleteAsset = () => {
-        
+        axios.delete('---API LINK---', +'id')
+            .then(response => {
+                console.log(response);
+            })
     }
 
     render() {
