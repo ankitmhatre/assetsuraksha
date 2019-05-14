@@ -4,6 +4,7 @@ import './RealEstateform.css'
 import Dropdown from '../../../UI/Dropdown/Dropdown';
 import TextBox from '../../../UI/TextBox/TextBox';
 import { Divider } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
 import HolderDetails from '../../Common/HolderDetails/HolderDetails';
 import SubLabel from '../../../UI/Label/SubLabel/SubLabel';
 import FormButton from '../../../UI/Button/FormButton';
@@ -41,11 +42,11 @@ class RealEstateform extends Component {
         registeredCrop: "",
         isForestLand: "Select one",
         forestArea: "",
-        accessToLand: "",
+        accessToLand: "Select one",
         fencing: "Select one",
         electricity: "Select one",
-        waterSource: "",
-        structureOnLand: "",
+        waterSource: "Select one",
+        structureOnLand: "Select one",
         nearestVillageDistance: "",
         landSurveyDone: "Select one",
         possesionOfLand: "select one",
@@ -72,10 +73,32 @@ class RealEstateform extends Component {
                 "Mining land",
                 "Other",
             ],
+            structure_on_land: [
+                "No Structure Present",
+                "shed",
+                "temple",
+                "wall",
+                "House",
+                "Tower",
+                "Pipeline",
+                "Others"
+            ],
+            water_source: [
+                "Borewell",
+                "Well",
+                "River",
+                "Pipeline",
+                "Others"
+            ],
+            access_to_land: [
+                "Car road",
+                "All season walk way",
+                "No direct access to land"
+            ],
             modeOfHolding: [
                 "Single", "Joint"
             ],
-            minor: ["yes", "no"],
+            minor: ["Yes", "No"],
             relationshipList: [
                 "Mother",
                 "Father", 
@@ -178,57 +201,49 @@ class RealEstateform extends Component {
 
                 <div className="Holder">
                     <div className="HolderDiv">
-                        <Label 
-                            value="Village:" />
+                        <Label value="Village:" />
                         <TextBox
                             placeholder="Village" 
                             name="village"
                             onChange={this.TextInputHandler}
                             value={this.state.village}
                             />
-                        <SubLabel
-                            subValue="(as per 7/12 records)" />
+                        <SubLabel subValue="(as per 7/12 records)" />
                     </div>
 
                     <div>
-                        <Label 
-                            value="Taluka:" />
+                        <Label value="Taluka:" />
                         <TextBox
                             placeholder="Taluka" 
                             name="taluka"
                             onChange={this.TextInputHandler}
                             value={this.state.taluka}
                             />
-                        <SubLabel
-                            subValue="(as per 7/12 records)" />
+                        <SubLabel subValue="(as per 7/12 records)" />
                     </div>
                 </div>
 
                 <div className="Holder">
                     <div className="HolderDiv">
-                        <Label 
-                            value="District:" />
+                        <Label value="District:" />
                         <TextBox
                             placeholder="District" 
                             name="district"
                             onChange={this.TextInputHandler}
                             value={this.state.district}
                             />
-                        <SubLabel
-                            subValue="(as per 7/12 records)" />
+                        <SubLabel subValue="(as per 7/12 records)" />
                     </div>
 
                     <div>
-                        <Label 
-                            value="Survey Number:" />
+                        <Label value="Survey Number:" />
                         <TextBox
                             placeholder="Survey Number" 
                             name="surveyNo"
                             onChange={this.TextInputHandler}
                             value={this.state.surveyNo}
                             />
-                        <SubLabel
-                            subValue="(as per 7/12 records)" />
+                        <SubLabel subValue="(as per 7/12 records)" />
                     </div>
                 </div>
 
@@ -239,8 +254,7 @@ class RealEstateform extends Component {
 
                 <div className="Holder">
                     <div className="HolderDiv">
-                        <Label 
-                            value="Land Area:" />
+                        <Label value="Land Area:" />
                         <TextBox
                             placeholder="Area" 
                             name="landArea"
@@ -250,8 +264,7 @@ class RealEstateform extends Component {
                     </div>
 
                     <div>
-                        <Label 
-                            value="Type of Land:" />
+                        <Label value="Type of Land:" />
                         <Dropdown 
                             droplist={this.state.list.type_of_land}
                             name="typeOfLand7_12"
@@ -262,8 +275,7 @@ class RealEstateform extends Component {
 
                 <div className="Holder">
                     <div className="HolderDiv">
-                        <Label 
-                            value="Class of Land:" />
+                        <Label value="Class of Land:" />
                         <TextBox
                             placeholder="Class" 
                             name="classOfLand"
@@ -273,8 +285,7 @@ class RealEstateform extends Component {
                     </div>
 
                     <div>
-                        <Label 
-                            value="Registered Crop:" />
+                        <Label value="Registered Crop:" />
                         <TextBox
                             placeholder="Crop" 
                             name="registeredCrop"
@@ -286,25 +297,27 @@ class RealEstateform extends Component {
 
                 <div className="Holder">
                     <div className="HolderDiv">
-                        <Label 
-                            value="Is part of land declared as forst land:" />
+                        <Label value="Is part of land declared as forst land:" />
                         <Dropdown 
                             droplist={this.state.list.minor}
                             name="isForestLand"
                             ItemSelect={this.DropdownHandler}
                             select={this.state.isForestLand} />
                     </div>
-
-                    <div>
-                        <Label 
-                            value="If yes, please specify the forest area:" />
-                        <TextBox
-                            placeholder="Forest Area" 
-                            name="forestArea"
-                            onChange={this.TextInputHandler}
-                            value={this.state.forestArea}
-                            />
-                    </div>
+                    { 
+                        this.state.isForestLand === "Yes" ? (
+                        <div>
+                            <Label value="Specify the forest area:" />
+                            <TextBox
+                                placeholder="Forest Area" 
+                                name="forestArea"
+                                onChange={this.TextInputHandler}
+                                value={this.state.forestArea}
+                                />
+                        </div>
+                        ): null
+                    }
+                    
                 </div>           
 
                 <h2 className="Heading">Infrastructure Details</h2>
@@ -313,19 +326,16 @@ class RealEstateform extends Component {
 
                 <div className="Holder">
                     <div className="HolderDiv">
-                        <Label 
-                            value="Access to land:" />
-                        <TextBox
-                            placeholder="eg. by car, by walkway" 
+                        <Label value="Access to land:" />
+                        <Dropdown 
+                            droplist={this.state.list.access_to_land}
                             name="accessToLand"
-                            onChange={this.TextInputHandler}
-                            value={this.state.accessToLand}
-                            />
+                            ItemSelect={this.DropdownHandler}
+                            select={this.state.accessToLand} />
                     </div>
 
                     <div>
-                        <Label 
-                            value="Fencing:" />
+                        <Label value="Fencing:" />
                         <Dropdown 
                             droplist={this.state.list.minor}
                             name="fencing"
@@ -336,8 +346,7 @@ class RealEstateform extends Component {
 
                 <div className="Holder">
                     <div className="HolderDiv">
-                        <Label 
-                            value="Electricity:" />
+                        <Label value="Electricity:" />
                         <Dropdown 
                             droplist={this.state.list.minor}
                             name="electricity"
@@ -346,25 +355,21 @@ class RealEstateform extends Component {
                     </div>
 
                     <div>
-                        <Label 
-                            value="Water source:" />
-                        <TextBox
-                            placeholder="eg. well, river, etc." 
+                        <Label value="Water source:" />
+                        <Dropdown 
+                            droplist={this.state.list.water_source}
                             name="waterSource"
-                            onChange={this.TextInputHandler}
-                            value={this.state.waterSource}
-                            />
+                            ItemSelect={this.DropdownHandler}
+                            select={this.state.waterSource} />
                     </div>
                 </div>
 
-                <Label 
-                    value="Any structure present on the land:" />
-                <TextBox
-                    placeholder="eg. house, temple etc." 
+                <Label value="Any structure present on the land:" />
+                <Dropdown 
+                    droplist={this.state.list.structure_on_land}
                     name="structureOnLand"
-                    onChange={this.TextInputHandler}
-                    value={this.state.structureOnLand}
-                    />
+                    ItemSelect={this.DropdownHandler}
+                    select={this.state.structureOnLand} />
 
                 <h2 className="Heading">Other Details</h2>
 
@@ -372,8 +377,7 @@ class RealEstateform extends Component {
 
                 <div className="Holder">
                     <div className="HolderDiv">
-                        <Label 
-                            value="Distance from nearest village:" />
+                        <Label value="Distance from nearest village:" />
                         <TextBox
                             placeholder="Distance" 
                             name="nearestVillageDistance"
@@ -383,8 +387,7 @@ class RealEstateform extends Component {
                     </div>
 
                     <div>
-                        <Label 
-                            value="Land survey done:" />
+                        <Label value="Land survey done:" />
                         <Dropdown 
                             droplist={this.state.list.minor}
                             name="landSurveyDone"
@@ -393,18 +396,19 @@ class RealEstateform extends Component {
                     </div>
                 </div>
 
-                <Label 
-                    value="Is land under the possession of the owner(s):" />
+                <Label value="Is land under the possession of the owner(s):" />
                 <Dropdown 
                     droplist={this.state.list.minor}
                     name="possesionOfLand"
                     ItemSelect={this.DropdownHandler}
                     select={this.state.possesionOfLand} />             
             
-                <div style={{margin: "40px 10px"}}>
-                    <FormButton 
-                        value="Submit Real Estate"
-                        onClick={this.SubmitNSC} />
+                <div style={{margin: "40px 10px"}}>     
+                    <NavLink to="/user_profile/real_estate" >
+                        <FormButton 
+                            value="Submit"
+                            onClick={this.SubmitNSC} />
+                    </NavLink>          
                 </div>
 
             </div>

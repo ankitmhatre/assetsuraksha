@@ -16,7 +16,7 @@ const NomineeDetails = (props) => (
             ItemSelect={props.DropdownHandler}
             select={props.nominationPlace} />
 
-        <h2>Nominee details</h2>
+        <h2>Nominee details:</h2>
         <Label value="Name:" />
         <TextBox
             placeholder="First Name" 

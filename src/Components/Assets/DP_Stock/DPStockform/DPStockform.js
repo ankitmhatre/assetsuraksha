@@ -4,6 +4,7 @@ import './DPStockform.css'
 import Dropdown from '../../../UI/Dropdown/Dropdown';
 import TextBox from '../../../UI/TextBox/TextBox';
 import { Divider } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
 import NomineeDetails from '../../Common/NomineeDetails/NomineeDetails';
 import HolderDetails from '../../Common/HolderDetails/HolderDetails';
 import FormButton from '../../../UI/Button/FormButton';
@@ -118,6 +119,10 @@ class DPStockform extends Component {
     }   
 
     SubmitHandler = () => {
+
+    }
+
+    SubmitAndAddHandler = () => {
 
     }
 
@@ -346,9 +351,12 @@ class DPStockform extends Component {
                 />
 
                 <div style={{margin: "40px 10px"}}>
+                <NavLink to="/user_profile/dp_stock">
                     <FormButton 
-                        value="Submit DPStock"
+                        value="Submit"
                         onClick={this.SubmitHandler} />
+                </NavLink>  
+
                 </div>
 
             </div>

@@ -39,11 +39,11 @@ return (
             </Typography>
         </ExpansionPanelDetails>
         <Divider />
-        <ExpansionPanelActions>
+        <ExpansionPanelActions style={{marginRight: "40px"}}>
           <Button size="small">View</Button>
           <Button size="small">Replicate</Button>
           <Button size="small">Edit</Button>
-          <Button style={{marginRight: "40px"}} size="small">Delete</Button>
+          <Button onClick={props.DeleteAsset} size="small">Delete</Button>
         </ExpansionPanelActions>
     </ExpansionPanel>
     </div>

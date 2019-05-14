@@ -4,10 +4,12 @@ import './NSCform.css'
 import Dropdown from '../../../UI/Dropdown/Dropdown';
 import TextBox from '../../../UI/TextBox/TextBox';
 import { Divider } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
 import NomineeDetails from '../../Common/NomineeDetails/NomineeDetails';
 import HolderDetails from '../../Common/HolderDetails/HolderDetails';
 import SubLabel from '../../../UI/Label/SubLabel/SubLabel';
 import FormButton from '../../../UI/Button/FormButton';
+import axios from 'axios';
 
 class NSCform extends Component {
     state = {
@@ -105,7 +107,56 @@ class NSCform extends Component {
     }   
 
     SubmitHandler = () => {
+        const NSCdata = {
+            self_agent: this.state.self_agent,
+            agentName: this.state.agentName,
+            agentCode: this.state.agentCode,
+            NSCissue: this.state.NSCissue,
+            noOfCertificates: this.state.noOfCertificates,
+            sr_no: this.state.sr_no,
+            certificateFormat: this.state.certificateFormat,
+            certificateNumber: this.state.certificateNumber,
+            postOffice: this.state.postOffice,
+            location: this.state.location,
+            faceValue: this.state.faceValue,
+            maturityPeriod: this.state.maturityPeriod,
+            maturityAmount: this.state.maturityAmount,
+    
+            holdingMode: this.state.holdingMode,
+            soleFname: this.state.soleFname,
+            soleMname: this.state.soleMname,
+            soleLname: this.state.soleLname,
+            minorSole: this.state.minorSole,
+            jointFname: this.state.jointFname,
+            jointMname: this.state.jointMname,
+            jointLname: this.state.jointLname,
+            minorJoint: this.state.minorJoint,
+            jointPAN: this.state.jointPAN,
+            thirdHolderFname: this.state.thirdHolderFname,
+            thirdHolderMname: this.state.thirdHolderMname,
+            thirdHolderLname: this.state.thirdHolderLname,
+            minorThirdHolder: this.state.minorThirdHolder,
+            thirdHolderPAN: this.state.thirdHolderPAN,
+            
+            nominationPlace: this.state.nominationPlace,
+            nomineeFname: this.state.nomineeFname,
+            nomineeMname: this.state.nomineeMname,
+            nomineeLname: this.state.nomineeLname,
+            nomineeCity: this.state.nomineeCity,
+            nomineeState: this.state.nomineeState,
+            nomineePincode: this.state.nomineePincode,
+            nomineePAN: this.state.nomineePAN,
+            relationship: this.state.relationship,
+            nomineeContact: this.state.nomineeContact,
+        }
 
+        axios.post('Api Link', NSCdata)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     render() {
@@ -288,9 +339,11 @@ class NSCform extends Component {
                 />
             
             <div style={{margin: "40px 10px"}}>
-                <FormButton 
-                value="Submit NSC"
-                onClick={this.SubmitHandler} />
+                <NavLink to="/user_profile/NSC">
+                    <FormButton 
+                        value="Submit"
+                        onClick={this.SubmitHandler} />
+                </NavLink>
             </div>
 
             </div>

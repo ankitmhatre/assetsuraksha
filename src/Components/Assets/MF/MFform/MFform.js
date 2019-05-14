@@ -7,22 +7,23 @@ import { Divider } from '@material-ui/core';
 import NomineeDetails from '../../Common/NomineeDetails/NomineeDetails';
 import HolderDetails from '../../Common/HolderDetails/HolderDetails';
 import SubLabel from '../../../UI/Label/SubLabel/SubLabel';
+import FormButton from '../../../UI/Button/FormButton';
+import { NavLink } from 'react-router-dom';
 
 class MFform extends Component {
     state = {
-        self_agent: "select one",
-        agentName: "",
-        agentCode: "",
-        KVPissue: "select one",
-        noOfCertificates: "",
-        sr_no: "",
-        certificateFormat: "select one",
-        certificateNumber: "",
+        noOfFolios: "",
+        folioNo: "",
+        folioName: "Select one",
+        ISIC: "select one",
+        typeOfFund: "Select one",
+        noOfUnits: "",
+        clientID: "",
+        dmatAccount: "",
         postOffice: "",
         location: "",
-        faceValue: "select one",
-        maturityPeriod: "",
-        maturityAmount: "",
+        typeOfPayment: "select one",
+
         holdingMode: "select one",
         soleFname: "",
         soleMname: "",
@@ -38,6 +39,11 @@ class MFform extends Component {
         thirdHolderLname: "",
         minorThirdHolder: "select one",
         thirdHolderPAN: "",
+
+        dealingDistributor: "Select one",
+        distributorName: "",
+        ARNcode: "",
+
         nominationPlace: "select one",
         nomineeFname: "",
         nomineeMname: "",
@@ -53,18 +59,20 @@ class MFform extends Component {
         Tfund: "select one",
         Tpayment: "select one",
 
+        dealingDistributor: "Select one",
+        bankName: "",
+        accountType: "",
+        accountNumber: "",
+        branchName: "",
 
         list: {
-            Fname: [
-                "CDSL",
-                "NSDL"
+            folio_name: [
+                
             ],
             ISCI: [
-                "Resident Indian",
-                "Nonresident Indian",
-                "Foreign National"
+                
             ],
-            Tfund: [
+            type_of_fund: [
                 "Equity",
                 "Balanced",
                 "Debt",
@@ -78,32 +86,14 @@ class MFform extends Component {
                 "Hybrid Equity Orieted",
                 "Hybrid Debt Orieted"
             ],
-            Tpayment: [
+            type_of_payment: [
                 "SIP",
                 "Non-SIP"
-            ],
-
-
-
-            self_agent: ["Self", "Agent"],
-            issueDroplist: [
-                "1",
-                "2",
-                "3",
-                "4",
-                "5"],
-            certificate_format: [
-                "Physical certificate",
-                "Electronic mode",
-                "Passbook mode"
-            ],
-            faceValueList: [
-                100, 500, 1000, 5000, 10000
             ],
             modeOfHolding: [
                 "Single", "Joint"
             ],
-            minor: ["yes", "no"],
+            minor: ["Yes", "No"],
             relationshipList: [
                 "Mother",
                 "Father",
@@ -120,100 +110,20 @@ class MFform extends Component {
                 "Other"
             ]
         }
-
     }
 
-    // certificate details input handlers
-    FnameHandler = item => this.setState({ Fname: item });
+    TextInputHandler = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
+    }
 
-    ISICHandler = item => this.setState({ ISIC: item });
+    DropdownHandler = (name, item) => {
+        this.setState({ [name]: item });
+    }   
 
-    TfundHandler = item => this.setState({ Tfund: item });
+    SubmitHandler = () => {
 
-    TpaymentHandler = item => this.setState({ Tpayment: item });
-
-    IssueDroplistHandler = item => this.setState({ KVPissue: item });
-
-    Self_AgentHandler = item => this.setState({ self_agent: item });
-
-    AgentNameHandler = event => this.setState({ agentName: event.target.value });
-
-    AgentCodeHandler = event => this.setState({ agentCode: event.target.value });
-
-    NoOfCertificates = event => this.setState({ noOfCertificates: event.target.value });
-
-    SrNoHandler = event => this.setState({ sr_no: event.target.value });
-
-    CertificateFormatHandler = item => this.setState({ certificateFormat: item });
-
-    CertificateNumberHandler = event => this.setState({ certificateNumber: event.target.value });
-
-    IssuingPostOfficeHandler = event => this.setState({ postOffice: event.target.value });
-
-    LocationHandler = event => this.setState({ location: event.target.value });
-
-    FaceValueHandler = item => this.setState({ faceValue: item });
-
-    MaturityPeriodHandler = event => this.setState({ maturityPeriod: event.target.value });
-
-    MaturityAmountHandler = event => this.setState({ maturityAmount: event.target.value });
-
-
-    // Holder input Handlers
-    ModeOfHoldingHandler = item => this.setState({ holdingMode: item });
-
-    SoleFnameHandler = event => this.setState({ soleFname: event.target.value });
-
-    SoleMnameHandler = event => this.setState({ soleMname: event.target.value });
-
-    SoleLnameHandler = event => this.setState({ soleLname: event.target.value });
-
-    MinorSoleHandler = item => this.setState({ minorSole: item });
-
-    JointFnameHandler = event => this.setState({ jointFname: event.target.value });
-
-    JointMnameHandler = event => this.setState({ jointMname: event.target.value });
-
-    JointLnameHandler = event => this.setState({ jointLname: event.target.value });
-
-    MinorJointHandler = item => this.setState({ minorJoint: item });
-
-    JointPANHandler = event => this.setState({ jointPAN: event.target.value });
-
-    ThirdHolderFnameHandler = event => this.setState({ thirdHolderFname: event.target.value });
-
-    ThirdHolderMnameHandler = event => this.setState({ thirdHolderMname: event.target.value });
-
-    ThirdHolderLnameHandler = event => this.setState({ thirdHolderLname: event.target.value });
-
-    MinorThirdHolderHandler = item => this.setState({ minorThirdHolder: item });
-
-    ThirdHolderPANHandler = event => this.setState({ thirdHolderPAN: event.target.value });
-
-
-
-    // Nominee input handlers 
-    NominationPlaceHandler = item => this.setState({ nominationPlace: item });
-
-    NomineeFnameHandler = event => this.setState({ nomineeFname: event.target.value });
-
-    NomineeMnameHandler = event => this.setState({ nomineeMname: event.target.value });
-
-    NomineeLnameHandler = event => this.setState({ nomineeLname: event.target.value });
-
-    NomineeCityHandler = event => this.setState({ nomineeCity: event.target.value });
-
-    NomineeStateHandler = event => this.setState({ nomineeState: event.target.value });
-
-    NomineePincodeHandler = event => this.setState({ nomineePincode: event.target.value });
-
-    NomineePANHandler = event => this.setState({ nomineePAN: event.target.value });
-
-    RelationshipHandler = item => this.setState({ relationship: item });
-
-    NomineeContactHandler = event => this.setState({ nomineeContact: event.target.value });
-
-
+    }
+   
     render() {
         return (
             <div>
@@ -221,48 +131,35 @@ class MFform extends Component {
 
                 <Divider />
 
-                <Label value="How many mutual fund Folioes you hold as sole/first or second holder:" />
-                <Dropdown
-                    droplist={this.state.list.issueDroplist}
-                    ItemSelect={this.IssueDroplistHandler}
-                    select={this.state.NSCissue} />
-
-
-
+                <Label value="Number of Mutual Fund Folioes:" />
+                <TextBox 
+                    placeholder="Enter Number" 
+                    onChange={this.TextInputHandler}
+                    name="noOfFolios"
+                    value={this.state.noOfFolios} 
+                    />
 
                 <h2 className="Heading">Folio Details</h2>
 
                 <Divider />
 
-                <Label value="Folio Number:" />
-                <TextBox
-                    type="text"
-                    placeholder="Folio Number"
-                    onChange={this.NoOfCertificates}
-                    value={this.state.noOfCertificates} />
-
-                <p>(Please fill up the certificate details below)</p>
-
-
-
                 <div className="Holder">
                     <div className="HolderDiv">
-                        <Label value="Folio (AMC) Name/ Description (ISIN Description)" />
-                        <Dropdown
-                            droplist={this.state.list.Fname}
-                            ItemSelect={this.FnameHandler}
-                            select={this.state.Fname} />
-                    </div>
-
-                    <div>
-                        <Label
-                            value="Number of Units:" />
+                        <Label value="Folio Number:" />
                         <TextBox
-                            type="text"
-                            placeholder="Number of Units"
-                            onChange={this.CertificateNumberHandler}
-                            value={this.state.certificateNumber} />
-
+                            placeholder="Folio Number"
+                            name="folioNo"
+                            onChange={this.TextInputHandler}
+                            value={this.state.folioNo} />
+                    </div>
+                    <div>
+                        <Label value="Folio Name/ Description" />
+                        <Dropdown
+                            droplist={this.state.list.folio_name}
+                            name="folioName"
+                            ItemSelect={this.DropdownHandler}
+                            select={this.state.folioName} />
+                        <SubLabel subValue="AMC/ ISIN Description " />
                     </div>
                 </div>
 
@@ -271,52 +168,56 @@ class MFform extends Component {
                         <Label value="ISIC UCC" />
                         <Dropdown
                             droplist={this.state.list.ISIC}
-                            ItemSelect={this.ISICHandler}
+                            name="ISIC"
+                            ItemSelect={this.DropdownHandler}
                             select={this.state.ISIC} />
                     </div>
-
                     <div>
-                        <Label
-                            value="Client ID:" />
-                        <TextBox
-                            type="text"
-                            placeholder="Client ID"
-                            onChange={this.CertificateNumberHandler}
-                            value={this.state.certificateNumber} />
-
-                    </div>
-                </div>
-
-                <div className="Holder">
-                    <div className="HolderDiv">
                         <Label value="Type of Funds:" />
                         <Dropdown
-                            droplist={this.state.list.Tfund}
-                            ItemSelect={this.TfundHandler}
-                            select={this.state.Tfund} />
-                    </div>
-
-                    <div>
-                        <Label
-                            value="DMAT Account#:" />
-                        <TextBox
-                            type="text"
-                            placeholder="DMAT Account"
-                            onChange={this.CertificateNumberHandler}
-                            value={this.state.certificateNumber} />
-
+                            droplist={this.state.list.type_of_fund}
+                            name="typeOfFund"
+                            ItemSelect={this.DropdownHandler}
+                            select={this.state.typeOfFund} />
                     </div>
                 </div>
 
                 <div className="Holder">
                     <div className="HolderDiv">
+                        <Label value="Number of Units:" />
+                        <TextBox
+                            name="noOfUnits"
+                            placeholder="Number of Units"
+                            onChange={this.TextInputHandler}
+                            value={this.state.noOfUnits} />
+                    </div>
+                    <div>
+                        <Label value="Client ID:" />
+                        <TextBox
+                            name="clientID"
+                            placeholder="Client ID"
+                            onChange={this.TextInputHandler}
+                            value={this.state.clientID} />
+                    </div>
+                </div>
+
+                <div className="Holder">
+                    <div className="HolderDiv">
+                        <Label value="DMAT Account#:" />
+                        <TextBox
+                            placeholder="DMAT Account"
+                            name="dmatAccount"
+                            onChange={this.TextInputHandler}
+                            value={this.state.dmatAccount} />
+                    </div>
+                    <div>
                         <Label value="Type of payment:" />
                         <Dropdown
-                            droplist={this.state.list.Tpayment}
-                            ItemSelect={this.TpaymnetHandler}
-                            select={this.state.Tpayment} />
+                            droplist={this.state.list.type_of_payment}
+                            name="typeOfPayment"
+                            ItemSelect={this.DropdownHandler}
+                            select={this.state.typeOfPayment} />
                     </div>
-
                 </div>
 
                 <HolderDetails
@@ -335,24 +236,39 @@ class MFform extends Component {
                     thirdHolderLname={this.state.thirdHolderLname}
                     minorThirdHolder={this.state.minorThirdHolder}
                     thirdHolderPAN={this.state.thirdHolderPAN}
-                    ModeOfHoldingHandler={this.ModeOfHoldingHandler}
-                    SoleFnameHandler={this.SoleFnameHandler}
-                    SoleMnameHandler={this.SoleMnameHandler}
-                    SoleLnameHandler={this.SoleLnameHandler}
-                    MinorSoleHandler={this.MinorSoleHandler}
-                    JointFnameHandler={this.JointFnameHandler}
-                    JointMnameHandler={this.JointMnameHandler}
-                    JointLnameHandler={this.JointLnameHandler}
-                    MinorJointHandler={this.MinorJointHandler}
-                    JointPANHandler={this.JointPANHandler}
-                    ThirdHolderFnameHandler={this.ThirdHolderFnameHandler}
-                    ThirdHolderMnameHandler={this.ThirdHolderMnameHandler}
-                    ThirdHolderLnameHandler={this.ThirdHolderLnameHandler}
-                    MinorThirdHolderHandler={this.MinorThirdHolderHandler}
-                    ThirdHolderPANHandler={this.ThirdHolderPANHandler}
                     modeOfHolding={this.state.list.modeOfHolding}
                     minor={this.state.list.minor}
+                    TextInputHandler={this.TextInputHandler}
+                    DropdownHandler={this.DropdownHandler}
+                    
                 />
+
+                <Label value="Are you dealing through Distributor/ sub-broker:" />
+                <Dropdown
+                    droplist={this.state.list.minor}
+                    name="dealingDistributor"
+                    ItemSelect={this.DropdownHandler}
+                    select={this.state.dealingDistributor} />
+
+                { this.state.dealingDistributor === "Yes" ?
+                (<div className="Holder">
+                    <div className="HolderDiv">
+                        <Label value="Name of the distributor/ sub broker:" />
+                        <TextBox
+                            placeholder="Enter Name"
+                            name="distributorName"
+                            onChange={this.TextInputHandler}
+                            value={this.state.distributorName} />
+                    </div>
+                    <div>
+                        <Label value="ARN Code of distributor/ sub broker:" />
+                        <TextBox
+                            placeholder="Client ID"
+                            name="ARNcode"
+                            onChange={this.TextInputHandler}
+                            value={this.state.ARNcode} />
+                    </div>
+                </div>): null }
 
                 <NomineeDetails
                     nominationPlace={this.state.nominationPlace}
@@ -365,20 +281,74 @@ class MFform extends Component {
                     nomineePAN={this.state.nomineePAN}
                     relationship={this.state.relationship}
                     nomineeContact={this.state.nomineeContact}
-                    NominationPlaceHandler={this.NominationPlaceHandler}
-                    NomineeFnameHandler={this.NomineeFnameHandler}
-                    NomineeMnameHandler={this.NomineeMnameHandler}
-                    NomineeLnameHandler={this.NomineeLnameHandler}
-                    NomineeCityHandler={this.NomineeCityHandler}
-                    NomineeStateHandler={this.NomineeStateHandler}
-                    NomineePincodeHandler={this.NomineePincodeHandler}
-                    NomineePANHandler={this.NomineePANHandler}
-                    RelationshipHandler={this.RelationshipHandler}
-                    NomineeContactHandler={this.NomineeContactHandler}
                     relationshipList={this.state.list.relationshipList}
                     minor={this.state.list.minor}
+                    TextInputHandler={this.TextInputHandler}
+                    DropdownHandler={this.DropdownHandler}
                 />
 
+                <h2 className="Heading">Debit Manadate Linkage</h2>
+
+                <Divider />
+
+                <Label value="Is it linked with a Debit Manadate:" />
+                <Dropdown
+                    droplist={this.state.list.minor}
+                    name="dealingDistributor"
+                    ItemSelect={this.DropdownHandler}
+                    select={this.state.dealingDistributor} />
+
+                { this.state.dealingDistributor === "Yes" ? 
+                ( <div>
+                    <div className="Holder">
+                        <div className="HolderDiv">
+                            <Label value="Bank Name:" />
+                            <TextBox
+                                placeholder="Enter Bank Name"
+                                name="bankName"
+                                onChange={this.TextInputHandler}
+                                value={this.state.bankName} />
+                        </div>
+                        <div>
+                            <Label value="Account Type:" />
+                            <TextBox
+                                placeholder="Enter Account Type"
+                                name="accountType"
+                                onChange={this.TextInputHandler}
+                                value={this.state.accountType} />
+                        </div>
+                    </div>
+
+                    <div className="Holder">
+                        <div className="HolderDiv">
+                            <Label value="Account Number:" />
+                            <TextBox
+                                placeholder="Enter Account Number"
+                                name="accountNumber"
+                                onChange={this.TextInputHandler}
+                                value={this.state.accountNumber} />
+                        </div>
+                        <div>
+                            <Label value="Branch Name:" />
+                            <TextBox
+                                placeholder="Enter Branch Name"
+                                name="branchName"
+                                onChange={this.TextInputHandler}
+                                value={this.state.branchName} />
+                        </div>
+                    </div>
+                </div>
+                ): null
+                }
+
+                <div style={{margin: "40px 10px"}}>
+                <NavLink to="/user_profile/MF" >
+                    <FormButton 
+                        value="Submit"
+                        onClick={this.SubmitHandler} />
+                </NavLink>  
+                </div>
+                
             </div>
         )
     }

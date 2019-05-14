@@ -7,6 +7,7 @@ import { Divider } from '@material-ui/core';
 import HolderDetails from '../../Common/HolderDetails/HolderDetails';
 import SubLabel from '../../../UI/Label/SubLabel/SubLabel';
 import FormButton from '../../../UI/Button/FormButton';
+import { NavLink } from 'react-router-dom';
 
 class PhysicalShareform extends Component {
     state = {
@@ -281,9 +282,11 @@ class PhysicalShareform extends Component {
                 </div>
 
                 <div style={{margin: "40px 10px"}}>
-                    <FormButton 
-                        value="Submit Physical Share"
-                        onClick={this.SubmitHandler} />
+                    <NavLink to="/user_profile/physical_share" >
+                        <FormButton 
+                            value="Submit"
+                            onClick={this.SubmitHandler} />
+                    </NavLink>
                 </div>
 
             </div>

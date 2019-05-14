@@ -1,11 +1,41 @@
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
 import './Login.css';
-import * as actionTypes from '../../../store/actions';
 import axios from 'axios';
 
 class Login extends Component {
+
+    state = {
+        email: "",
+        password: ""
+    }
+
+    InputHandler = (event) => {
+        this.setState({ [event.target.name]: event.target.value})
+    }
+
+    LoginHandler = () => {
+
+        const loginData= {
+            email: this.state.email,
+            password: this.state.password
+        }
+
+        axios.post('http://localhost:3001/user/login', loginData, 
+            {
+                headers :{
+                    'Content-type': 'application/json'
+                }
+            }
+        )
+        .then(response => {
+            console.log("The response is "+JSON.stringify(response.data))
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
     render() {
         return (
             <div className="loginbox shadow-4">
@@ -13,15 +43,15 @@ class Login extends Component {
                 <form>
                     <p>Email</p>
                     <input 
-                        type="email" name="" placeholder="Enter email"
-                        onChange={this.props.emailHandler} />
+                        type="email" name="email" placeholder="Enter Email"
+                        onChange={this.InputHandler} />
                     <p>Password</p>
                     <input 
-                        type="password" name="" placeholder="Enter password"
-                        onChange={this.props.passwordHandler}  />
+                        type="password" name="password" placeholder="Enter Password"
+                        onChange={this.InputHandler}  />
                     <input 
-                        type="submit" name="" value="Login"
-                        onClick={this.props.loginHandler}  />
+                        type="submit" value="Login"
+                        onClick={this.LoginHandler}  />
                     <NavLink to="#">Forgot password?</NavLink> <br/>
                     <label>
                         Don't have an account? 
@@ -33,36 +63,4 @@ class Login extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    emailHandler: (event) => dispatch({type: actionTypes.LOGIN_EMAIL, val: event.target.value}),
-    /**
-     *Login Axios Check 
-     *
-     */
-    loginHandler: () => {
-
-
-        axios.post('http://localhost:3001/user/login', {
-
-            "email":"ankitmhatre@gmail.com",
-            "password":"password"
-        }, {
-            headers :{
-                'Content-type': 'application/json'
-            }
-        })
-        .then(response => {
-        
-            console.log("The response is "+JSON.stringify(response.data))
-        })
-
-
-
-
-
-
-        dispatch({type: actionTypes.LOGIN})
-    }
-});
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;

@@ -12,23 +12,18 @@ class SignUp extends Component {
 
     UsernameHandler = (event) => {
         this.setState({username: event.target.value})
-//using axios to check whether the username is taken or not 
-//http://localhost:3000/checkUserExists?username=shiii
-var bodyFormData ={}
-bodyFormData["username"] = event.target.value
+        //using axios to check whether the username is taken or not 
+        //http://localhost:3000/checkUserExists?username=shiii
+        var bodyFormData ={}
+        bodyFormData["username"] = event.target.value
 
-axios({
-    method :'POST',
-    headers: {"Access-Control-Allow-Origin": true},
-    url : 'http://localhost:3000/checkUserExists',
-    data: bodyFormData,
- })
-
-.then(res => console.log(res.data));
-
-
-
-
+        axios({
+            method :'POST',
+            headers: {"Access-Control-Allow-Origin": true},
+            url : 'http://localhost:3000/checkUserExists',
+            data: bodyFormData,
+        })
+        .then(res => console.log(res.data));
     }
     
     EmailHandler = (event) => {
@@ -41,6 +36,20 @@ axios({
 
     SignUpHandler = () => {
 
+        const signUpData = {
+            username: this.state.username,
+            email: this.state.email,
+            password: this.state.password,
+            returnSecureToken: true
+        }
+
+        axios.post('http://localhost:3001/user/signup', signUpData )
+            .then(response => {
+                console.log(response)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     render() {

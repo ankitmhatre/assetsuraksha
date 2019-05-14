@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Divider, ExpansionPanel, ExpansionPanelActions } from '@material-ui/core';
+import { Divider } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
 import NSCcalculator from '../Calculator/NSCcalculator';
 import FormButton from '../../../UI/Button/FormButton';
@@ -10,10 +10,6 @@ class NSCmain extends Component {
     state = {
         displayCalculator: false,
         assetBars: [],
-        certificateNumber: "",
-        faceValue: "",
-        maturityPeriod: "",
-        maturityAmount: ""
     }
 
     CalculatorHandler = () => {
@@ -28,6 +24,10 @@ class NSCmain extends Component {
             })
     }
 
+    DeleteAsset = () => {
+        
+    }
+
     render() {
 
         const assetBars = this.state.assetBars.map( assetBar => {
@@ -37,7 +37,8 @@ class NSCmain extends Component {
                     CertificateNumber={assetBar.address.zipcode}
                     FaceValue={assetBar.address.geo.lat}
                     MaturityPeriod=""
-                    MaturityAmount={assetBar.address.geo.lng} />
+                    MaturityAmount={assetBar.address.geo.lng}
+                    DeleteAsset={this.DeleteAsset} />
             )
         })
  
@@ -55,6 +56,7 @@ class NSCmain extends Component {
                     value="NSC Calculator"
                     onClick={this.CalculatorHandler} />
                 {this.state.displayCalculator && <NSCcalculator /> }
+                
                 <h2 style={{marginTop: "50px"}}>Your NSCs</h2>
                 <Divider />
                 { 

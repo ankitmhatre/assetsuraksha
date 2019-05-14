@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { Divider } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
 import FormButton from '../../../UI/Button/FormButton';
+import AssetExpansionPanel from '../../../UI/ExpansionPanel/AssetExpansionPanel'
+import axios from 'axios';
 
 class MFmain extends Component {
     state = {
-
+        assetBars: [],
     }
 
     render() {
+
         return (
             <div>
                 <h2>Mutual Funds</h2>

@@ -8,6 +8,7 @@ import NomineeDetails from '../../Common/NomineeDetails/NomineeDetails';
 import HolderDetails from '../../Common/HolderDetails/HolderDetails';
 import SubLabel from '../../../UI/Label/SubLabel/SubLabel';
 import FormButton from '../../../UI/Button/FormButton';
+import { NavLink } from 'react-router-dom';
 
 class KVPform extends Component {
     state = {
@@ -271,9 +272,11 @@ class KVPform extends Component {
                 />
 
                 <div style={{margin: "40px 10px"}}>
-                    <FormButton 
-                        value="Submit KVP"
-                        onClick={this.SubmitHandler} />
+                    <NavLink to="/user_profile/KVP" >
+                        <FormButton 
+                            value="Submit"
+                            onClick={this.SubmitHandler} />
+                    </NavLink>
                 </div>
 
             </div>
