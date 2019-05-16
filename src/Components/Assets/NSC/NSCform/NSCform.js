@@ -54,6 +54,9 @@ class NSCform extends Component {
         relationship: "select one",
         nomineeContact: "",
 
+        date: "",
+        time: "",
+
         list: {
             self_agent: ["Self", "Agent"],
             issueDroplist: [
@@ -107,6 +110,13 @@ class NSCform extends Component {
     }   
 
     SubmitHandler = () => {
+
+        let newDate = new Date();
+
+        let date = `${newDate.getDate()}/${newDate.getMonth() + 1}/${newDate.getFullYear()}`
+
+        let time = `${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}`        
+
         const NSCdata = {
             self_agent: this.state.self_agent,
             agentName: this.state.agentName,
@@ -148,6 +158,9 @@ class NSCform extends Component {
             nomineePAN: this.state.nomineePAN,
             relationship: this.state.relationship,
             nomineeContact: this.state.nomineeContact,
+            
+            date: date,
+            time: time,
         }
 
         axios.post('Api Link', NSCdata)

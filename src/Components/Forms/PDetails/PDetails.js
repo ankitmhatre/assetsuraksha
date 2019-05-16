@@ -7,6 +7,7 @@ import './PDetails.css';
 import Label from "../../UI/Label/Label";
 import { Link } from "react-router-dom";
 import { Divider } from "@material-ui/core";
+import axios from 'axios';
 
 const styles = theme => ({
     button: {
@@ -37,10 +38,24 @@ class PDetails extends Component {
 
     VerifyHandler = () => {
         this.setState({otpbox: true})
+
+        axios.post('Api Link', {phoneNumber: this.state.phoneNumber})
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     SubmitOTPHandler = () => {
-        
+        axios.post('Api Link', {otp: this.state.otp})
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     ContinueHandler = () => {

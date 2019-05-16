@@ -119,6 +119,13 @@ class DPStockform extends Component {
     }   
 
     SubmitHandler = () => {
+
+        let newDate = new Date();
+
+        let date = `${newDate.getDate()}/${newDate.getMonth() + 1}/${newDate.getFullYear()}`
+
+        let time = `${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}`
+        
         const DPStockData = {
             isDematerialized: this.state.isDematerialized,
             noOfPhysicalShares: this.state.noOfPhysicalShares,
@@ -165,6 +172,9 @@ class DPStockform extends Component {
             nomineePAN: this.state.nomineePAN,
             relationship: this.state.relationship,
             nomineeContact: this.state.nomineeContact,
+
+            date: date,
+            time: time,
         }
 
         axios.post('Api Link', DPStockData)
