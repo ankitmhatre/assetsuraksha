@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
-import Login from './Components/Forms/Login/Login';
-import SignUp from './Components/Forms/SignUp/SignUp';
-import PDetails from './Components/Forms/PDetails/PDContainer';
+import Login from './Components/Auth/Login/Login';
+import SignUp from './Components/Auth/SignUp/SignUp';
+import PDetails from './Components/Auth/PDetails/PDContainer';
 import UserProfile from './Containers/UserProfile/UserProfile';
 import Toolbar from './Components/NavBar/Toolbar';
 import Home from './Containers/Home/Home';

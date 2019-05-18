@@ -8,6 +8,7 @@ import { NavLink } from 'react-router-dom';
 import HolderDetails from '../../Common/HolderDetails/HolderDetails';
 import SubLabel from '../../../UI/Label/SubLabel/SubLabel';
 import FormButton from '../../../UI/Button/FormButton';
+import axios from 'axios';
 
 class RealEstateform extends Component {
     state = {
@@ -126,7 +127,64 @@ class RealEstateform extends Component {
     }   
 
     SubmitHandler = () => {
+        let newDate = new Date();
 
+        let date = `${newDate.getDate()}/${newDate.getMonth() + 1}/${newDate.getFullYear()}`
+
+        let time = `${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}`
+
+        const RealEstateData = {
+            realEstateType: this.state.realEstateType,
+            typeOfLand: this.state.typeOfLand,
+            purchasedBy: this.state.purchasedBy,
+            ownership: this.state.ownership,
+
+            holdingMode: this.state.holdingMode,
+            soleFname: this.state.soleFname,
+            soleMname: this.state.soleMname,
+            soleLname: this.state.soleLname,
+            minorSole: this.state.minorSole,
+            jointFname: this.state.jointFname,
+            jointMname: this.state.jointMname,
+            jointLname: this.state.jointLname,
+            minorJoint: this.state.minorJoint,
+            jointPAN: this.state.jointPAN,
+            thirdHolderFname: this.state.thirdHolderFname,
+            thirdHolderMname: this.state.thirdHolderMname,
+            thirdHolderLname: this.state.thirdHolderLname,
+            minorThirdHolder: this.state.minorThirdHolder,
+            thirdHolderPAN: this.state.thirdHolderPAN,
+
+            village: this.state.village,
+            taluka: this.state.taluka,
+            district: this.state.district,
+            surveyNo: this.state.surveyNo,
+            landArea: this.state.landArea,
+            typeOfLand7_12: this.state.typeOfLand7_12,
+            classOfLand: this.state.classOfLand,
+            registeredCrop: this.state.registeredCrop,
+            isForestLand: this.state.isForestLand,
+            forestArea: this.state.forestArea,
+            accessToLand: this.state.accessToLand,
+            fencing: this.state.fencing,
+            electricity: this.state.electricity,
+            waterSource: this.state.waterSource,
+            structureOnLand: this.state.structureOnLand,
+            nearestVillageDistance: this.state.nearestVillageDistance,
+            landSurveyDone: this.state.landSurveyDone,
+            possesionOfLand: this.state.possesionOfLand,
+
+            date: date,
+            time: time,
+        }
+
+        axios.post('Api Link', RealEstateData)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
 

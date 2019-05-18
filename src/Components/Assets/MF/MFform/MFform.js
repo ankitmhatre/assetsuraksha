@@ -9,6 +9,7 @@ import HolderDetails from '../../Common/HolderDetails/HolderDetails';
 import SubLabel from '../../../UI/Label/SubLabel/SubLabel';
 import FormButton from '../../../UI/Button/FormButton';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 class MFform extends Component {
     state = {
@@ -54,12 +55,8 @@ class MFform extends Component {
         nomineePAN: "",
         relationship: "select one",
         nomineeContact: "",
-        Fname: "select one",
-        ISIC: "select one",
-        Tfund: "select one",
-        Tpayment: "select one",
 
-        dealingDistributor: "Select one",
+        debitManadate: "Select one",
         bankName: "",
         accountType: "",
         accountNumber: "",
@@ -122,6 +119,73 @@ class MFform extends Component {
 
     SubmitHandler = () => {
 
+        let newDate = new Date();
+
+        let date = `${newDate.getDate()}/${newDate.getMonth() + 1}/${newDate.getFullYear()}`
+
+        let time = `${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}`
+
+        const MFdata = {
+            noOfFolios: this.state.noOfFolios,
+            folioNo: this.state.folioNo,
+            folioName: this.state.folioName,
+            ISIC: this.state.ISIC,
+            typeOfFund: this.state.typeOfFund,
+            noOfUnits: this.state.noOfUnits,
+            clientID: this.state.clientID,
+            dmatAccount: this.state.dmatAccount,
+            postOffice: this.state.postOffice,
+            location: this.state.location,
+            typeOfPayment: this.state.typeOfPayment,
+
+            holdingMode: this.state.holdingMode,
+            soleFname: this.state.soleFname,
+            soleMname: this.state.soleMname,
+            soleLname: this.state.soleLname,
+            minorSole: this.state.minorSole,
+            jointFname: this.state.jointFname,
+            jointMname: this.state.jointMname,
+            jointLname: this.state.jointLname,
+            minorJoint: this.state.minorJoint,
+            jointPAN: this.state.jointPAN,
+            thirdHolderFname: this.state.thirdHolderFname,
+            thirdHolderMname: this.state.thirdHolderMname,
+            thirdHolderLname: this.state.thirdHolderLname,
+            minorThirdHolder: this.state.minorThirdHolder,
+            thirdHolderPAN: this.state.thirdHolderPAN,
+
+            dealingDistributor: this.state.dealingDistributor,
+            distributorName: this.state.distributorName,
+            ARNcode: this.state.ARNcode,
+
+            nominationPlace: this.state.nominationPlace,
+            nomineeFname: this.state.nomineeFname,
+            nomineeMname: this.state.nomineeMname,
+            nomineeLname: this.state.nomineeLname,
+            nomineeCity: this.state.nomineeCity,
+            nomineeState: this.state.nomineeState,
+            nomineePincode: this.state.nomineePincode,
+            nomineePAN: this.state.nomineePAN,
+            relationship: this.state.relationship,
+            nomineeContact: this.state.nomineeContact,
+
+            debitManadate: this.state.debitManadate,
+            bankName: this.state.bankName,
+            accountType: this.state.accountType,
+            accountNumber: this.state.accountNumber,
+            branchName: this.state.branchName,
+
+            date: date,
+            time: time,
+        }
+
+        axios.post('Api Link', MFdata)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
    
     render() {
@@ -294,11 +358,11 @@ class MFform extends Component {
                 <Label value="Is it linked with a Debit Manadate:" />
                 <Dropdown
                     droplist={this.state.list.minor}
-                    name="dealingDistributor"
+                    name="debitManadate"
                     ItemSelect={this.DropdownHandler}
-                    select={this.state.dealingDistributor} />
+                    select={this.state.debitManadate} />
 
-                { this.state.dealingDistributor === "Yes" ? 
+                { this.state.debitManadate === "Yes" ? 
                 ( <div>
                     <div className="Holder">
                         <div className="HolderDiv">

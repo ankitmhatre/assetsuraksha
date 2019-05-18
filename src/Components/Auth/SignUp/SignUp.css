@@ -63,3 +63,9 @@
 {
     color: #ffc107;
 }
+
+.WrongPassword {
+    color: red;
+    /* margin-top: 0px; */
+    font-size: 12px;
+}

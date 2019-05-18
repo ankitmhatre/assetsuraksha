@@ -9,6 +9,7 @@ import HolderDetails from '../../Common/HolderDetails/HolderDetails';
 import SubLabel from '../../../UI/Label/SubLabel/SubLabel';
 import FormButton from '../../../UI/Button/FormButton';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 class KVPform extends Component {
     state = {
@@ -100,6 +101,65 @@ class KVPform extends Component {
 
     SubmitHandler = () => {
 
+        let newDate = new Date();
+
+        let date = `${newDate.getDate()}/${newDate.getMonth() + 1}/${newDate.getFullYear()}`
+
+        let time = `${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}`
+
+        const KVPdata = {
+            KVPissue: this.state.KVPissue,
+            self_agent: this.state.self_agent,
+            agentName: this.state.agentName,
+            agentCode: this.state.agentCode,
+            noOfCertificates: this.state.noOfCertificates,
+            sr_no: this.state.sr_no,
+            certificateFormat: this.state.certificateFormat,
+            certificateNumber: this.state.certificateNumber,
+            postOffice: this.state.postOffice,
+            location: this.state.location,
+            faceValue: this.state.faceValue,
+            maturityPeriod: this.state.maturityPeriod,
+            maturityAmount: this.state.maturityAmount,
+    
+            holdingMode: this.state.holdingMode,
+            soleFname: this.state.soleFname,
+            soleMname: this.state.soleMname,
+            soleLname: this.state.soleLname,
+            minorSole: this.state.minorSole,
+            jointFname: this.state.jointFname,
+            jointMname: this.state.jointMname,
+            jointLname: this.state.jointLname,
+            minorJoint: this.state.minorJoint,
+            jointPAN: this.state.jointPAN,
+            thirdHolderFname: this.state.thirdHolderFname,
+            thirdHolderMname: this.state.thirdHolderMname,
+            thirdHolderLname: this.state.thirdHolderLname,
+            minorThirdHolder: this.state.minorThirdHolder,
+            thirdHolderPAN: this.state.thirdHolderPAN,
+            
+            nominationPlace: this.state.nominationPlace,
+            nomineeFname: this.state.nomineeFname,
+            nomineeMname: this.state.nomineeMname,
+            nomineeLname: this.state.nomineeLname,
+            nomineeCity: this.state.nomineeCity,
+            nomineeState: this.state.nomineeState,
+            nomineePincode: this.state.nomineePincode,
+            nomineePAN: this.state.nomineePAN,
+            relationship: this.state.relationship,
+            nomineeContact: this.state.nomineeContact,
+            
+            date: date,
+            time: time,
+        }
+
+        axios.post('Api Link', KVPdata)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     render() {

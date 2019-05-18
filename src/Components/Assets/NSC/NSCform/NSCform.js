@@ -54,9 +54,6 @@ class NSCform extends Component {
         relationship: "select one",
         nomineeContact: "",
 
-        date: "",
-        time: "",
-
         list: {
             self_agent: ["Self", "Agent"],
             issueDroplist: [
@@ -118,10 +115,10 @@ class NSCform extends Component {
         let time = `${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}`        
 
         const NSCdata = {
+            NSCissue: this.state.NSCissue,
             self_agent: this.state.self_agent,
             agentName: this.state.agentName,
             agentCode: this.state.agentCode,
-            NSCissue: this.state.NSCissue,
             noOfCertificates: this.state.noOfCertificates,
             sr_no: this.state.sr_no,
             certificateFormat: this.state.certificateFormat,

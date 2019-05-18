@@ -8,7 +8,7 @@ import MFmain from "../Assets/MF/MFmain/MFmain";
 import PhysicalSharemain from "../Assets/PhysicalShare/PhysicalSharemain/PhysicalSharemain";
 import RealEstatemain from "../Assets/RealEstate/RealEstatemain/RealEstatemain";
 import DPStockmain from "../Assets/DP_Stock/DPStockmain/DPStockmain";
-import PDetails from '../Forms/PDetails/PDetails';
+import PDetails from '../Auth/PDetails/PDetails';
 import KVPForm from '../Assets/KVP/KVPform/KVPform';
 import MFForm from '../Assets/MF/MFform/MFform';
 import NSCForm from '../Assets/NSC/NSCform/NSCform';
@@ -35,10 +35,6 @@ class MainContent extends React.Component {
 	state = {
 
 	}
-
-	// GetCertificateDetails = (number, faceValue, period, maturityAmount) => {
-		
-	// }
 
 	render() {
 		const { classes, theme } = this.props;

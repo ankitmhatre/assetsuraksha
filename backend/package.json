@@ -24,6 +24,6 @@
     "node-pre-gyp": "^0.13.0"
   },
   "devDependencies": {
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.19.0"
   }
 }

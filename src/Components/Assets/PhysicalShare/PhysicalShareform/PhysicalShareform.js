@@ -8,6 +8,7 @@ import HolderDetails from '../../Common/HolderDetails/HolderDetails';
 import SubLabel from '../../../UI/Label/SubLabel/SubLabel';
 import FormButton from '../../../UI/Button/FormButton';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 class PhysicalShareform extends Component {
     state = {
@@ -94,6 +95,60 @@ class PhysicalShareform extends Component {
 
     SubmitHandler = () => {
 
+        let newDate = new Date();
+
+        let date = `${newDate.getDate()}/${newDate.getMonth() + 1}/${newDate.getFullYear()}`
+
+        let time = `${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}`
+
+        const PSdata = {
+            noOfCertificates: this.state.noOfCertificates,
+            certificateNumber: this.state.certificateNumber,
+            companyName: this.state.companyName,
+    
+            holdingMode: this.state.holdingMode,
+            soleFname: this.state.soleFname,
+            soleMname: this.state.soleMname,
+            soleLname: this.state.soleLname,
+            minorSole: this.state.minorSole,
+            jointFname: this.state.jointFname,
+            jointMname: this.state.jointMname,
+            jointLname: this.state.jointLname,
+            minorJoint: this.state.minorJoint,
+            jointPAN: this.state.jointPAN,
+            thirdHolderFname: this.state.thirdHolderFname,
+            thirdHolderMname: this.state.thirdHolderMname,
+            thirdHolderLname: this.state.thirdHolderLname,
+            minorThirdHolder: this.state.minorThirdHolder,
+            thirdHolderPAN: this.state.thirdHolderPAN,
+    
+            securityType: this.state.securityType,
+            inFigures: this.state.inFigures,
+            inWords: this.state.inWords,
+            faceValue: this.state.faceValue,
+            ISIN: this.state.ISIN,
+            securityStatus: this.state.securityStatus,
+            folioNumber: this.state.folioNumber,
+            certiNoFrom: this.state.certiNoFrom,
+            certiNoTo: this.state.certiNoTo,
+            distinctiveNoFrom: this.state.distinctiveNoFrom,
+            distinctiveNoTo: this.state.distinctiveNoTo,
+            quantity: this.state.quantity,
+            sr_no: this.state.sr_no,
+            lockedInReason: this.state.lockedInReason,
+            lockedInReleaseDate: this.state.lockedInReleaseDate,
+
+            date: date,
+            time: time,
+        }
+
+        axios.post('Api Link', PSdata)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
 
