@@ -21,10 +21,7 @@ const userSchema = mongoose.Schema({
      },
      contact:{  
         mobile:[String],
-        email:{  
-           personal:String,
-           business:String
-        }
+        email:String
      },
     is_otp_verified:{type :Boolean, default : false},
     is_email_verified:{type :Boolean, default : false}
