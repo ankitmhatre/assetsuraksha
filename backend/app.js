@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const productRoutes = require("./api/routes/products");
-const orderRoutes = require("./api/routes/orders");
+const nscRoutes = require("./api/routes/nsc");
 const userRoutes = require('./api/routes/user');
 
 mongoose.connect(
@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 
 // Routes which should handle requests
 app.use("/products", productRoutes);
-app.use("/orders", orderRoutes);
+app.use("/nsc", nscRoutes);
 app.use("/user", userRoutes);
 /** 
 app.use((req, res, next) => {

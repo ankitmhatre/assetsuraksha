@@ -5,14 +5,14 @@ const User = require("../models/user");
 
 exports.user_signup = (req, res, next) => {
   if (req.body.email === undefined) {
-    return res.status(400).json({
-      code : 203, 
+    return res.status(203).json({
+      code : 400, 
       message: "No username was specified"
     });
   }
   else if (req.body.password===undefined) {
-    return res.status(400).json({
-      code : 202,
+    return res.status(202).json({
+      code : 400,
       message: "No password was specified"
     });
   }else{
@@ -21,8 +21,8 @@ exports.user_signup = (req, res, next) => {
     .exec()
     .then(user => {
       if (user.length > 0) {
-        return res.status(400).json({
-        code: 201, 
+        return res.status(200).json({
+        code: 401, 
           message: "A user with the same username already exists."
         });
       } else {
@@ -71,14 +71,14 @@ exports.user_signup = (req, res, next) => {
 exports.user_login = (req, res, next) => {
   
   if (req.body.email === undefined) {
-    return res.status(400).json({
-      code : 203, 
+    return res.status(203).json({
+      code : 400, 
       message: "No username was specified"
     });
   }
   else if (req.body.password===undefined) {
-    return res.status(400).json({
-      code : 202,
+    return res.status(202).json({
+      code : 400,
       message: "No password was specified"
     });
   }else{
@@ -90,8 +90,8 @@ exports.user_login = (req, res, next) => {
 
 
         if (user.length < 1 || user.length >1) {
-          return res.status(403).json({
-            code :205, 
+          return res.status(205).json({
+            code :403, 
             message: "Invalid Username or Password"
           });
         }else{
@@ -113,8 +113,8 @@ exports.user_login = (req, res, next) => {
             token: token
           });
         } else {
-          return res.status(403).json({
-            code: 205,
+          return res.status(205).json({
+            code: 403,
             message: "Invalid password"
           });
         }
@@ -122,8 +122,8 @@ exports.user_login = (req, res, next) => {
       })
       .catch(err => {
        
-        res.status(400).json({
-          code :206,
+        res.status(206).json({
+          code :400,
           message :'The specified user was not found',
           error: err
         });
