@@ -218,11 +218,7 @@ exports.nsc_update = (req, res, next) => {
         quantity:  req.body.quantity,
         sr_no:  req.body.sr_no,
         lockedInReason:  req.body.lockedInReason,
-        lockedInReleaseDate:  req.body.lockedInReleaseDate,
-        created: {
-          date:  req.body.date,
-          time:  req.body.time
-        }
+        lockedInReleaseDate:  req.body.lockedInReleaseDate
       }
     
     );

@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
-const Mf = require("../models/mf");
+const Dps = require("../models/dps");
 const jwt = require("jsonwebtoken");
 
-exports.mf_get_all = (req, res, next) => {
+exports.dps_get_all = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   if (token === undefined) {
     return res.status(400).json({
@@ -12,13 +12,13 @@ exports.mf_get_all = (req, res, next) => {
     })
   } else {
     const decoded = jwt.verify(token, "iguessthisiscrypt");
-    Mf.find({ userId: decoded.userId })
+    Dps.find({ userId: decoded.userId })
       .exec()
-      .then(mfs => {
+      .then(dpss => {
         return res.status(200).json({
           code: 200,
           message: 'success',
-          mfs: mfs
+          dpss: dpss
         });
       })
       .catch(err => {
@@ -31,7 +31,7 @@ exports.mf_get_all = (req, res, next) => {
   }
 };
 
-exports.mf_create_mf = (req, res, next) => {
+exports.dps_create_dps = (req, res, next) => {
 
   try {
     const token = req.headers.authorization.split(" ")[1];
@@ -49,41 +49,44 @@ exports.mf_create_mf = (req, res, next) => {
 
         //allowed same user
 
-        const mf = new Mf({
+        const dps = new Dps({
           userId: decoded.userId,
-          _id:mongoose.Schema.Types.ObjectId,
-          noOfFolios: req.body.noOfFolios,
-          folioNo: req.body.folioNo,
-          folioName: req.body.folioName,
-          ISIC: req.body.ISIC,
-          typeOfFund: req.body.typeOfFund,
-          noOfUnits: req.body.noOfUnits,
+          _id: mongoose.Schema.Types.ObjectId,
+          isDematerialized: req.body.isDematerialized,
+          noOfPhysicalShares: req.body.noOfPhysicalShares,
+          totalDematsAcounts:req.body.totalDematsAcounts,
+          noOfCertificates: req.body.noOfCertificates,
+          sr_no: req.body.sr_no,
+          dpName: req.body.dpName,
+          depositoryType:req.body.depositoryType,
+          DMATtype: req.body.DMATtype,
+          dpID: req.body.dpID,
           clientID: req.body.clientID,
           dmatAccount: req.body.dmatAccount,
-          postOffice: req.body.postOffice,
-          location: req.body.location,
-          typeOfPayment: req.body.typeOfPayment,
-
+      
           holdingMode: req.body.holdingMode,
           soleFname: req.body.soleFname,
           soleMname: req.body.soleMname,
-          soleLname: req.body.soleLname,
+          soleLname:req.body.soleLname,
           minorSole: req.body.minorSole,
           jointFname: req.body.jointFname,
           jointMname: req.body.jointMname,
-          jointLname: req.body.jointLname,
+          jointLname:req.body.jointLname,
           minorJoint: req.body.minorJoint,
           jointPAN: req.body.jointPAN,
-          thirdHolderFname:req.body.thirdHolderFname ,
+          thirdHolderFname: req.body.thirdHolderFname,
           thirdHolderMname: req.body.thirdHolderMname,
           thirdHolderLname: req.body.thirdHolderLname,
           minorThirdHolder: req.body.minorThirdHolder,
-          thirdHolderPAN: req.body.thirdHolderPAN,
-
-          dealingDistributor: req.body.dealingDistributor,
-          distributorName: req.body.distributorName,
-          ARNcode: req.body.ARNcode,
-
+          thirdHolderPAN:req.body.thirdHolderPAN,
+      
+          subBroker: req.body.subBroker,
+          brokerName: req.body.brokerName,
+          exchangeName: req.body.exchangeName,
+          SEBIregistration: req.body.SEBIregistration,
+          TradingMode: req.body.TradingMode,
+          TradingCode: req.body.TradingCode,
+          
           nominationPlace: req.body.nominationPlace,
           nomineeFname: req.body.nomineeFname,
           nomineeMname: req.body.nomineeMname,
@@ -94,28 +97,21 @@ exports.mf_create_mf = (req, res, next) => {
           nomineePAN: req.body.nomineePAN,
           relationship: req.body.relationship,
           nomineeContact: req.body.nomineeContact,
-
-          debitManadate: req.body.debitManadate,
-          bankName: req.body.bankName,
-          accountType: req.body.accountType,
-          accountNumber: req.body.accountNumber,
-          branchName: req.body.branchName,
-
-          created: {
-            date: req.body.date,
-            time: req.body.time
-          }
-        });
+      created:{
+          date: req.body.date,
+          time: req.body.time
+      }
+      });
 
 
-        mf
+        dps
           .save()
-          .then(mf => {
+          .then(dps => {
 
 
             return res.status(201).json({
               code: 201,
-              message: "Mf has been created"
+              message: "Dps has been created"
             });
 
 
@@ -125,7 +121,7 @@ exports.mf_create_mf = (req, res, next) => {
             return res.status(200).json({
               error_code: 500,
               code: 901,
-              message: 'An error occurred, Cannot create new Mf',
+              message: 'An error occurred, Cannot create new Dps',
               error: err
             });
           });
@@ -156,7 +152,7 @@ exports.mf_create_mf = (req, res, next) => {
 
 };
 
-exports.mf_get_mf = (req, res, next) => {
+exports.dps_get_dps = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   if (token === undefined) {
     return res.status(400).json({
@@ -165,15 +161,15 @@ exports.mf_get_mf = (req, res, next) => {
     })
   } else {
     const decoded = jwt.verify(token, "iguessthisiscrypt");
-    Mf.findOne({ _id: req.params.mfId })
+    Dps.findOne({ _id: req.params.dpsId })
       .exec()
-      .then(mf => {
-        if (mf.userId === decoded.userId) {
+      .then(dps => {
+        if (dps.userId === decoded.userId) {
           res.status(200).json({
 
             code: 200,
             message: "Success",
-            mf: mf
+            dps: dps
           });
         } else {
           res.status(404).json({
@@ -196,7 +192,7 @@ exports.mf_get_mf = (req, res, next) => {
   }
 };
 
-exports.mf_update = (req, res, next) => {
+exports.dps_update = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   if (token === undefined) {
     return res.status(400).json({
@@ -206,39 +202,43 @@ exports.mf_update = (req, res, next) => {
   } else {
     const decoded = jwt.verify(token, "iguessthisiscrypt");
 
-    const mf = new Mf({
-      noOfFolios: req.body.noOfFolios,
-      folioNo: req.body.folioNo,
-      folioName: req.body.folioName,
-      ISIC: req.body.ISIC,
-      typeOfFund: req.body.typeOfFund,
-      noOfUnits: req.body.noOfUnits,
+    const dps = new Dps({
+
+      isDematerialized: req.body.isDematerialized,
+      noOfPhysicalShares: req.body.noOfPhysicalShares,
+      totalDematsAcounts:req.body.totalDematsAcounts,
+      noOfCertificates: req.body.noOfCertificates,
+      sr_no: req.body.sr_no,
+      dpName: req.body.dpName,
+      depositoryType:req.body.depositoryType,
+      DMATtype: req.body.DMATtype,
+      dpID: req.body.dpID,
       clientID: req.body.clientID,
       dmatAccount: req.body.dmatAccount,
-      postOffice: req.body.postOffice,
-      location: req.body.location,
-      typeOfPayment: req.body.typeOfPayment,
-
+  
       holdingMode: req.body.holdingMode,
       soleFname: req.body.soleFname,
       soleMname: req.body.soleMname,
-      soleLname: req.body.soleLname,
+      soleLname:req.body.soleLname,
       minorSole: req.body.minorSole,
       jointFname: req.body.jointFname,
       jointMname: req.body.jointMname,
-      jointLname: req.body.jointLname,
+      jointLname:req.body.jointLname,
       minorJoint: req.body.minorJoint,
       jointPAN: req.body.jointPAN,
-      thirdHolderFname:req.body.thirdHolderFname ,
+      thirdHolderFname: req.body.thirdHolderFname,
       thirdHolderMname: req.body.thirdHolderMname,
       thirdHolderLname: req.body.thirdHolderLname,
       minorThirdHolder: req.body.minorThirdHolder,
-      thirdHolderPAN: req.body.thirdHolderPAN,
-
-      dealingDistributor: req.body.dealingDistributor,
-      distributorName: req.body.distributorName,
-      ARNcode: req.body.ARNcode,
-
+      thirdHolderPAN:req.body.thirdHolderPAN,
+  
+      subBroker: req.body.subBroker,
+      brokerName: req.body.brokerName,
+      exchangeName: req.body.exchangeName,
+      SEBIregistration: req.body.SEBIregistration,
+      TradingMode: req.body.TradingMode,
+      TradingCode: req.body.TradingCode,
+      
       nominationPlace: req.body.nominationPlace,
       nomineeFname: req.body.nomineeFname,
       nomineeMname: req.body.nomineeMname,
@@ -248,23 +248,17 @@ exports.mf_update = (req, res, next) => {
       nomineePincode: req.body.nomineePincode,
       nomineePAN: req.body.nomineePAN,
       relationship: req.body.relationship,
-      nomineeContact: req.body.nomineeContact,
-
-      debitManadate: req.body.debitManadate,
-      bankName: req.body.bankName,
-      accountType: req.body.accountType,
-      accountNumber: req.body.accountNumber,
-      branchName: req.body.branchName
-    });
+      nomineeContact: req.body.nomineeContact
+  });
 
 
-    Mf.update({ _id: req.params.mfId, userId: decoded.userId }, mf)
+    Dps.update({ _id: req.params.dpsId, userId: decoded.userId }, dps)
       .exec()
-      .then(mf => {
+      .then(dps => {
         res.status(200).json({
           code: 200,
           message: "success",
-          result: mf
+          result: dps
         })
       })
       .catch(err => {
@@ -278,7 +272,7 @@ exports.mf_update = (req, res, next) => {
   }
 };
 
-exports.mf_delete_mf = (req, res, next) => {
+exports.dps_delete_dps = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   if (token === undefined) {
     return res.status(400).json({
@@ -288,7 +282,7 @@ exports.mf_delete_mf = (req, res, next) => {
   } else {
     const decoded = jwt.verify(token, "iguessthisiscrypt");
 
-    Mf.remove({ _id: req.params.mfId, userId: decoded.userId })
+    Dps.remove({ _id: req.params.dpsId, userId: decoded.userId })
       .exec()
       .then(result => {
         res.status(200).json({

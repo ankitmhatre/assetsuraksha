@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
-const Mf = require("../models/mf");
+const Kvp = require("../models/kvp");
 const jwt = require("jsonwebtoken");
 
-exports.mf_get_all = (req, res, next) => {
+exports.kvp_get_all = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   if (token === undefined) {
     return res.status(400).json({
@@ -12,13 +12,13 @@ exports.mf_get_all = (req, res, next) => {
     })
   } else {
     const decoded = jwt.verify(token, "iguessthisiscrypt");
-    Mf.find({ userId: decoded.userId })
+    Kvp.find({ userId: decoded.userId })
       .exec()
-      .then(mfs => {
+      .then(kvps => {
         return res.status(200).json({
           code: 200,
           message: 'success',
-          mfs: mfs
+          kvps: kvps
         });
       })
       .catch(err => {
@@ -31,7 +31,7 @@ exports.mf_get_all = (req, res, next) => {
   }
 };
 
-exports.mf_create_mf = (req, res, next) => {
+exports.kvp_create_kvp = (req, res, next) => {
 
   try {
     const token = req.headers.authorization.split(" ")[1];
@@ -49,20 +49,23 @@ exports.mf_create_mf = (req, res, next) => {
 
         //allowed same user
 
-        const mf = new Mf({
+        const kvp = new Kvp({
           userId: decoded.userId,
-          _id:mongoose.Schema.Types.ObjectId,
-          noOfFolios: req.body.noOfFolios,
-          folioNo: req.body.folioNo,
-          folioName: req.body.folioName,
-          ISIC: req.body.ISIC,
-          typeOfFund: req.body.typeOfFund,
-          noOfUnits: req.body.noOfUnits,
-          clientID: req.body.clientID,
-          dmatAccount: req.body.dmatAccount,
+          _id: new mongoose.Types.ObjectId(),
+
+          KVPissue: req.body.KVPissue,
+          self_agent: req.body.self_agent,
+          agentName: req.body.agentName,
+          agentCode: req.body.agentCode,
+          noOfCertificates: req.body.noOfCertificates,
+          sr_no: req.body.sr_no,
+          certificateFormat: req.body.certificateFormat,
+          certificateNumber: req.body.certificateNumber,
           postOffice: req.body.postOffice,
           location: req.body.location,
-          typeOfPayment: req.body.typeOfPayment,
+          faceValue: req.body.faceValue,
+          maturityPeriod: req.body.maturityPeriod,
+          maturityAmount: req.body.maturityAmount,
 
           holdingMode: req.body.holdingMode,
           soleFname: req.body.soleFname,
@@ -74,48 +77,37 @@ exports.mf_create_mf = (req, res, next) => {
           jointLname: req.body.jointLname,
           minorJoint: req.body.minorJoint,
           jointPAN: req.body.jointPAN,
-          thirdHolderFname:req.body.thirdHolderFname ,
-          thirdHolderMname: req.body.thirdHolderMname,
+          thirdHolderFname: req.body.thirdHolderFname,
+          thirdHolderMname: req.body.jointMname,
           thirdHolderLname: req.body.thirdHolderLname,
           minorThirdHolder: req.body.minorThirdHolder,
           thirdHolderPAN: req.body.thirdHolderPAN,
-
-          dealingDistributor: req.body.dealingDistributor,
-          distributorName: req.body.distributorName,
-          ARNcode: req.body.ARNcode,
 
           nominationPlace: req.body.nominationPlace,
           nomineeFname: req.body.nomineeFname,
           nomineeMname: req.body.nomineeMname,
           nomineeLname: req.body.nomineeLname,
           nomineeCity: req.body.nomineeCity,
-          nomineeState: req.body.nomineeState,
+          nomineeState: req.body.nomineeCity,
           nomineePincode: req.body.nomineePincode,
           nomineePAN: req.body.nomineePAN,
           relationship: req.body.relationship,
           nomineeContact: req.body.nomineeContact,
-
-          debitManadate: req.body.debitManadate,
-          bankName: req.body.bankName,
-          accountType: req.body.accountType,
-          accountNumber: req.body.accountNumber,
-          branchName: req.body.branchName,
-
           created: {
             date: req.body.date,
-            time: req.body.time
+            time: req.body.time,
           }
         });
 
 
-        mf
+        kvp
           .save()
-          .then(mf => {
+          .then(kvp => {
 
 
             return res.status(201).json({
               code: 201,
-              message: "Mf has been created"
+              message: "Kvp has been created"
             });
 
 
@@ -125,7 +117,7 @@ exports.mf_create_mf = (req, res, next) => {
             return res.status(200).json({
               error_code: 500,
               code: 901,
-              message: 'An error occurred, Cannot create new Mf',
+              message: 'An error occurred, Cannot create new Kvp',
               error: err
             });
           });
@@ -156,7 +148,7 @@ exports.mf_create_mf = (req, res, next) => {
 
 };
 
-exports.mf_get_mf = (req, res, next) => {
+exports.kvp_get_kvp = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   if (token === undefined) {
     return res.status(400).json({
@@ -165,15 +157,15 @@ exports.mf_get_mf = (req, res, next) => {
     })
   } else {
     const decoded = jwt.verify(token, "iguessthisiscrypt");
-    Mf.findOne({ _id: req.params.mfId })
+    Kvp.findOne({ _id: req.params.kvpId })
       .exec()
-      .then(mf => {
-        if (mf.userId === decoded.userId) {
+      .then(kvp => {
+        if (kvp.userId === decoded.userId) {
           res.status(200).json({
 
             code: 200,
             message: "Success",
-            mf: mf
+            kvp: kvp
           });
         } else {
           res.status(404).json({
@@ -196,7 +188,7 @@ exports.mf_get_mf = (req, res, next) => {
   }
 };
 
-exports.mf_update = (req, res, next) => {
+exports.kvp_update = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   if (token === undefined) {
     return res.status(400).json({
@@ -206,18 +198,20 @@ exports.mf_update = (req, res, next) => {
   } else {
     const decoded = jwt.verify(token, "iguessthisiscrypt");
 
-    const mf = new Mf({
-      noOfFolios: req.body.noOfFolios,
-      folioNo: req.body.folioNo,
-      folioName: req.body.folioName,
-      ISIC: req.body.ISIC,
-      typeOfFund: req.body.typeOfFund,
-      noOfUnits: req.body.noOfUnits,
-      clientID: req.body.clientID,
-      dmatAccount: req.body.dmatAccount,
+    const kvp = new Kvp({
+      KVPissue: req.body.KVPissue,
+      self_agent: req.body.self_agent,
+      agentName: req.body.agentName,
+      agentCode: req.body.agentCode,
+      noOfCertificates: req.body.noOfCertificates,
+      sr_no: req.body.sr_no,
+      certificateFormat: req.body.certificateFormat,
+      certificateNumber: req.body.certificateNumber,
       postOffice: req.body.postOffice,
       location: req.body.location,
-      typeOfPayment: req.body.typeOfPayment,
+      faceValue: req.body.faceValue,
+      maturityPeriod: req.body.maturityPeriod,
+      maturityAmount: req.body.maturityAmount,
 
       holdingMode: req.body.holdingMode,
       soleFname: req.body.soleFname,
@@ -229,42 +223,32 @@ exports.mf_update = (req, res, next) => {
       jointLname: req.body.jointLname,
       minorJoint: req.body.minorJoint,
       jointPAN: req.body.jointPAN,
-      thirdHolderFname:req.body.thirdHolderFname ,
-      thirdHolderMname: req.body.thirdHolderMname,
+      thirdHolderFname: req.body.thirdHolderFname,
+      thirdHolderMname: req.body.jointMname,
       thirdHolderLname: req.body.thirdHolderLname,
       minorThirdHolder: req.body.minorThirdHolder,
       thirdHolderPAN: req.body.thirdHolderPAN,
-
-      dealingDistributor: req.body.dealingDistributor,
-      distributorName: req.body.distributorName,
-      ARNcode: req.body.ARNcode,
 
       nominationPlace: req.body.nominationPlace,
       nomineeFname: req.body.nomineeFname,
       nomineeMname: req.body.nomineeMname,
       nomineeLname: req.body.nomineeLname,
       nomineeCity: req.body.nomineeCity,
-      nomineeState: req.body.nomineeState,
+      nomineeState: req.body.nomineeCity,
       nomineePincode: req.body.nomineePincode,
       nomineePAN: req.body.nomineePAN,
       relationship: req.body.relationship,
-      nomineeContact: req.body.nomineeContact,
-
-      debitManadate: req.body.debitManadate,
-      bankName: req.body.bankName,
-      accountType: req.body.accountType,
-      accountNumber: req.body.accountNumber,
-      branchName: req.body.branchName
+      nomineeContact: req.body.nomineeContact
     });
 
 
-    Mf.update({ _id: req.params.mfId, userId: decoded.userId }, mf)
+    Kvp.update({ _id: req.params.kvpId, userId: decoded.userId }, kvp)
       .exec()
-      .then(mf => {
+      .then(kvp => {
         res.status(200).json({
           code: 200,
           message: "success",
-          result: mf
+          result: kvp
         })
       })
       .catch(err => {
@@ -278,7 +262,7 @@ exports.mf_update = (req, res, next) => {
   }
 };
 
-exports.mf_delete_mf = (req, res, next) => {
+exports.kvp_delete_kvp = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   if (token === undefined) {
     return res.status(400).json({
@@ -288,7 +272,7 @@ exports.mf_delete_mf = (req, res, next) => {
   } else {
     const decoded = jwt.verify(token, "iguessthisiscrypt");
 
-    Mf.remove({ _id: req.params.mfId, userId: decoded.userId })
+    Kvp.remove({ _id: req.params.kvpId, userId: decoded.userId })
       .exec()
       .then(result => {
         res.status(200).json({

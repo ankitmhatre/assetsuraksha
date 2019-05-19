@@ -232,11 +232,7 @@ exports.re_update = (req, res, next) => {
       structureOnLand:  req.body.structureOnLand,
       nearestVillageDistance:  req.body.nearestVillageDistance,
       landSurveyDone:  req.body.landSurveyDone,
-      possesionOfLand:  req.body.possesionOfLand,
-      created: {
-          date:  req.body.date,
-          time:  req.body.time,
-      }
+      possesionOfLand:  req.body.possesionOfLand
   });
 
 
