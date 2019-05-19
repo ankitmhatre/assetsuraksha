@@ -10,6 +10,14 @@ const userRoutes = require('./api/routes/user');
 
 mongoose.connect(
   "mongodb://localhost:27017/testdb", {useMongoClient: true});
+  mongoose.connect('mongodb://localhost/dbname',  {useMongoClient: true}, function(err) {
+    if (err) {
+      console.log("Mongoose Error"+err)
+      throw err
+    }
+});
+
+
 
 mongoose.Promise = global.Promise;
 
