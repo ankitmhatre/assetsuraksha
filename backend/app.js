@@ -4,9 +4,11 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-const productRoutes = require("./api/routes/products");
+const physicalshareRoutes = require("./api/routes/physicalshare");
 const nscRoutes = require("./api/routes/nsc");
 const userRoutes = require('./api/routes/user');
+const reRoutes = require('./api/routes/re');
+
 
 
   mongoose.connect('mongodb://localhost/dbname',  {useMongoClient: true}, function(err) {
@@ -39,9 +41,17 @@ app.use((req, res, next) => {
 });
 
 // Routes which should handle requests
-app.use("/products", productRoutes);
+//  app.use("/products", productRoutes);
 app.use("/nsc", nscRoutes);
 app.use("/user", userRoutes);
+app.use("/physicalshare", physicalshareRoutes);
+app.use("/re", reRoutes);
+
+
+
+
+
+
 /** 
 app.use((req, res, next) => {
   const error = new Error("Not found");
