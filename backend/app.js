@@ -8,6 +8,8 @@ const physicalshareRoutes = require("./api/routes/physicalshare");
 const nscRoutes = require("./api/routes/nsc");
 const userRoutes = require('./api/routes/user');
 const reRoutes = require('./api/routes/re');
+const mfRoutes = require('./api/routes/mf');
+
 
 
 
@@ -46,6 +48,8 @@ app.use("/nsc", nscRoutes);
 app.use("/user", userRoutes);
 app.use("/physicalshare", physicalshareRoutes);
 app.use("/re", reRoutes);
+app.use("/mf", mfRoutes);
+
 
 
 
