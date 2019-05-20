@@ -46,7 +46,7 @@ class Login extends Component {
                     <input 
                         type="submit" value="Login"
                         onClick={this.LoginHandler}  />
-                    <NavLink to="#">Forgot password?</NavLink> <br/>
+                    <NavLink to="forgot_password">Forgot password?</NavLink> <br/>
                     <label>
                         Don't have an account? 
                         <NavLink to="/signup"> Create one</NavLink>
