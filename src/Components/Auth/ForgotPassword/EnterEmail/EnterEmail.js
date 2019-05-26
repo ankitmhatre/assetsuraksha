@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './EnterEmail.css';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 class EnterEmail extends Component {
 
     state = {
-        email: ""
+        email: "",
     }
 
     InputChangeHandler = (event) => {
@@ -13,6 +14,7 @@ class EnterEmail extends Component {
     }
 
     EmailSubmitHandler = () => {
+        alert("An OTP will be sent to your email")
         const email = {
             email: this.state.email,
         }
@@ -37,10 +39,13 @@ class EnterEmail extends Component {
                         name="email" 
                         placeholder="Enter Email"
                         onChange={this.InputChangeHandler} />
+
+                    <NavLink to="/submit_otp">
+                        <input 
+                            type="submit" name="" value="Submit Email"
+                            onClick={this.EmailSubmitHandler} />
+                    </NavLink>
                     
-                    <input 
-                        type="submit" name="" value="Sign Up"
-                        onClick={this.EmailSubmitHandler} />
                 </form>
             </div>
         )

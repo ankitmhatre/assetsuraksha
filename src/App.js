@@ -7,8 +7,9 @@ import PDetails from './Components/Auth/PDetails/PDContainer';
 import UserProfile from './Containers/UserProfile/UserProfile';
 import Toolbar from './Components/NavBar/Toolbar';
 import Home from './Containers/Home/Home';
-import EnterEmail from './Components/Auth/ForgetPassword/EnterEmail/EnterEmail';
-import ResetPassword from './Components/Auth/ForgetPassword/ResetPassword/ResetPassword';
+import EnterEmail from './Components/Auth/ForgotPassword/EnterEmail/EnterEmail';
+import ResetPassword from './Components/Auth/ForgotPassword/ResetPassword/ResetPassword';
+import PasswordOTP from './Components/Auth/ForgotPassword/PasswordOTP/PasswordOTP';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route path="/login" component={Login}/>
           <Route path="/signup" component={SignUp}/>
           <Route path="/forgot_password" component={EnterEmail}/>
+          <Route path="/submit_otp" component={PasswordOTP}/>
           <Route path="/reset_password" component={ResetPassword}/>
           <Route path="/personal_details" component={PDetails} />
           <Route path="/user_profile" component={UserProfile} />
