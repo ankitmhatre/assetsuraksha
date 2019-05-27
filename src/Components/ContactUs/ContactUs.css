@@ -1,0 +1,30 @@
+.ContactUsBox {
+    padding: 50px 100px;
+}
+
+.Name, .ContactUsBox input[type="email"] {
+    border: 1px solid  rgb(228, 228, 228);
+    background-color: rgb(228, 228, 228);
+    outline: none;
+    height: 40px;
+    width: 350px;
+    color: #000;
+    font-size: 16px;
+    margin: 5px 10px;
+    padding-left: 10px;
+    border-radius: 3px;
+}
+
+.Message {
+    border: 1px solid  rgb(228, 228, 228);
+    background-color: rgb(228, 228, 228);
+    outline: none;
+    height: 200px;
+    width: 550px;
+    color: #000;
+    font-size: 16px;
+    margin: 5px 10px;
+    padding-left: 10px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}

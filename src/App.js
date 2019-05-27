@@ -10,6 +10,7 @@ import Home from './Containers/Home/Home';
 import EnterEmail from './Components/Auth/ForgotPassword/EnterEmail/EnterEmail';
 import ResetPassword from './Components/Auth/ForgotPassword/ResetPassword/ResetPassword';
 import PasswordOTP from './Components/Auth/ForgotPassword/PasswordOTP/PasswordOTP';
+import ContactUs from './Components/ContactUs/ContactUs';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route path="/" exact component={Home}/>
           <Route path="/login" component={Login}/>
           <Route path="/signup" component={SignUp}/>
+          <Route path="/contact_us" component={ContactUs}/>
           <Route path="/forgot_password" component={EnterEmail}/>
           <Route path="/submit_otp" component={PasswordOTP}/>
           <Route path="/reset_password" component={ResetPassword}/>

@@ -23,7 +23,7 @@ class Login extends Component {
 
         axios.post('http://localhost:3001/user/login', loginData )
         .then(response => {
-            console.log(response)
+            console.log("Response ============" + response.data)
         })
         .catch(err => {
             console.log(err);
