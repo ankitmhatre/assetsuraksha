@@ -57,7 +57,6 @@ render() {
 			</ListItem>
 
 			<ListItem 
-				onClick={this.props.displayPDetails}
 				component={Link}
 				to="/user_profile/personal_details" 
 				button>
@@ -73,7 +72,6 @@ render() {
 
 					<ListItem 
 						button 
-						onClick={this.props.displayDPStock} 
 						className={classes.nested}
 						component={Link}
 						to="/user_profile/dp_stock">
@@ -82,7 +80,6 @@ render() {
 
 					<ListItem 
 						button 
-						onClick={this.props.displayKVP} 
 						className={classes.nested}
 						component={Link}
 						to="/user_profile/KVP">
@@ -91,7 +88,6 @@ render() {
 
 					<ListItem 
 						button 
-						onClick={this.props.displayMF} 
 						className={classes.nested}
 						component={Link}
 						to="/user_profile/MF">
@@ -100,7 +96,6 @@ render() {
 
 					<ListItem 
 						button 
-						onClick={this.props.displayNSC} 
 						className={classes.nested}
 						component={Link}
 						to="/user_profile/NSC">
@@ -109,7 +104,6 @@ render() {
 
 					<ListItem 
 						button 
-						onClick={this.props.displayPhysicalShare} 
 						className={classes.nested}
 						component={Link}
 						to="/user_profile/physical_share">
@@ -118,7 +112,6 @@ render() {
 
 					<ListItem 
 						button 
-						onClick={this.props.displayRealEstate} 
 						className={classes.nested}
 						component={Link}
 						to="/user_profile/real_estate">
@@ -126,6 +119,12 @@ render() {
 					</ListItem>
 				</List>
 			</Collapse>	
+
+			<ListItem 
+				onClick={this.props.LogoutHandler}
+				button >
+				<ListItemText primary="Logout" />
+			</ListItem>
 		</List> 
 		</div>
 	);

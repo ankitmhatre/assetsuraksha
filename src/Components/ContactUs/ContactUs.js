@@ -47,7 +47,7 @@ class ContactUs extends Component {
                     Send us a message and we will respond as soon as possible.</p>
                 <Label value="Name" />
                 <input 
-                    className="Name"
+                    className="UserName"
                     type="text"
                     name="userName"
                     onChange={this.TextInputHandler} />

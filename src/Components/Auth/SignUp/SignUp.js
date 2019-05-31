@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { NavLink } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './SignUp.css'
 import axios from 'axios'
 
@@ -8,6 +8,7 @@ class SignUp extends Component {
         email: '',
         password: '',
         confirmPassword: '',
+        signUp: false,
         wrongPassword: false
     }
     
@@ -15,17 +16,31 @@ class SignUp extends Component {
         this.setState({[event.target.name]: event.target.value})
     }   
 
-    SignUpHandler = () => {
+    SignUpHandler = (e) => {
+        e.preventDefault()
+        
+        if(this.state.email === 'sid@123.com' && this.state.password === '123') {
+            localStorage.setItem("token", "asdfghjkl")
+            this.setState({signUp: true})
+        }
+
+        // const token = localStorage.setItem("token", "asdfghjkl")
+        // if(token === 'asdfghjk') {
+        //     this.setState({signUp: true})
+        // }
+
+        const signUpData = {
+            email: this.state.email,
+            password: this.state.password,
+        }
+    
         if (this.state.password === this.state.confirmPassword) {
 
-            const signUpData = {
-                email: this.state.email,
-                password: this.state.password,
-            }
-    
             axios.post('http://localhost:3001/user/signup', signUpData )
                 .then(response => {
-                    console.log(response)
+                    console.log(response.data)
+                    localStorage.setItem("token", response.data.token)
+                    this.setState({signUp: true})
                 })
                 .catch(err => {
                     console.log(err)
@@ -38,10 +53,22 @@ class SignUp extends Component {
         
 
     render() {
+        
+        if(this.state.signUp) {
+            return <Redirect to="/personal_details" />
+        }
+
         return (
             <div className="SignUpbox shadow-3">
                 <h1>Sign Up</h1>
                 <form>
+                    {
+                        this.state.wrongPassword && 
+                        <div className="WrongPassword">
+                            <p>Passwords don't match</p>
+                        </div>
+                    }
+
                     <p>Email</p>
                     <input 
                         type="email" 
@@ -63,15 +90,12 @@ class SignUp extends Component {
                         placeholder="Enter password"
                         onChange={this.InputChangeHandler} />
                     
-                    {
-                        this.state.wrongPassword && <p className="WrongPassword">Passwords don't match</p>
-                    }
+                    
                         
-                    <NavLink to="/personal_details">
-                        <input 
-                            type="submit" name="" value="Sign Up"
-                            onClick={this.SignUpHandler} />
-                    </NavLink>
+                    <input 
+                        type="submit" name="" value="Sign Up"
+                        onClick={this.SignUpHandler} />
+
                 </form>
             </div>
         )

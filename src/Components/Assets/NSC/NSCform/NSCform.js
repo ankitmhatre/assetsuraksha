@@ -11,6 +11,8 @@ import SubLabel from '../../../UI/Label/SubLabel/SubLabel';
 import FormButton from '../../../UI/Button/FormButton';
 import axios from 'axios';
 
+const token = localStorage.getItem("token")
+
 class NSCform extends Component {
     state = {
         self_agent: "select one",
@@ -95,7 +97,6 @@ class NSCform extends Component {
                 "Other"
             ]
         }
-        
     }
 
     TextInputHandler = (event) => {
@@ -160,7 +161,12 @@ class NSCform extends Component {
             time: time,
         }
 
-        axios.post('Api Link', NSCdata)
+        axios.post('Api Link',
+            { 
+                headers: {
+                    "Authorization" : `Bearer ${token}`
+                } ,
+            }, NSCdata)
             .then(response => {
                 console.log(response);
             })

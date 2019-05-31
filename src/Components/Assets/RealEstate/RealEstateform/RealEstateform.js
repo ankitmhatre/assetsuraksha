@@ -10,6 +10,8 @@ import SubLabel from '../../../UI/Label/SubLabel/SubLabel';
 import FormButton from '../../../UI/Button/FormButton';
 import axios from 'axios';
 
+const token = localStorage.getItem("token")
+
 class RealEstateform extends Component {
     state = {
         realEstateType: "select one",
@@ -178,7 +180,12 @@ class RealEstateform extends Component {
             time: time,
         }
 
-        axios.post('Api Link', RealEstateData)
+        axios.post('Api Link',
+            { 
+                headers: {
+                    "Authorization" : `Bearer ${token}`
+                },
+            }, RealEstateData)
             .then(response => {
                 console.log(response);
             })

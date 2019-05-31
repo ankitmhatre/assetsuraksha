@@ -10,6 +10,8 @@ import HolderDetails from '../../Common/HolderDetails/HolderDetails';
 import FormButton from '../../../UI/Button/FormButton';
 import axios from 'axios';
 
+const token = localStorage.getItem("token")
+
 class DPStockform extends Component {
     state = {
         isDematerialized: "select one",
@@ -177,7 +179,12 @@ class DPStockform extends Component {
             time: time,
         }
 
-        axios.post('Api Link', DPStockData)
+        axios.post('Api Link',
+            { 
+                headers: {
+                    "Authorization" : `Bearer ${token}`
+                },
+            }, DPStockData )
             .then(response => {
                 console.log(response);
             })

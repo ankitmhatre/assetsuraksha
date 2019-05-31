@@ -11,6 +11,8 @@ import FormButton from '../../../UI/Button/FormButton';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
+const token = localStorage.getItem("token")
+
 class KVPform extends Component {
     state = {
         KVPissue: "select one",
@@ -153,7 +155,12 @@ class KVPform extends Component {
             time: time,
         }
 
-        axios.post('Api Link', KVPdata)
+        axios.post('Api Link',
+            { 
+                headers: {
+                    "Authorization" : `Bearer ${token}`
+                },
+            }, KVPdata)
             .then(response => {
                 console.log(response);
             })

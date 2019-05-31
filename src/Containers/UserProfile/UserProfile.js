@@ -6,6 +6,7 @@ import './UserProfile.css';
 import NavBar from '../../Components/UserProfile/NavBar';
 import UserProfileDrawer from '../../Components/UserProfile/Drawer'
 import MainContent from '../../Components/UserProfile/MainContent';
+import { Redirect } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -48,6 +49,7 @@ class UserProfile extends React.Component {
 	state = {
 		mobileOpen: false,
 		assets: false,
+		logout: false,
 	};
 
 	handleAssets = () => {
@@ -58,7 +60,17 @@ class UserProfile extends React.Component {
 		this.setState(state => ({ mobileOpen: !state.mobileOpen }));
 	};
 
+	LogoutHandler = () => {
+		this.setState({logout: true})
+		localStorage.removeItem("token")
+	}
+
 	render() {
+
+		if(this.state.logout) {
+			return <Redirect to="/login" />
+		}
+
 		const { classes, theme } = this.props;
 
 		return (
@@ -72,6 +84,7 @@ class UserProfile extends React.Component {
 					handleDrawerToggle={this.handleDrawerToggle}
 					handleAssets={this.handleAssets}
 					assets={this.state.assets}
+					LogoutHandler={this.LogoutHandler}
 				/>
 
 				<MainContent />

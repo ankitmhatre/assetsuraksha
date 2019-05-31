@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextBox from "../../UI/TextBox/TextBox";
 import './PDetails.css';
 import Label from "../../UI/Label/Label";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Divider } from "@material-ui/core";
 import axios from 'axios';
 
@@ -17,7 +17,10 @@ const styles = theme => ({
     },
   });
 
+const token = localStorage.getItem("token")
+
 class PDetails extends Component {
+
     state = {
         firstName: '',
         lastName: '',
@@ -31,27 +34,48 @@ class PDetails extends Component {
         gender: '',
         phoneNumber: '',
         otp: '',
-        otpbox: false
+        otpbox: false,
+        signedUp: false,
+        verified: false,
     }
 
     TextInputHandler = (event) => {
         this.setState({ [event.target.name]: event.target.value });
     }
-
+    
     VerifyHandler = () => {
-        this.setState({otpbox: true})
 
-        axios.post('Api Link', {phoneNumber: this.state.phoneNumber})
-            .then(response => {
-                console.log(response);
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        this.setState({otpbox: true})
+        
+        const phoneNumber = this.state.countryCode +this.state.phoneNumber
+        
+        axios.post('Api Link', 
+            { 
+                headers: {
+                    "Authorization" : `Bearer ${token}`
+                } ,
+            }, phoneNumber )
+        .then(response => {
+            console.log(response);
+            this.setState({otpbox: true})
+        })
+        .catch(err => {
+            console.log(err);
+        })
     }
 
     SubmitOTPHandler = () => {
-        axios.post('Api Link', {otp: this.state.otp})
+
+        this.setState({verified: true})
+
+        const otp = this.state.otp
+
+        axios.post('Api Link', 
+            { 
+                headers: {
+                    "Authorization" : `Bearer ${token}`
+                } ,
+            }, otp )
             .then(response => {
                 console.log(response);
             })
@@ -62,8 +86,12 @@ class PDetails extends Component {
 
     ContinueHandler = () => {
 
+        const token = localStorage.getItem("token")
+        if(token === 'asdfghjkl') {
+            this.setState({signedUp: true})
+        }
+
         console.log(this.state.countryCode +this.state.phoneNumber);
-        
 
         const PDetailsData = {
             firstName: this.state.firstName,
@@ -79,9 +107,15 @@ class PDetails extends Component {
             otp: this.state.otp,
         }
 
-        axios.post('http://localhost:3001/user/signup', PDetailsData )
+        axios.post('http://localhost:3001/user/signup', 
+            { 
+                headers: {
+                    "Authorization" : `Bearer ${token}`
+                } ,
+            }, PDetailsData )
             .then(response => {
                 console.log(response)
+                this.setState({signedUp: true})
             })
             .catch(err => {
                 console.log(err)
@@ -90,7 +124,29 @@ class PDetails extends Component {
 
 
     render() {
+
         const { classes } = this.props;
+
+        if(this.state.signedUp) {
+            return <Redirect to="/user_profile" />
+        }
+
+        const verifyOTP = this.state.verified ? 
+        (<Button 
+            variant="contained" 
+            color="primary" 
+            onClick={this.ContinueHandler}
+            className={classes.button}>
+                Continue
+        </Button>) : 
+        (<Button 
+            variant="contained" 
+            color="primary" 
+            disabled
+            className={classes.button}>
+                Continue
+        </Button>)
+        
         return(
             <div>
                 <h1 className="PDHeading">Personal Details</h1>
@@ -196,15 +252,7 @@ class PDetails extends Component {
                 )}
 
                 <div className="continueTop">
-                    <Button 
-                        component={Link}
-                        to = "/user_profile"
-                        variant="contained" 
-                        color="primary" 
-                        onClick={this.ContinueHandler}
-                        className={classes.button}>
-                            Continue
-                    </Button>
+                    {verifyOTP}
                 </div>  
             </div>
         )

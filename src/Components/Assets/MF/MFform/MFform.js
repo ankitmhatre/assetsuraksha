@@ -11,6 +11,8 @@ import FormButton from '../../../UI/Button/FormButton';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
+const token = localStorage.getItem("token")
+
 class MFform extends Component {
     state = {
         noOfFolios: "",
@@ -179,7 +181,12 @@ class MFform extends Component {
             time: time,
         }
 
-        axios.post('Api Link', MFdata)
+        axios.post('Api Link',
+            { 
+                headers: {
+                    "Authorization" : `Bearer ${token}`
+                },
+            }, MFdata)
             .then(response => {
                 console.log(response);
             })

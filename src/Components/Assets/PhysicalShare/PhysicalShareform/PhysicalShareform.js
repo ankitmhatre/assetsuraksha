@@ -10,6 +10,8 @@ import FormButton from '../../../UI/Button/FormButton';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
+const token = localStorage.getItem("token")
+
 class PhysicalShareform extends Component {
     state = {
         noOfCertificates: "",
@@ -142,7 +144,12 @@ class PhysicalShareform extends Component {
             time: time,
         }
 
-        axios.post('Api Link', PSdata)
+        axios.post('Api Link',
+            { 
+                headers: {
+                    "Authorization" : `Bearer ${token}`
+                },
+            }, PSdata)
             .then(response => {
                 console.log(response);
             })
