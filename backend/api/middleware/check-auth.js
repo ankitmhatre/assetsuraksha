@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 
 var crypto = require('crypto');
-console.log(crypto)
 
 module.exports = (req, res, next) => {
     try {
@@ -24,6 +23,7 @@ module.exports = (req, res, next) => {
         const decoded = jwt.verify(token, "iguessthisiscrypt");
         req.userData = decoded;
         }catch (error){
+            console.log(JSON.stringify(error))
             return res.status(403).json({
                 code : 301,
                 message: 'Invalid access token'

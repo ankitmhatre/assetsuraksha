@@ -69,6 +69,79 @@ exports.user_signup = (req, res, next) => {
   }
 };
 
+exports.user_verify = (req, res, next) => {
+
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    if (token === undefined) {
+      return res.status(400).json({
+        code: 215,
+        message: 'No token was specified.'
+      })
+    } else {
+      try {
+        const decoded = jwt.verify(token, "iguessthisiscrypt");
+
+        // console.log("Decoded = " + JSON.stringify(decoded))
+
+        //decoded.userId
+
+
+        if (req.body.phoneNumber !== undefined || req.body.phoneNumber !== null) {
+          var otp_num = Math.floor(100000 + Math.random() * 900000)
+          const accountSid = 'AC1328a1efa305162dff1b4e31d697c5fe';
+          const authToken = 'f7036092f3d60f451f7dcf20ff3120df';
+          const client = require('twilio')(accountSid, authToken);
+
+          client.messages
+            .create({
+              body: 'Your OTP for Asset Suraksha is ' + otp_num,
+              from: '+15017122661',
+              to: '' + req.body.phoneNumber
+            })
+            .then(message => {
+              console.log(message.sid)
+              return res.status(400).json({
+                code: 215,
+                message: 'OTP send successfully',
+                otp: otp_num
+              })
+
+            }).catch(err => { console.log(err) 
+              return res.status(400).json({
+                code: 400,
+                message: 'Failed to send Message.',
+                err : err
+              })
+            });
+        
+          }else{
+            return res.status(403).json({
+              code: 401,
+              message: 'No Phone Number provided'
+            });
+          }
+      } catch (error) {
+        return res.status(403).json({
+          code: 301,
+          message: 'Invalid access token'
+        });
+      }
+
+
+    }
+  } catch (error) {
+    console.log(error.code)
+    return res.status(401).json({
+      code: 604,
+      message: 'Internal Server Problem'
+    });
+  }
+
+};
+
+
+
 exports.user_login = (req, res, next) => {
 
   if (req.body.email === undefined) {
@@ -108,6 +181,9 @@ exports.user_login = (req, res, next) => {
                 expiresIn: "1h"
               }
             );
+
+
+
             return res.status(200).json({
               code: 202,
               message: "success",
@@ -147,82 +223,58 @@ exports.user_update = (req, res, next) => {
     } else {
       try {
         const decoded = jwt.verify(token, "iguessthisiscrypt");
-        req.userData = decoded;
-        console.log("Decoded = " + JSON.stringify(decoded))
 
-        if (decoded.userId === req.params.userId) {
+        // console.log("Decoded = " + JSON.stringify(decoded))
 
 
 
 
-          User.update({ _id: req.params.userId }, {
-            name: {
-              fname: req.body.fname,
-              mname: req.body.mname,
-              lname: req.body.lname
-            },
-            address: {
-              line1: req.body.line1,
-              state: req.body.state,
-              country: req.body.country,
-              landmark: req.body.landmark
-            },
-            contact: {
-              mobile: [req.body.mobile],
-              email: req.body.email
-            },
-            is_otp_verified: req.body.is_otp_verified,
-            is_email_verified: req.body.is_email_verified
-          })
-            .exec()
-            .then(result => {
-              if (result.n === 0) {
-                res.status(400).json({
-                  code: 608,
-                  message: "Invalid filter expression",
-                  result: result
-                });
-              } else {
-                res.status(200).json({
-                  code: 204,
-                  message: "User has been Updated",
-                  result: result
-                });
-              }
-
-
-
-            })
-            .catch(err => {
-
-              res.status(500).json({
-                code: 602,
-                message: 'Method not supported',
-                error: err
+        User.update({ _id: decoded.userId }, {
+          name: {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName
+          },
+          address: {
+            line1: req.body.line1,
+            line2: req.body.line2,
+            line3: req.body.line3,
+            city: req.body.city,
+            state: req.body.state,
+            country: req.body.country
+          },
+          contact: {
+            mobile: req.body.phoneNumber
+          },
+          is_otp_verified: req.body.is_otp_verified
+        })
+          .exec()
+          .then(result => {
+            if (result.n === 0) {
+              res.status(400).json({
+                code: 608,
+                message: "Invalid filter expression",
+                result: result
               });
-            });
+            } else {
+              res.status(200).json({
+                code: 204,
+                message: "User has been Updated",
+                result: result
+              });
+            }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-        } else {
-          return res.status(401).json({
-            code: 604,
-            message: "Unauthorized"
           })
-          //Unauthorized
-        }
+          .catch(err => {
+
+            res.status(500).json({
+              code: 602,
+              message: 'Method not supported',
+              error: err
+            });
+          });
+
 
       } catch (error) {
         return res.status(403).json({
@@ -230,7 +282,7 @@ exports.user_update = (req, res, next) => {
           message: 'Invalid access token'
         });
       }
-      console.log("haglo 5")
+
 
     }
   } catch (error) {

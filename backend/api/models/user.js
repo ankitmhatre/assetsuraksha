@@ -9,22 +9,20 @@ const userSchema = mongoose.Schema({
     },
     password: { type: String, required: true },
     name:{  
-        fname:String,
-        mname:String,
-        lname:String
+        firstName:String,
+        lastName:String
      },
+     gender: String, 
      address:{  
-        line1:String,
-        state:String,
-        country:String,
-        landmark:String
+        line1: String,
+        line2: String,
+        line3:String,
+        city: String,
+        state: String,
+        country:String
      },
-     contact:{  
-        mobile:[String],
-        email:String
-     },
-    is_otp_verified:{type :Boolean, default : false},
-    is_email_verified:{type :Boolean, default : false}
+     phoneNumber:String,
+    is_otp_verified:{type :Boolean, default : false}
 });
 
 module.exports = mongoose.model('User', userSchema);

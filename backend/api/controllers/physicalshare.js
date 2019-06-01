@@ -173,7 +173,7 @@ exports.ps_get_ps = (req, res, next) => {
   }
 };
 
-exports.nsc_update = (req, res, next) => {
+exports.ps_update = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   if (token === undefined) {
     return res.status(400).json({
@@ -224,7 +224,7 @@ exports.nsc_update = (req, res, next) => {
     );
 
 
-    ps.update({ _id: req.params.psId, userId: decoded.userId }, ps)
+    exports.ps.ps_update({ _id: req.params.psId, userId: decoded.userId }, ps)
       .exec()
       .then(ps => {
         res.status(200).json({

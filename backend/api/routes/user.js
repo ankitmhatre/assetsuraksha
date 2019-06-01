@@ -8,6 +8,10 @@ router.post("/signup", UserController.user_signup);
 
 router.post("/login", UserController.user_login);
 
-router.put("/:userId", checkAuth, UserController.user_update);
+router.post("/verify_otp", checkAuth, UserController.user_verify)
+
+router.put("/profile_update", checkAuth, UserController.user_update);
+
+
 
 module.exports = router;

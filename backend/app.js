@@ -19,7 +19,7 @@ const resetPassRoutes = require('./api/routes/resetpass');
 
 
 
-  mongoose.connect('mongodb://192.168.1.5/dbname',  {useMongoClient: true}, function(err) {
+  mongoose.connect('mongodb://localhost:27017/dbname',  {useMongoClient: true}, function(err) {
     if (err) {
       console.log("Mongoose Error"+err)
      
