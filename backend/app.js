@@ -11,6 +11,8 @@ const reRoutes = require('./api/routes/re');
 const mfRoutes = require('./api/routes/mf');
 const kvpRoutes = require('./api/routes/kvp');
 const dpsRoutes = require('./api/routes/dps');
+const resetPassRoutes = require('./api/routes/resetpass');
+
 
 
 
@@ -55,6 +57,7 @@ app.use("/re", reRoutes);
 app.use("/mf", mfRoutes);
 app.use("/kvp", kvpRoutes);
 app.use("/dps", dpsRoutes);
+app.use("/reset_pass",resetPassRoutes);
 
 
 
