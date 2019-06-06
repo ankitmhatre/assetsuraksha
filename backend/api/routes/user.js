@@ -12,6 +12,8 @@ router.post("/verify_otp", checkAuth, UserController.user_verify)
 
 router.put("/profile_update", checkAuth, UserController.user_update);
 
+router.get("/", checkAuth, UserController.user_getProfile)
+
 
 
 module.exports = router;

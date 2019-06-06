@@ -5,13 +5,13 @@ const User = require("../models/user");
 
 exports.user_signup = (req, res, next) => {
 
-  if (req.body.email === undefined) {
+  if (req.body.email === undefined || req.body.email === null || req.body.email.length < 5) {
     return res.status(203).json({
       code: 400,
       message: "No username was specified"
     });
   }
-  else if (req.body.password === undefined) {
+  else if (req.body.password === undefined || req.body.password === null || req.body.password.length < 5) {
     return res.status(202).json({
       code: 400,
       message: "No password was specified"
@@ -107,20 +107,21 @@ exports.user_verify = (req, res, next) => {
                 otp: otp_num
               })
 
-            }).catch(err => { console.log(err) 
+            }).catch(err => {
+              console.log(err)
               return res.status(400).json({
                 code: 400,
                 message: 'Failed to send Message.',
-                err : err
+                err: err
               })
             });
-        
-          }else{
-            return res.status(403).json({
-              code: 401,
-              message: 'No Phone Number provided'
-            });
-          }
+
+        } else {
+          return res.status(403).json({
+            code: 401,
+            message: 'No Phone Number provided'
+          });
+        }
       } catch (error) {
         return res.status(403).json({
           code: 301,
@@ -139,7 +140,6 @@ exports.user_verify = (req, res, next) => {
   }
 
 };
-
 
 
 exports.user_login = (req, res, next) => {
@@ -209,8 +209,6 @@ exports.user_login = (req, res, next) => {
 };
 
 
-
-
 exports.user_update = (req, res, next) => {
 
   try {
@@ -276,6 +274,58 @@ exports.user_update = (req, res, next) => {
           });
 
 
+      } catch (error) {
+        return res.status(403).json({
+          code: 301,
+          message: 'Invalid access token'
+        });
+      }
+
+
+    }
+  } catch (error) {
+    console.log(error.code)
+    return res.status(401).json({
+      code: 604,
+      message: 'Internal Server Problem'
+    });
+  }
+
+};
+
+
+exports.user_getProfile = (req, res, next) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    if (token === undefined) {
+      return res.status(400).json({
+        code: 215,
+        message: 'No token was specified.'
+      })
+    } else {
+      try {
+        const decoded = jwt.verify(token, "iguessthisiscrypt");
+        User.findOne({ _id: decoded.userId })
+          .exec()
+          .then(user => {
+
+            return res.status(200).json({
+
+              code: 200,
+              message: "Success",
+              user: user
+            });
+
+
+          })
+          .catch(err => {
+            res.status(404).json({
+
+              code: 600,
+              message: "Not Found",
+              error: err
+            });
+          })
       } catch (error) {
         return res.status(403).json({
           code: 301,

@@ -12,6 +12,7 @@ const mfRoutes = require('./api/routes/mf');
 const kvpRoutes = require('./api/routes/kvp');
 const dpsRoutes = require('./api/routes/dps');
 const resetPassRoutes = require('./api/routes/resetpass');
+const contactUsRoute = require('./api/routes/contactus');
 
 
 
@@ -58,7 +59,7 @@ app.use("/mf", mfRoutes);
 app.use("/kvp", kvpRoutes);
 app.use("/dps", dpsRoutes);
 app.use("/reset_pass",resetPassRoutes);
-
+app.use("/contact_us", contactUsRoute)
 
 
 
