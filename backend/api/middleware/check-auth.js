@@ -1,7 +1,5 @@
 const jwt = require('jsonwebtoken');
 
-var crypto = require('crypto');
-
 module.exports = (req, res, next) => {
     try {
         try{
