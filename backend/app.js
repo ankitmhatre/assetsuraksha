@@ -49,6 +49,8 @@ app.use((req, res, next) => {
   next();
 });
 
+
+
 // Routes which should handle requests
 //  app.use("/products", productRoutes);
 app.use("/nsc", nscRoutes);
